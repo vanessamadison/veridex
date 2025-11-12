@@ -1,0 +1,128 @@
+# Microsoft Defender for Office 365 - Email Entity Fields
+# Reference: https://learn.microsoft.com/en-us/defender-office-365/mdo-email-entity-page
+# Version tracking for Defender feature updates
+
+version: "2025-01"
+last_updated: "2025-01-11"
+
+# Email entity fields currently supported
+email_entity_fields:
+
+  # Header information
+  header_fields:
+    - SenderFromAddress
+    - SenderFromDomain
+    - SenderDisplayName
+    - SenderIPv4
+    - ReturnPath
+    - ReplyTo
+    - Subject
+    - InternetMessageId
+    - NetworkMessageId
+    - Recipients
+    - RecipientsCc
+    - RecipientsBcc
+    - ReceivedDateTime
+
+  # Authentication results
+  authentication:
+    - AuthenticationDetails.SPF
+    - AuthenticationDetails.DKIM
+    - AuthenticationDetails.DMARC
+
+  # Threat intelligence
+  threat_intelligence:
+    - ThreatTypes            # Array: Phish, Malware, Spam, etc.
+    - DetectionTechnologies  # Array: URL Reputation, File Reputation, etc.
+    - DeliveryAction         # Delivered, Blocked, Quarantined
+    - DeliveryLocation       # Inbox, JunkFolder, Quarantine
+    - OriginalDeliveryLocation
+
+  # URLs
+  urls:
+    - Urls                   # Array of URL objects
+    - Urls[].Url
+    - Urls[].ThreatVerdict   # Malicious, Suspicious, Clean, Unknown
+    - Urls[].ClickCount
+    - ClickedUrls            # Array of clicked URLs
+
+  # Attachments
+  attachments:
+    - Attachments            # Array of attachment objects
+    - Attachments[].FileName
+    - Attachments[].FileType
+    - Attachments[].SHA256
+    - Attachments[].ThreatNames  # Array of detected threats
+
+  # Content signals (HIPAA-safe, metadata only)
+  content:
+    - Language
+    - Directionality         # Inbound, Outbound, Intra-org
+
+  # User reporting context
+  user_reporting:
+    - IsUserReported
+    - UserReportClassification
+    - AnalystComments
+    - ReportedDateTime
+
+  # Timing (for SLA tracking)
+  timing:
+    - ReceivedDateTime
+    - ReportedDateTime
+    - InvestigationStartTime
+    - ResolutionTime
+
+# Field mapping for extraction
+field_mappings:
+  # Map various field name variations to standard names
+  sender:
+    - SenderFromAddress
+    - Sender
+    - From
+
+  subject:
+    - Subject
+    - EmailSubject
+
+  threat_types:
+    - ThreatTypes
+    - Threat types
+    - ThreatType
+
+# Feature version history
+feature_updates:
+  - version: "2025-01"
+    date: "2025-01-11"
+    changes:
+      - "Baseline implementation"
+      - "All standard MDO email entity fields supported"
+      - "HIPAA-compliant metadata-only processing"
+
+  # Future updates will be documented here
+  # Example:
+  # - version: "2025-02"
+  #   date: "2025-02-01"
+  #   changes:
+  #     - "Added support for AIGeneratedContent field"
+  #     - "Added SenderReputation scoring"
+  #     - "New ThreatType: DeepfakeContent"
+
+# Extensibility notes
+extensibility:
+  how_to_add_new_fields: |
+    1. Update this file with new field under appropriate category
+    2. Update src/core/mdo_field_extractor.py to extract the field
+    3. Update src/core/ensemble_verdict_engine.py to use the field (if applicable)
+    4. Document the change in feature_updates above
+    5. Test with sample data
+    6. Commit with version increment
+
+  testing: |
+    python3 tests/test_mdo_fields.py --field NEW_FIELD_NAME
+
+# Defender API endpoints (for future Graph API integration)
+api_endpoints:
+  email_entity: "https://graph.microsoft.com/v1.0/security/emailEntityId"
+  submissions: "https://graph.microsoft.com/v1.0/security/threatSubmission/emailThreats"
+  incidents: "https://graph.microsoft.com/v1.0/security/incidents"
