@@ -1,0 +1,67 @@
+# Defender Automation Triage - Main Configuration
+# HIPAA-compliant email triage system
+
+# Ollama LLM settings
+ollama:
+  model: "mistral:latest"
+  base_url: "http://localhost:11434"
+  temperature: 0.1  # Low temperature for consistent security decisions
+  timeout: 30  # Seconds
+  use_ollama: true  # Set false to skip LLM (faster, rule-based only)
+
+# Ensemble verdict engine
+ensemble:
+  # Component weights (must sum to 1.0)
+  weights:
+    ollama: 0.40    # LLM threat analysis
+    rules: 0.30     # Rule-based scoring (SOP logic)
+    defender: 0.30  # Microsoft Defender signals
+
+  # Decision thresholds
+  thresholds:
+    auto_block: 0.90          # Very high confidence - auto-block
+    malicious: 0.75           # High confidence - malicious verdict
+    suspicious: 0.40          # Medium confidence - analyst review
+    clean: 0.15               # Low risk - clean verdict
+    auto_resolve_clean: 0.10  # Very low risk - auto-resolve
+
+# HIPAA compliance settings
+hipaa:
+  enforce: true               # Enforce data minimization
+  audit_retention_days: 2190  # 6 years (HIPAA requirement)
+  exclude_body: true          # Never process email body content
+  body_preview_max_chars: 50  # Max chars from body preview
+  log_all_decisions: true     # Log every decision for audit
+
+# Processing settings
+processing:
+  parallel: false             # Use parallel processing (experimental)
+  max_workers: 5              # Max concurrent workers (if parallel)
+  batch_size: 100             # Process in batches
+
+# Output settings
+output:
+  verdicts_csv: true
+  analyst_queue_csv: true
+  audit_log_json: true
+  summary_json: true
+  create_latest_symlink: true
+
+# Microsoft Defender integration
+defender:
+  features_config: "config/defender_features.yaml"
+  api_timeout: 30             # Graph API timeout (seconds)
+
+# Internal domain configuration
+internal_domains:
+  - "ucdenver.edu"
+  - "cuanschutz.edu"
+  - "cumedicine.us"
+  - "cu.edu"
+  - "sharepointonline.com"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "results/triage.log"
+  console_output: true
