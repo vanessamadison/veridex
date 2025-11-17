@@ -7,9 +7,10 @@ import argparse
 import csv
 import json
 import logging
+import yaml
 from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 # Import our modules
 from ollama_client import OllamaSecurityAnalyst
@@ -21,6 +22,23 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+def load_config(config_path: str) -> Dict[str, Any]:
+    """Load configuration from YAML file"""
+    try:
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        logger.info(f"✓ Loaded configuration from {config_path}")
+        return config
+    except FileNotFoundError:
+        logger.error(f"Configuration file not found: {config_path}")
+        logger.info("Using default configuration")
+        return {}
+    except Exception as e:
+        logger.error(f"Error loading configuration: {e}")
+        logger.info("Using default configuration")
+        return {}
 
 
 class TriageOrchestrator:
@@ -35,34 +53,58 @@ class TriageOrchestrator:
 
     def __init__(
         self,
-        ollama_model: str = "mistral",
-        output_dir: str = "results/triage_run",
-        enforce_hipaa: bool = True
+        config: Optional[Dict[str, Any]] = None,
+        ollama_model: Optional[str] = None,
+        output_dir: Optional[str] = None,
+        enforce_hipaa: Optional[bool] = None
     ):
         """
         Initialize orchestrator
 
         Args:
-            ollama_model: Ollama model to use
-            output_dir: Directory for outputs
-            enforce_hipaa: Enforce HIPAA data minimization
+            config: Configuration dictionary (from YAML)
+            ollama_model: Ollama model to use (overrides config)
+            output_dir: Directory for outputs (overrides config)
+            enforce_hipaa: Enforce HIPAA data minimization (overrides config)
         """
-        self.output_dir = Path(output_dir)
+        # Use config or defaults
+        self.config = config or {}
+
+        # Apply overrides or use config/defaults
+        model = ollama_model or self.config.get('ollama', {}).get('model', 'mistral')
+        output = output_dir or "results/triage_run"
+        hipaa = enforce_hipaa if enforce_hipaa is not None else self.config.get('hipaa', {}).get('enforce', True)
+
+        self.output_dir = Path(output)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         self.run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
 
         # Initialize components
         logger.info("Initializing Ollama Security Analyst...")
-        self.ollama_client = OllamaSecurityAnalyst(model=ollama_model)
+        ollama_config = self.config.get('ollama', {})
+        self.ollama_client = OllamaSecurityAnalyst(
+            model=model,
+            base_url=ollama_config.get('base_url', 'http://localhost:11434')
+        )
 
         logger.info("Initializing MDO Field Extractor...")
-        self.field_extractor = MDOFieldExtractor(enforce_hipaa=enforce_hipaa)
+        self.field_extractor = MDOFieldExtractor(enforce_hipaa=hipaa)
 
         logger.info("Initializing Ensemble Verdict Engine...")
-        self.verdict_engine = EnsembleVerdictEngine(self.ollama_client)
+        ensemble_config = self.config.get('ensemble', {})
+        self.verdict_engine = EnsembleVerdictEngine(
+            self.ollama_client,
+            weights=ensemble_config.get('weights'),
+            confidence_thresholds=ensemble_config.get('thresholds')
+        )
 
-        self.enforce_hipaa = enforce_hipaa
+        self.enforce_hipaa = hipaa
+
+        logger.info(f"✓ Configuration loaded:")
+        logger.info(f"  - Model: {model}")
+        logger.info(f"  - HIPAA: {'ENABLED' if hipaa else 'DISABLED'}")
+        logger.info(f"  - Output: {self.output_dir}")
 
     def load_emails_from_csv(self, csv_path: str) -> List[Dict]:
         """Load emails from CSV file"""
@@ -388,15 +430,19 @@ def main():
     )
 
     parser.add_argument(
+        "--config",
+        default="config/config.yaml",
+        help="Configuration file (default: config/config.yaml)"
+    )
+
+    parser.add_argument(
         "--output",
-        default="results/triage_run",
-        help="Output directory (default: results/triage_run)"
+        help="Output directory (overrides config)"
     )
 
     parser.add_argument(
         "--model",
-        default="mistral",
-        help="Ollama model to use (default: mistral)"
+        help="Ollama model to use (overrides config)"
     )
 
     parser.add_argument(
@@ -425,11 +471,15 @@ def main():
 
     args = parser.parse_args()
 
+    # Load configuration
+    config = load_config(args.config)
+
     # Initialize orchestrator
     orchestrator = TriageOrchestrator(
+        config=config,
         ollama_model=args.model,
         output_dir=args.output,
-        enforce_hipaa=not args.no_hipaa
+        enforce_hipaa=None if not args.no_hipaa else False
     )
 
     # Load emails

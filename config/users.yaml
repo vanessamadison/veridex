@@ -1,0 +1,8 @@
+admin:
+  created_at: '2025-11-17T00:27:28.876658'
+  disabled: false
+  email: admin@localhost
+  hashed_password: $5$rounds=535000$Cx0H3yALrqfxGTYZ$Di5/VMnfF7qke5TXWJ5RrWljJrgw7eEE5ynbZNpI6t9
+  last_login: '2025-11-17T02:11:46.395008'
+  role: admin
+  username: admin
