@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Defender - Email Triage Automation</title>
+    <style>
+        :root {
+            --ms-blue: #0078d4;
+            --ms-blue-dark: #106ebe;
+            --ms-red: #e81123;
+            --ms-orange: #ff8c00;
+            --ms-green: #107c10;
+            --ms-gray-100: #f3f2f1;
+            --ms-gray-200: #e1dfdd;
+            --ms-gray-300: #c8c6c4;
+            --ms-gray-600: #605e5c;
+            --ms-gray-900: #201f1e;
+            --ms-black: #000000;
+            --ms-white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background: var(--ms-gray-100);
+            color: var(--ms-gray-900);
+            font-size: 14px;
+        }
+        .header {
+            background: var(--ms-white);
+            border-bottom: 1px solid var(--ms-gray-200);
+            padding: 0 24px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .header h1 { font-size: 16px; font-weight: 600; }
+        .header-badge { background: var(--ms-blue); color: var(--ms-white); padding: 2px 8px; font-size: 11px; font-weight: 600; }
+        .login-container { display: flex; align-items: center; justify-content: center; height: 100vh; background: var(--ms-gray-100); }
+        .login-box { background: var(--ms-white); border: 1px solid var(--ms-gray-300); padding: 32px; width: 360px; }
+        .login-box h2 { font-size: 20px; font-weight: 600; margin-bottom: 24px; }
+        .login-box input { width: 100%; padding: 8px 12px; border: 1px solid var(--ms-gray-300); margin-bottom: 16px; font-size: 14px; }
+        .login-box input:focus { border-color: var(--ms-blue); outline: none; }
+        .login-box button { width: 100%; background: var(--ms-blue); color: var(--ms-white); border: none; padding: 10px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .main { display: flex; height: calc(100vh - 48px); }
+        .sidebar { width: 220px; background: var(--ms-white); border-right: 1px solid var(--ms-gray-200); padding: 16px 0; }
+        .sidebar-item { padding: 10px 24px; cursor: pointer; font-size: 13px; border-left: 3px solid transparent; position: relative; }
+        .sidebar-item:hover { background: var(--ms-gray-100); }
+        .sidebar-item.active { background: var(--ms-gray-100); border-left-color: var(--ms-blue); font-weight: 600; }
+        .sidebar-badge { position: absolute; right: 16px; background: var(--ms-red); color: white; font-size: 10px; padding: 2px 6px; font-weight: 600; }
+        .content { flex: 1; padding: 24px; overflow-y: auto; }
+        .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-card { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; }
+        .stat-label { font-size: 11px; color: var(--ms-gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 600; }
+        .stat-value.critical { color: var(--ms-red); }
+        .stat-value.warning { color: var(--ms-orange); }
+        .stat-value.success { color: var(--ms-green); }
+        .stat-value.primary { color: var(--ms-blue); }
+        .command-bar { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 8px 16px; margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+        .cmd-btn { background: transparent; border: 1px solid var(--ms-gray-300); padding: 6px 12px; font-size: 13px; cursor: pointer; }
+        .cmd-btn:hover { background: var(--ms-gray-100); }
+        .cmd-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .cmd-btn.primary { background: var(--ms-blue); color: var(--ms-white); border-color: var(--ms-blue); }
+        .cmd-btn.danger { color: var(--ms-red); border-color: var(--ms-red); }
+        .cmd-btn.success { color: var(--ms-green); border-color: var(--ms-green); }
+        .cmd-separator { width: 1px; height: 24px; background: var(--ms-gray-300); margin: 0 8px; }
+        .data-grid { background: var(--ms-white); border: 1px solid var(--ms-gray-200); }
+        .grid-header { display: grid; background: var(--ms-gray-100); border-bottom: 1px solid var(--ms-gray-200); font-size: 11px; font-weight: 600; color: var(--ms-gray-600); text-transform: uppercase; }
+        .grid-header div { padding: 10px 12px; border-right: 1px solid var(--ms-gray-200); }
+        .grid-row { display: grid; border-bottom: 1px solid var(--ms-gray-200); font-size: 12px; cursor: pointer; }
+        .grid-row:hover { background: #f0f0f0; }
+        .grid-row div { padding: 10px 12px; border-right: 1px solid var(--ms-gray-200); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .grid-row.selected { background: #e5f1fb; }
+        .grid-row.processing { background: #fff3cd; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .queue-grid .grid-header, .queue-grid .grid-row { grid-template-columns: 40px 80px 1fr 160px 90px 90px 70px 100px; }
+        .incident-grid .grid-header, .incident-grid .grid-row { grid-template-columns: 40px 100px 1fr 80px 100px 100px 120px; }
+        .badge { display: inline-block; padding: 2px 6px; font-size: 10px; font-weight: 600; }
+        .badge-malicious, .badge-high { background: #fde7e9; color: var(--ms-red); }
+        .badge-suspicious, .badge-medium { background: #fff4ce; color: #7a6400; }
+        .badge-clean, .badge-low { background: #dff6dd; color: var(--ms-green); }
+        .badge-processing { background: #cfe2ff; color: #0a58ca; }
+        .badge-completed { background: var(--ms-gray-200); color: var(--ms-gray-600); }
+        .checkbox { width: 16px; height: 16px; cursor: pointer; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .panel-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .section-title { font-size: 14px; font-weight: 600; margin: 20px 0 12px 0; color: var(--ms-gray-900); border-bottom: 2px solid var(--ms-blue); padding-bottom: 8px; }
+        .details-pane { position: fixed; right: 0; top: 48px; width: 450px; height: calc(100vh - 48px); background: var(--ms-white); border-left: 1px solid var(--ms-gray-200); transform: translateX(100%); transition: transform 0.2s; overflow-y: auto; z-index: 100; }
+        .details-pane.open { transform: translateX(0); }
+        .details-header { background: var(--ms-gray-100); padding: 20px 24px; border-bottom: 1px solid var(--ms-gray-200); display: flex; justify-content: space-between; align-items: center; }
+        .details-header h3 { font-size: 16px; font-weight: 600; }
+        .details-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ms-gray-600); padding: 4px 8px; }
+        .details-close:hover { background: var(--ms-gray-200); }
+        .details-body { padding: 24px; }
+        .detail-row { margin-bottom: 20px; }
+        .detail-label { font-size: 11px; color: var(--ms-gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
+        .detail-value { font-size: 14px; color: var(--ms-gray-900); line-height: 1.5; word-wrap: break-word; }
+        .detail-actions { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--ms-gray-200); display: flex; gap: 12px; }
+        .simulation-controls { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 16px; margin-bottom: 16px; }
+        .sim-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+        .sim-stat { text-align: center; }
+        .sim-stat-value { font-size: 24px; font-weight: 600; }
+        .sim-stat-label { font-size: 11px; color: var(--ms-gray-600); }
+        .progress-bar { height: 8px; background: var(--ms-gray-200); margin-top: 12px; }
+        .progress-fill { height: 100%; background: var(--ms-blue); transition: width 0.3s; }
+        .empty-state { text-align: center; padding: 40px; color: var(--ms-gray-600); }
+        .hidden { display: none !important; }
+        .tab-section { margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+    <div id="login-container" class="login-container">
+        <div class="login-box">
+            <h2>Defender Triage Portal</h2>
+            <input type="text" id="username" placeholder="Username" value="admin">
+            <input type="password" id="password" placeholder="Password" value="changeme123">
+            <button onclick="login()">Sign in</button>
+            <div id="login-error" style="color: var(--ms-red); margin-top: 12px; font-size: 12px;"></div>
+        </div>
+    </div>
+
+    <div id="app" class="hidden">
+        <header class="header">
+            <div class="header-left">
+                <h1>Microsoft Defender</h1>
+                <span class="header-badge">EMAIL TRIAGE AUTOMATION</span>
+            </div>
+            <div style="font-size: 13px;">
+                <span id="current-user">admin</span> |
+                <span style="cursor: pointer;" onclick="logout()">Sign out</span>
+            </div>
+        </header>
+
+        <div class="main">
+            <nav class="sidebar">
+                <div class="sidebar-item active" onclick="showPanel('explorer')">
+                    Active Triage
+                    <span class="sidebar-badge" id="nav-processing">0</span>
+                </div>
+                <div class="sidebar-item" onclick="showPanel('review')">
+                    Analyst Review
+                    <span class="sidebar-badge" id="nav-review">0</span>
+                </div>
+                <div class="sidebar-item" onclick="showPanel('completed')">Completed</div>
+                <div class="sidebar-item" onclick="showPanel('audit')">Audit Trail</div>
+            </nav>
+
+            <div class="content">
+                <!-- Active Triage Panel (Explorer) -->
+                <div id="explorer-panel" class="panel active">
+                    <div class="panel-title">
+                        Active Email Triage
+                        <span id="sim-status" style="font-size: 12px; color: var(--ms-gray-600);">Idle</span>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-label">Incoming Queue</div>
+                            <div class="stat-value warning" id="stat-queue">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Processing</div>
+                            <div class="stat-value primary" id="stat-processing">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Auto-Resolved</div>
+                            <div class="stat-value success" id="stat-auto">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Needs Review</div>
+                            <div class="stat-value critical" id="stat-review">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Avg Time</div>
+                            <div class="stat-value" id="stat-avgtime">0s</div>
+                        </div>
+                    </div>
+
+                    <div class="simulation-controls">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 600;">Simulation Controls</div>
+                            <div>
+                                <button class="cmd-btn primary" onclick="startSimulation()" id="btn-start">Start 5-Min Simulation</button>
+                                <button class="cmd-btn danger" onclick="stopSimulation()" id="btn-stop" disabled>Stop</button>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="sim-progress" style="width: 0%"></div>
+                        </div>
+                        <div class="sim-stats">
+                            <div class="sim-stat">
+                                <div class="sim-stat-value" id="sim-total">0</div>
+                                <div class="sim-stat-label">Total Processed</div>
+                            </div>
+                            <div class="sim-stat">
+                                <div class="sim-stat-value success" id="sim-auto-rate">0%</div>
+                                <div class="sim-stat-label">Automation Rate</div>
+                            </div>
+                            <div class="sim-stat">
+                                <div class="sim-stat-value" id="sim-speed">0</div>
+                                <div class="sim-stat-label">Emails/Min</div>
+                            </div>
+                            <div class="sim-stat">
+                                <div class="sim-stat-value" id="sim-elapsed">0:00</div>
+                                <div class="sim-stat-label">Elapsed Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="command-bar">
+                        <input type="checkbox" class="checkbox" id="select-all-queue" onchange="toggleSelectAll('queue')">
+                        <button class="cmd-btn" onclick="triageSelected()" id="btn-triage" disabled>Triage Selected</button>
+                        <div class="cmd-separator"></div>
+                        <span style="font-size: 12px; color: var(--ms-gray-600);">Selected: <span id="selected-count">0</span></span>
+                    </div>
+
+                    <div class="data-grid queue-grid">
+                        <div class="grid-header">
+                            <div></div>
+                            <div>ID</div>
+                            <div>Subject</div>
+                            <div>Sender</div>
+                            <div>Risk</div>
+                            <div>Verdict</div>
+                            <div>Score</div>
+                            <div>Status</div>
+                        </div>
+                        <div id="queue-body">
+                            <div class="empty-state">No emails in queue. Start simulation to see active triage.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analyst Review Panel -->
+                <div id="review-panel" class="panel">
+                    <div class="panel-title">
+                        Analyst Review Required
+                        <span style="font-size: 12px; color: var(--ms-gray-600);">Emails requiring human decision</span>
+                    </div>
+
+                    <div class="command-bar">
+                        <input type="checkbox" class="checkbox" id="select-all-review" onchange="toggleSelectAll('review')">
+                        <button class="cmd-btn primary" onclick="assignToMe()" id="btn-assign" disabled>Assign to Me</button>
+                        <button class="cmd-btn success" onclick="markCleanSelected()" id="btn-clean" disabled>Mark Clean</button>
+                        <button class="cmd-btn danger" onclick="blockSelected()" id="btn-block" disabled>Block</button>
+                        <div class="cmd-separator"></div>
+                        <span style="font-size: 12px; color: var(--ms-gray-600);">Selected: <span id="review-selected-count">0</span></span>
+                    </div>
+
+                    <div class="data-grid incident-grid">
+                        <div class="grid-header">
+                            <div></div>
+                            <div>Incident ID</div>
+                            <div>Subject</div>
+                            <div>Risk</div>
+                            <div>Confidence</div>
+                            <div>Assigned</div>
+                            <div>Status</div>
+                        </div>
+                        <div id="review-body">
+                            <div class="empty-state">No emails require analyst review. Auto-triage is handling all emails.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed Panel -->
+                <div id="completed-panel" class="panel">
+                    <div class="panel-title">Completed Triage</div>
+
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Completed</div>
+                            <div class="stat-value" id="completed-total">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Auto-Blocked</div>
+                            <div class="stat-value critical" id="completed-blocked">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Auto-Resolved</div>
+                            <div class="stat-value success" id="completed-resolved">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Analyst Resolved</div>
+                            <div class="stat-value primary" id="completed-analyst">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Automation Rate</div>
+                            <div class="stat-value success" id="completed-rate">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Auto-Blocked (Malicious)</div>
+                    <div id="completed-malicious" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
+                        <div class="empty-state">No blocked emails yet</div>
+                    </div>
+
+                    <div class="section-title">Auto-Resolved (Clean)</div>
+                    <div id="completed-clean" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
+                        <div class="empty-state">No resolved emails yet</div>
+                    </div>
+
+                    <div class="section-title">Analyst Resolved</div>
+                    <div id="completed-analyst-list" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
+                        <div class="empty-state">No analyst-resolved emails yet</div>
+                    </div>
+                </div>
+
+                <!-- Audit Panel -->
+                <div id="audit-panel" class="panel">
+                    <div class="panel-title">HIPAA Audit Trail</div>
+                    <div class="command-bar">
+                        <button class="cmd-btn primary" onclick="loadAuditLogs()">Load Logs</button>
+                        <button class="cmd-btn" onclick="exportAudit()">Export CSV</button>
+                    </div>
+                    <div id="audit-logs" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 16px; font-family: Consolas, monospace; font-size: 12px; max-height: 600px; overflow-y: auto;">
+                        Click "Load Logs" to view audit trail...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Pane -->
+        <div id="details-pane" class="details-pane">
+            <div class="details-header">
+                <h3 id="details-title">Email Details</h3>
+                <button class="details-close" onclick="closeDetails()">×</button>
+            </div>
+            <div class="details-body" id="details-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let accessToken = localStorage.getItem('token');
+
+        // Simulation state
+        let simulationRunning = false;
+        let simulationInterval = null;
+        let simulationStartTime = null;
+        let emailQueue = [];
+        let processingEmails = [];
+        let completedEmails = { blocked: [], resolved: [], analyst: [] };
+        let reviewQueue = [];
+        let selectedQueueIds = new Set();
+        let selectedReviewIds = new Set();
+        let incidentCounter = 100000;
+        let totalProcessed = 0;
+        let autoResolved = 0;
+
+        // Auth
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const formData = new URLSearchParams();
+            formData.append('username', username);
+            formData.append('password', password);
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+                if (!response.ok) throw new Error('Invalid credentials');
+                const data = await response.json();
+                accessToken = data.access_token;
+                localStorage.setItem('token', accessToken);
+                document.getElementById('login-container').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                document.getElementById('current-user').textContent = username;
+                updateStats();
+            } catch (error) {
+                document.getElementById('login-error').textContent = error.message;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            location.reload();
+        }
+
+        window.onload = () => {
+            if (accessToken) {
+                document.getElementById('login-container').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                updateStats();
+            }
+        };
+
+        // Generate realistic email
+        function generateEmail() {
+            const subjects = [
+                "Invoice #INV-" + Math.floor(Math.random() * 99999) + " Attached",
+                "Urgent: Password Reset Required",
+                "Your Account Has Been Locked",
+                "Wire Transfer Request - Confidential",
+                "Security Alert: Verify Your Identity",
+                "Action Required: Update Payment Method",
+                "Meeting Notes - Q4 Planning",
+                "Project Status Update",
+                "Team Building Event Next Week",
+                "Monthly Report Summary",
+                "New Policy Document for Review",
+                "Office Closure Notice",
+                "IT Maintenance Scheduled",
+                "Training Session Registration",
+                "Benefits Enrollment Reminder"
+            ];
+            const domains = [
+                "secure-paypa1.com", "micros0ft-support.net", "account-verify.info",
+                "trusted-vendor.com", "company-hr.org", "internal-notifications.com"
+            ];
+            const senders = ["support", "admin", "noreply", "security", "hr", "finance"];
+
+            const isPhishing = Math.random() < 0.35; // 35% phishing
+            const subject = subjects[Math.floor(Math.random() * subjects.length)];
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            const sender = senders[Math.floor(Math.random() * senders.length)] + "@" + domain;
+
+            let riskScore, verdict, confidence;
+            if (isPhishing && subject.includes("Urgent") || subject.includes("Account") || subject.includes("Wire")) {
+                riskScore = 75 + Math.floor(Math.random() * 25);
+                verdict = "MALICIOUS";
+                confidence = 0.80 + Math.random() * 0.15;
+            } else if (isPhishing) {
+                riskScore = 50 + Math.floor(Math.random() * 30);
+                verdict = "SUSPICIOUS";
+                confidence = 0.55 + Math.random() * 0.20;
+            } else {
+                riskScore = 10 + Math.floor(Math.random() * 30);
+                verdict = "CLEAN";
+                confidence = 0.75 + Math.random() * 0.20;
+            }
+
+            return {
+                id: "EM-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
+                subject: subject,
+                sender: sender,
+                domain: domain,
+                received: new Date().toISOString(),
+                riskScore: riskScore,
+                verdict: verdict,
+                confidence: confidence,
+                status: "queued",
+                selected: false
+            };
+        }
+
+        // Simulation
+        function startSimulation() {
+            if (simulationRunning) return;
+            simulationRunning = true;
+            simulationStartTime = Date.now();
+            document.getElementById('btn-start').disabled = true;
+            document.getElementById('btn-stop').disabled = false;
+            document.getElementById('sim-status').textContent = "Running...";
+            document.getElementById('sim-status').style.color = "var(--ms-green)";
+
+            // Generate initial batch
+            for (let i = 0; i < 15; i++) {
+                emailQueue.push(generateEmail());
+            }
+            renderQueue();
+
+            // Simulation loop
+            simulationInterval = setInterval(() => {
+                // Add new emails (simulate incoming)
+                if (Math.random() < 0.7) {
+                    emailQueue.push(generateEmail());
+                }
+
+                // Process emails
+                processNextEmail();
+
+                // Update UI
+                updateStats();
+                renderQueue();
+                updateSimulationStats();
+
+                // Check if 5 minutes elapsed
+                const elapsed = (Date.now() - simulationStartTime) / 1000;
+                const progress = Math.min((elapsed / 300) * 100, 100);
+                document.getElementById('sim-progress').style.width = progress + "%";
+
+                if (elapsed >= 300) {
+                    stopSimulation();
+                }
+            }, 500); // Process every 500ms
+        }
+
+        function stopSimulation() {
+            simulationRunning = false;
+            clearInterval(simulationInterval);
+            document.getElementById('btn-start').disabled = false;
+            document.getElementById('btn-stop').disabled = true;
+            document.getElementById('sim-status').textContent = "Completed";
+            document.getElementById('sim-status').style.color = "var(--ms-blue)";
+        }
+
+        function processNextEmail() {
+            if (emailQueue.length === 0) return;
+
+            // Take first email from queue
+            const email = emailQueue.shift();
+            email.status = "processing";
+            processingEmails.push(email);
+
+            // Simulate processing time (100-500ms)
+            setTimeout(() => {
+                const idx = processingEmails.indexOf(email);
+                if (idx > -1) processingEmails.splice(idx, 1);
+
+                // Determine action based on confidence
+                if (email.confidence >= 0.75) {
+                    // Auto-resolve
+                    email.status = "completed";
+                    email.action = email.verdict === "MALICIOUS" ? "blocked" : "resolved";
+                    if (email.verdict === "MALICIOUS") {
+                        completedEmails.blocked.push(email);
+                    } else {
+                        completedEmails.resolved.push(email);
+                    }
+                    autoResolved++;
+                } else {
+                    // Needs analyst review
+                    email.status = "review";
+                    email.incidentId = "INC-" + (incidentCounter++);
+                    email.assigned = "Unassigned";
+                    reviewQueue.push(email);
+                }
+
+                totalProcessed++;
+                updateStats();
+                renderQueue();
+                renderReviewQueue();
+                updateCompletedPanel();
+            }, 100 + Math.random() * 400);
+        }
+
+        function updateSimulationStats() {
+            const elapsed = simulationStartTime ? (Date.now() - simulationStartTime) / 1000 : 0;
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = Math.floor(elapsed % 60);
+
+            document.getElementById('sim-total').textContent = totalProcessed;
+            document.getElementById('sim-auto-rate').textContent = totalProcessed > 0 ? Math.round((autoResolved / totalProcessed) * 100) + "%" : "0%";
+            document.getElementById('sim-speed').textContent = elapsed > 0 ? Math.round((totalProcessed / elapsed) * 60) : 0;
+            document.getElementById('sim-elapsed').textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        }
+
+        function updateStats() {
+            document.getElementById('stat-queue').textContent = emailQueue.length;
+            document.getElementById('stat-processing').textContent = processingEmails.length;
+            document.getElementById('stat-auto').textContent = autoResolved;
+            document.getElementById('stat-review').textContent = reviewQueue.length;
+            document.getElementById('stat-avgtime').textContent = totalProcessed > 0 ? "0.3s" : "0s";
+
+            document.getElementById('nav-processing').textContent = emailQueue.length + processingEmails.length;
+            document.getElementById('nav-review').textContent = reviewQueue.length;
+        }
+
+        function renderQueue() {
+            const body = document.getElementById('queue-body');
+            const allEmails = [...processingEmails, ...emailQueue];
+
+            if (allEmails.length === 0) {
+                body.innerHTML = '<div class="empty-state">No emails in queue. Start simulation to see active triage.</div>';
+                return;
+            }
+
+            body.innerHTML = allEmails.map(email => {
+                const isSelected = selectedQueueIds.has(email.id);
+                const rowClass = email.status === "processing" ? "grid-row processing" : (isSelected ? "grid-row selected" : "grid-row");
+                const statusBadge = email.status === "processing" ? '<span class="badge badge-processing">PROCESSING</span>' : '<span class="badge badge-' + email.verdict.toLowerCase() + '">' + email.verdict + '</span>';
+
+                return `
+                    <div class="${rowClass}" onclick="showEmailDetails('${email.id}', 'queue')">
+                        <div onclick="event.stopPropagation()"><input type="checkbox" class="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelect('${email.id}', 'queue')"></div>
+                        <div>${email.id.substring(0, 12)}</div>
+                        <div title="${email.subject}">${email.subject}</div>
+                        <div>${email.sender}</div>
+                        <div><span class="badge badge-${email.riskScore >= 70 ? 'high' : (email.riskScore >= 40 ? 'medium' : 'low')}">${email.riskScore >= 70 ? 'HIGH' : (email.riskScore >= 40 ? 'MEDIUM' : 'LOW')}</span></div>
+                        <div>${statusBadge}</div>
+                        <div>${email.riskScore}</div>
+                        <div>${email.status === "processing" ? "Processing..." : "Queued"}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderReviewQueue() {
+            const body = document.getElementById('review-body');
+
+            if (reviewQueue.length === 0) {
+                body.innerHTML = '<div class="empty-state">No emails require analyst review. Auto-triage is handling all emails.</div>';
+                return;
+            }
+
+            body.innerHTML = reviewQueue.map(email => {
+                const isSelected = selectedReviewIds.has(email.id);
+                return `
+                    <div class="grid-row ${isSelected ? 'selected' : ''}" onclick="showEmailDetails('${email.id}', 'review')">
+                        <div onclick="event.stopPropagation()"><input type="checkbox" class="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelect('${email.id}', 'review')"></div>
+                        <div>${email.incidentId}</div>
+                        <div title="${email.subject}">${email.subject}</div>
+                        <div><span class="badge badge-${email.riskScore >= 70 ? 'high' : 'medium'}">${email.riskScore >= 70 ? 'HIGH' : 'MEDIUM'}</span></div>
+                        <div>${(email.confidence * 100).toFixed(0)}%</div>
+                        <div>${email.assigned}</div>
+                        <div>Pending Review</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCompletedPanel() {
+            document.getElementById('completed-total').textContent = totalProcessed;
+            document.getElementById('completed-blocked').textContent = completedEmails.blocked.length;
+            document.getElementById('completed-resolved').textContent = completedEmails.resolved.length;
+            document.getElementById('completed-analyst').textContent = completedEmails.analyst.length;
+
+            const total = completedEmails.blocked.length + completedEmails.resolved.length + completedEmails.analyst.length;
+            const autoTotal = completedEmails.blocked.length + completedEmails.resolved.length;
+            document.getElementById('completed-rate').textContent = total > 0 ? Math.round((autoTotal / total) * 100) + "%" : "0%";
+
+            // Render lists
+            document.getElementById('completed-malicious').innerHTML = completedEmails.blocked.length > 0 ?
+                completedEmails.blocked.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
+                '<div class="empty-state">No blocked emails yet</div>';
+
+            document.getElementById('completed-clean').innerHTML = completedEmails.resolved.length > 0 ?
+                completedEmails.resolved.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
+                '<div class="empty-state">No resolved emails yet</div>';
+
+            document.getElementById('completed-analyst-list').innerHTML = completedEmails.analyst.length > 0 ?
+                completedEmails.analyst.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
+                '<div class="empty-state">No analyst-resolved emails yet</div>';
+        }
+
+        // Selection
+        function toggleSelect(id, type) {
+            const set = type === 'queue' ? selectedQueueIds : selectedReviewIds;
+            if (set.has(id)) set.delete(id);
+            else set.add(id);
+            updateSelectionUI(type);
+        }
+
+        function toggleSelectAll(type) {
+            const checkbox = document.getElementById('select-all-' + type);
+            const set = type === 'queue' ? selectedQueueIds : selectedReviewIds;
+            const items = type === 'queue' ? [...processingEmails, ...emailQueue] : reviewQueue;
+
+            if (checkbox.checked) {
+                items.forEach(e => set.add(e.id));
+            } else {
+                set.clear();
+            }
+
+            if (type === 'queue') renderQueue();
+            else renderReviewQueue();
+            updateSelectionUI(type);
+        }
+
+        function updateSelectionUI(type) {
+            if (type === 'queue') {
+                const count = selectedQueueIds.size;
+                document.getElementById('selected-count').textContent = count;
+                document.getElementById('btn-triage').disabled = count === 0;
+            } else {
+                const count = selectedReviewIds.size;
+                document.getElementById('review-selected-count').textContent = count;
+                document.getElementById('btn-assign').disabled = count === 0;
+                document.getElementById('btn-clean').disabled = count === 0;
+                document.getElementById('btn-block').disabled = count === 0;
+            }
+        }
+
+        // Actions
+        function triageSelected() {
+            selectedQueueIds.forEach(id => {
+                const email = emailQueue.find(e => e.id === id);
+                if (email) {
+                    const idx = emailQueue.indexOf(email);
+                    emailQueue.splice(idx, 1);
+                    email.status = "completed";
+                    completedEmails.resolved.push(email);
+                    totalProcessed++;
+                    autoResolved++;
+                }
+            });
+            selectedQueueIds.clear();
+            updateStats();
+            renderQueue();
+            updateCompletedPanel();
+            updateSelectionUI('queue');
+        }
+
+        function assignToMe() {
+            selectedReviewIds.forEach(id => {
+                const email = reviewQueue.find(e => e.id === id);
+                if (email) email.assigned = "admin";
+            });
+            renderReviewQueue();
+            selectedReviewIds.clear();
+            updateSelectionUI('review');
+        }
+
+        function markCleanSelected() {
+            selectedReviewIds.forEach(id => {
+                const email = reviewQueue.find(e => e.id === id);
+                if (email) {
+                    const idx = reviewQueue.indexOf(email);
+                    reviewQueue.splice(idx, 1);
+                    email.status = "completed";
+                    email.verdict = "CLEAN";
+                    completedEmails.analyst.push(email);
+                }
+            });
+            selectedReviewIds.clear();
+            renderReviewQueue();
+            updateStats();
+            updateCompletedPanel();
+            updateSelectionUI('review');
+        }
+
+        function blockSelected() {
+            selectedReviewIds.forEach(id => {
+                const email = reviewQueue.find(e => e.id === id);
+                if (email) {
+                    const idx = reviewQueue.indexOf(email);
+                    reviewQueue.splice(idx, 1);
+                    email.status = "completed";
+                    email.verdict = "MALICIOUS";
+                    completedEmails.analyst.push(email);
+                }
+            });
+            selectedReviewIds.clear();
+            renderReviewQueue();
+            updateStats();
+            updateCompletedPanel();
+            updateSelectionUI('review');
+        }
+
+        // Details
+        function showEmailDetails(id, type) {
+            const email = type === 'queue' ?
+                [...processingEmails, ...emailQueue].find(e => e.id === id) :
+                reviewQueue.find(e => e.id === id);
+
+            if (!email) return;
+
+            document.getElementById('details-title').textContent = email.incidentId || email.id;
+            document.getElementById('details-content').innerHTML = `
+                <div class="detail-row">
+                    <div class="detail-label">Email ID</div>
+                    <div class="detail-value">${email.id}</div>
+                </div>
+                ${email.incidentId ? `<div class="detail-row"><div class="detail-label">Incident ID</div><div class="detail-value">${email.incidentId}</div></div>` : ''}
+                <div class="detail-row">
+                    <div class="detail-label">Subject</div>
+                    <div class="detail-value">${email.subject}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Sender</div>
+                    <div class="detail-value">${email.sender}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Sender Domain</div>
+                    <div class="detail-value">${email.domain}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Received</div>
+                    <div class="detail-value">${new Date(email.received).toLocaleString()}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Verdict</div>
+                    <div class="detail-value"><span class="badge badge-${email.verdict.toLowerCase()}">${email.verdict}</span></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Risk Score</div>
+                    <div class="detail-value">${email.riskScore} / 100</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Confidence</div>
+                    <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">${email.status.charAt(0).toUpperCase() + email.status.slice(1)}</div>
+                </div>
+                ${email.assigned ? `<div class="detail-row"><div class="detail-label">Assigned To</div><div class="detail-value">${email.assigned}</div></div>` : ''}
+                <div class="detail-actions">
+                    <button class="cmd-btn success" onclick="closeDetails()">Close</button>
+                    ${type === 'review' ? `
+                        <button class="cmd-btn primary" onclick="resolveFromDetails('${email.id}', 'clean')">Mark Clean</button>
+                        <button class="cmd-btn danger" onclick="resolveFromDetails('${email.id}', 'block')">Block</button>
+                    ` : ''}
+                </div>
+            `;
+            document.getElementById('details-pane').classList.add('open');
+        }
+
+        function resolveFromDetails(id, action) {
+            const email = reviewQueue.find(e => e.id === id);
+            if (email) {
+                const idx = reviewQueue.indexOf(email);
+                reviewQueue.splice(idx, 1);
+                email.status = "completed";
+                email.verdict = action === 'block' ? "MALICIOUS" : "CLEAN";
+                completedEmails.analyst.push(email);
+                renderReviewQueue();
+                updateStats();
+                updateCompletedPanel();
+                closeDetails();
+            }
+        }
+
+        function closeDetails() {
+            document.getElementById('details-pane').classList.remove('open');
+        }
+
+        // Panel Navigation
+        function showPanel(panelName) {
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`${panelName}-panel`).classList.add('active');
+        }
+
+        // Audit
+        async function loadAuditLogs() {
+            try {
+                const response = await fetch(`${API_BASE}/audit/logs?limit=100`, {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                });
+                const logs = await response.json();
+                const container = document.getElementById('audit-logs');
+                if (!logs.entries || logs.entries.length === 0) {
+                    container.innerHTML = 'No audit logs found.';
+                    return;
+                }
+                container.innerHTML = logs.entries.reverse().map(entry => `
+                    <div style="padding: 12px 0; border-bottom: 1px solid var(--ms-gray-200);">
+                        <div style="color: var(--ms-blue); font-weight: 600;">${entry.event_type}</div>
+                        <div style="color: var(--ms-gray-600); margin: 4px 0;">User: ${entry.username} | ${entry.timestamp}</div>
+                        <div style="font-size: 11px; color: var(--ms-gray-900);">${JSON.stringify(entry.details)}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load audit logs:', error);
+            }
+        }
+
+        function exportAudit() {
+            alert('Export functionality - would download CSV of audit logs');
+        }
+    </script>
+</body>
+</html>
