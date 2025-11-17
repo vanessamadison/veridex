@@ -80,8 +80,8 @@
         .grid-row.selected { background: #e5f1fb; }
         .grid-row.processing { background: #fff3cd; animation: pulse 1s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .queue-grid .grid-header, .queue-grid .grid-row { grid-template-columns: 50px 90px 1fr 160px 90px 90px 70px 100px; }
-        .incident-grid .grid-header, .incident-grid .grid-row { grid-template-columns: 50px 110px 1fr 80px 90px 100px 120px; }
+        .queue-grid .grid-header, .queue-grid .grid-row { grid-template-columns: 70px 90px 1fr 160px 90px 90px 70px 100px; }
+        .incident-grid .grid-header, .incident-grid .grid-row { grid-template-columns: 70px 110px 1fr 80px 90px 100px 120px; }
         .completed-grid .grid-header, .completed-grid .grid-row { grid-template-columns: 110px 1fr 160px 90px 90px 120px; }
         .badge { display: inline-block; padding: 2px 6px; font-size: 10px; font-weight: 600; }
         .badge-malicious, .badge-high { background: #fde7e9; color: var(--ms-red); }
@@ -201,8 +201,21 @@
                     <div class="simulation-controls">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <div style="font-weight: 600;">Simulation Controls</div>
-                            <div>
-                                <button class="cmd-btn primary" onclick="startSimulation()" id="btn-start">Start 5-Min Simulation</button>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <select class="filter-select" id="sim-duration" style="min-width: 120px;">
+                                    <option value="60">1 Minute</option>
+                                    <option value="180">3 Minutes</option>
+                                    <option value="300" selected>5 Minutes</option>
+                                    <option value="600">10 Minutes</option>
+                                    <option value="900">15 Minutes</option>
+                                </select>
+                                <select class="filter-select" id="sim-rate" style="min-width: 140px;">
+                                    <option value="low">Low Volume (30/min)</option>
+                                    <option value="medium" selected>Medium (60/min)</option>
+                                    <option value="high">High Volume (120/min)</option>
+                                    <option value="surge">Surge (200/min)</option>
+                                </select>
+                                <button class="cmd-btn primary" onclick="startSimulation()" id="btn-start">Start Simulation</button>
                                 <button class="cmd-btn danger" onclick="stopSimulation()" id="btn-stop" disabled>Stop</button>
                                 <button class="cmd-btn" onclick="exportSimulationData()">Export Data</button>
                             </div>
@@ -395,6 +408,8 @@
         let totalProcessed = 0;
         let autoResolved = 0;
         let bulkResolved = 0;
+        let simulationDuration = 300; // seconds
+        let emailGenerationRate = 0.5; // probability per tick
 
         // Auth
         async function login() {
@@ -476,9 +491,29 @@
                 bcl = Math.floor(Math.random() * 3); // 0-2
                 hasAttachment = Math.random() < 0.6;
                 hasUrls = true;
-                spfResult = Math.random() < 0.7 ? "Fail" : "SoftFail";
-                dkimResult = Math.random() < 0.6 ? "Fail" : "None";
-                dmarcResult = "Fail";
+                // Realistic auth failures for phishing - NOT all failing
+                const authRand = Math.random();
+                if (authRand < 0.4) {
+                    // 40% - SPF fails only (common spoofing)
+                    spfResult = "Fail";
+                    dkimResult = "None";
+                    dmarcResult = "Fail";
+                } else if (authRand < 0.7) {
+                    // 30% - DKIM missing, SPF soft fail
+                    spfResult = "SoftFail";
+                    dkimResult = "None";
+                    dmarcResult = "Fail";
+                } else if (authRand < 0.85) {
+                    // 15% - Partial pass (sophisticated attack)
+                    spfResult = "Pass";
+                    dkimResult = "Fail";
+                    dmarcResult = "Fail";
+                } else {
+                    // 15% - All pass (compromised legitimate account)
+                    spfResult = "Pass";
+                    dkimResult = "Pass";
+                    dmarcResult = "Pass";
+                }
             } else if (rand < 0.45) {
                 // Bulk/Spam (15%)
                 emailType = "bulk";
@@ -486,6 +521,7 @@
                 bcl = 5 + Math.floor(Math.random() * 4); // 5-8
                 hasAttachment = false;
                 hasUrls = true;
+                // Bulk senders usually have proper auth
                 spfResult = "Pass";
                 dkimResult = "Pass";
                 dmarcResult = "Pass";
@@ -496,9 +532,24 @@
                 bcl = Math.floor(Math.random() * 3); // 0-2
                 hasAttachment = Math.random() < 0.3;
                 hasUrls = Math.random() < 0.5;
-                spfResult = "Pass";
-                dkimResult = "Pass";
-                dmarcResult = "Pass";
+                // Clean emails almost always pass all auth
+                const cleanAuthRand = Math.random();
+                if (cleanAuthRand < 0.92) {
+                    // 92% - All pass
+                    spfResult = "Pass";
+                    dkimResult = "Pass";
+                    dmarcResult = "Pass";
+                } else if (cleanAuthRand < 0.97) {
+                    // 5% - DKIM not configured (older systems)
+                    spfResult = "Pass";
+                    dkimResult = "None";
+                    dmarcResult = "BestGuessPass";
+                } else {
+                    // 3% - Forwarded email (SPF breaks)
+                    spfResult = "SoftFail";
+                    dkimResult = "Pass";
+                    dmarcResult = "Pass";
+                }
             }
 
             const subject = subjects[Math.floor(Math.random() * subjects.length)];
@@ -595,23 +646,58 @@
         // Simulation
         function startSimulation() {
             if (simulationRunning) return;
+
+            // Get simulation settings
+            simulationDuration = parseInt(document.getElementById('sim-duration').value);
+            const rateSelection = document.getElementById('sim-rate').value;
+
+            // Set email generation probability based on rate
+            // Rate is per tick (500ms), so we adjust probability
+            switch(rateSelection) {
+                case 'low':
+                    emailGenerationRate = 0.25; // ~30 emails/min
+                    break;
+                case 'medium':
+                    emailGenerationRate = 0.5; // ~60 emails/min
+                    break;
+                case 'high':
+                    emailGenerationRate = 1.0; // ~120 emails/min
+                    break;
+                case 'surge':
+                    emailGenerationRate = 1.7; // ~200 emails/min
+                    break;
+            }
+
             simulationRunning = true;
             simulationStartTime = Date.now();
             document.getElementById('btn-start').disabled = true;
             document.getElementById('btn-stop').disabled = false;
+            document.getElementById('sim-duration').disabled = true;
+            document.getElementById('sim-rate').disabled = true;
             document.getElementById('sim-status').textContent = "Running...";
             document.getElementById('sim-status').style.color = "var(--ms-green)";
 
-            // Generate initial batch
-            for (let i = 0; i < 15; i++) {
+            // Generate initial batch based on rate
+            const initialBatch = rateSelection === 'surge' ? 30 : (rateSelection === 'high' ? 20 : 15);
+            for (let i = 0; i < initialBatch; i++) {
                 emailQueue.push(generateEmail());
             }
             renderQueue();
 
             // Simulation loop
             simulationInterval = setInterval(() => {
-                // Add new emails (simulate incoming)
-                if (Math.random() < 0.7) {
+                // Add new emails based on rate
+                // For rates > 1.0, add multiple emails per tick
+                if (emailGenerationRate >= 1.0) {
+                    const wholeEmails = Math.floor(emailGenerationRate);
+                    for (let i = 0; i < wholeEmails; i++) {
+                        emailQueue.push(generateEmail());
+                    }
+                    // Handle fractional part
+                    if (Math.random() < (emailGenerationRate - wholeEmails)) {
+                        emailQueue.push(generateEmail());
+                    }
+                } else if (Math.random() < emailGenerationRate) {
                     emailQueue.push(generateEmail());
                 }
 
@@ -623,12 +709,12 @@
                 renderQueue();
                 updateSimulationStats();
 
-                // Check if 5 minutes elapsed
+                // Check if duration elapsed
                 const elapsed = (Date.now() - simulationStartTime) / 1000;
-                const progress = Math.min((elapsed / 300) * 100, 100);
+                const progress = Math.min((elapsed / simulationDuration) * 100, 100);
                 document.getElementById('sim-progress').style.width = progress + "%";
 
-                if (elapsed >= 300) {
+                if (elapsed >= simulationDuration) {
                     stopSimulation();
                 }
             }, 500); // Process every 500ms
@@ -639,6 +725,8 @@
             clearInterval(simulationInterval);
             document.getElementById('btn-start').disabled = false;
             document.getElementById('btn-stop').disabled = true;
+            document.getElementById('sim-duration').disabled = false;
+            document.getElementById('sim-rate').disabled = false;
             document.getElementById('sim-status').textContent = "Completed";
             document.getElementById('sim-status').style.color = "var(--ms-blue)";
         }
