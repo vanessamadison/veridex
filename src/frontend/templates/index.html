@@ -11,6 +11,7 @@
             --ms-red: #e81123;
             --ms-orange: #ff8c00;
             --ms-green: #107c10;
+            --ms-purple: #5c2d91;
             --ms-gray-100: #f3f2f1;
             --ms-gray-200: #e1dfdd;
             --ms-gray-300: #c8c6c4;
@@ -51,7 +52,7 @@
         .sidebar-item.active { background: var(--ms-gray-100); border-left-color: var(--ms-blue); font-weight: 600; }
         .sidebar-badge { position: absolute; right: 16px; background: var(--ms-red); color: white; font-size: 10px; padding: 2px 6px; font-weight: 600; }
         .content { flex: 1; padding: 24px; overflow-y: auto; }
-        .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 20px; }
         .stat-card { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; }
         .stat-label { font-size: 11px; color: var(--ms-gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .stat-value { font-size: 28px; font-weight: 600; }
@@ -59,14 +60,17 @@
         .stat-value.warning { color: var(--ms-orange); }
         .stat-value.success { color: var(--ms-green); }
         .stat-value.primary { color: var(--ms-blue); }
-        .command-bar { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 8px 16px; margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+        .stat-value.bulk { color: var(--ms-purple); }
+        .command-bar { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 8px 16px; margin-bottom: 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
         .cmd-btn { background: transparent; border: 1px solid var(--ms-gray-300); padding: 6px 12px; font-size: 13px; cursor: pointer; }
         .cmd-btn:hover { background: var(--ms-gray-100); }
         .cmd-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .cmd-btn.primary { background: var(--ms-blue); color: var(--ms-white); border-color: var(--ms-blue); }
         .cmd-btn.danger { color: var(--ms-red); border-color: var(--ms-red); }
         .cmd-btn.success { color: var(--ms-green); border-color: var(--ms-green); }
+        .cmd-btn.bulk { color: var(--ms-purple); border-color: var(--ms-purple); }
         .cmd-separator { width: 1px; height: 24px; background: var(--ms-gray-300); margin: 0 8px; }
+        .search-input { padding: 6px 12px; border: 1px solid var(--ms-gray-300); font-size: 13px; min-width: 200px; }
         .data-grid { background: var(--ms-white); border: 1px solid var(--ms-gray-200); }
         .grid-header { display: grid; background: var(--ms-gray-100); border-bottom: 1px solid var(--ms-gray-200); font-size: 11px; font-weight: 600; color: var(--ms-gray-600); text-transform: uppercase; }
         .grid-header div { padding: 10px 12px; border-right: 1px solid var(--ms-gray-200); }
@@ -76,12 +80,14 @@
         .grid-row.selected { background: #e5f1fb; }
         .grid-row.processing { background: #fff3cd; animation: pulse 1s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .queue-grid .grid-header, .queue-grid .grid-row { grid-template-columns: 40px 80px 1fr 160px 90px 90px 70px 100px; }
-        .incident-grid .grid-header, .incident-grid .grid-row { grid-template-columns: 40px 100px 1fr 80px 100px 100px 120px; }
+        .queue-grid .grid-header, .queue-grid .grid-row { grid-template-columns: 50px 90px 1fr 160px 90px 90px 70px 100px; }
+        .incident-grid .grid-header, .incident-grid .grid-row { grid-template-columns: 50px 110px 1fr 80px 90px 100px 120px; }
+        .completed-grid .grid-header, .completed-grid .grid-row { grid-template-columns: 110px 1fr 160px 90px 90px 120px; }
         .badge { display: inline-block; padding: 2px 6px; font-size: 10px; font-weight: 600; }
         .badge-malicious, .badge-high { background: #fde7e9; color: var(--ms-red); }
         .badge-suspicious, .badge-medium { background: #fff4ce; color: #7a6400; }
         .badge-clean, .badge-low { background: #dff6dd; color: var(--ms-green); }
+        .badge-bulk { background: #f3e8ff; color: var(--ms-purple); }
         .badge-processing { background: #cfe2ff; color: #0a58ca; }
         .badge-completed { background: var(--ms-gray-200); color: var(--ms-gray-600); }
         .checkbox { width: 16px; height: 16px; cursor: pointer; }
@@ -89,17 +95,23 @@
         .panel.active { display: block; }
         .panel-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
         .section-title { font-size: 14px; font-weight: 600; margin: 20px 0 12px 0; color: var(--ms-gray-900); border-bottom: 2px solid var(--ms-blue); padding-bottom: 8px; }
-        .details-pane { position: fixed; right: 0; top: 48px; width: 450px; height: calc(100vh - 48px); background: var(--ms-white); border-left: 1px solid var(--ms-gray-200); transform: translateX(100%); transition: transform 0.2s; overflow-y: auto; z-index: 100; }
+        .details-pane { position: fixed; right: 0; top: 48px; width: 500px; height: calc(100vh - 48px); background: var(--ms-white); border-left: 1px solid var(--ms-gray-200); transform: translateX(100%); transition: transform 0.2s; overflow-y: auto; z-index: 100; }
         .details-pane.open { transform: translateX(0); }
         .details-header { background: var(--ms-gray-100); padding: 20px 24px; border-bottom: 1px solid var(--ms-gray-200); display: flex; justify-content: space-between; align-items: center; }
         .details-header h3 { font-size: 16px; font-weight: 600; }
         .details-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ms-gray-600); padding: 4px 8px; }
         .details-close:hover { background: var(--ms-gray-200); }
         .details-body { padding: 24px; }
-        .detail-row { margin-bottom: 20px; }
+        .detail-section { margin-bottom: 24px; }
+        .detail-section-title { font-size: 13px; font-weight: 600; color: var(--ms-blue); margin-bottom: 12px; border-bottom: 1px solid var(--ms-gray-200); padding-bottom: 6px; }
+        .detail-row { margin-bottom: 16px; }
         .detail-label { font-size: 11px; color: var(--ms-gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
         .detail-value { font-size: 14px; color: var(--ms-gray-900); line-height: 1.5; word-wrap: break-word; }
         .detail-actions { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--ms-gray-200); display: flex; gap: 12px; }
+        .analysis-indicator { display: inline-block; padding: 3px 8px; font-size: 11px; margin: 2px; border: 1px solid var(--ms-gray-300); }
+        .analysis-pass { background: #dff6dd; border-color: var(--ms-green); }
+        .analysis-fail { background: #fde7e9; border-color: var(--ms-red); }
+        .analysis-warn { background: #fff4ce; border-color: var(--ms-orange); }
         .simulation-controls { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 16px; margin-bottom: 16px; }
         .sim-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
         .sim-stat { text-align: center; }
@@ -110,6 +122,8 @@
         .empty-state { text-align: center; padding: 40px; color: var(--ms-gray-600); }
         .hidden { display: none !important; }
         .tab-section { margin-bottom: 24px; }
+        .filter-row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+        .filter-select { padding: 6px 12px; border: 1px solid var(--ms-gray-300); font-size: 13px; }
     </style>
 </head>
 <body>
@@ -171,6 +185,10 @@
                             <div class="stat-value success" id="stat-auto">0</div>
                         </div>
                         <div class="stat-card">
+                            <div class="stat-label">Bulk/Spam</div>
+                            <div class="stat-value bulk" id="stat-bulk">0</div>
+                        </div>
+                        <div class="stat-card">
                             <div class="stat-label">Needs Review</div>
                             <div class="stat-value critical" id="stat-review">0</div>
                         </div>
@@ -186,6 +204,7 @@
                             <div>
                                 <button class="cmd-btn primary" onclick="startSimulation()" id="btn-start">Start 5-Min Simulation</button>
                                 <button class="cmd-btn danger" onclick="stopSimulation()" id="btn-stop" disabled>Stop</button>
+                                <button class="cmd-btn" onclick="exportSimulationData()">Export Data</button>
                             </div>
                         </div>
                         <div class="progress-bar">
@@ -213,6 +232,7 @@
 
                     <div class="command-bar">
                         <input type="checkbox" class="checkbox" id="select-all-queue" onchange="toggleSelectAll('queue')">
+                        <span style="font-size: 11px; color: var(--ms-gray-600); min-width: 60px;">Select All</span>
                         <button class="cmd-btn" onclick="triageSelected()" id="btn-triage" disabled>Triage Selected</button>
                         <div class="cmd-separator"></div>
                         <span style="font-size: 12px; color: var(--ms-gray-600);">Selected: <span id="selected-count">0</span></span>
@@ -220,7 +240,7 @@
 
                     <div class="data-grid queue-grid">
                         <div class="grid-header">
-                            <div></div>
+                            <div>Select</div>
                             <div>ID</div>
                             <div>Subject</div>
                             <div>Sender</div>
@@ -244,8 +264,10 @@
 
                     <div class="command-bar">
                         <input type="checkbox" class="checkbox" id="select-all-review" onchange="toggleSelectAll('review')">
+                        <span style="font-size: 11px; color: var(--ms-gray-600); min-width: 60px;">Select All</span>
                         <button class="cmd-btn primary" onclick="assignToMe()" id="btn-assign" disabled>Assign to Me</button>
                         <button class="cmd-btn success" onclick="markCleanSelected()" id="btn-clean" disabled>Mark Clean</button>
+                        <button class="cmd-btn bulk" onclick="markBulkSelected()" id="btn-bulk" disabled>Mark Bulk</button>
                         <button class="cmd-btn danger" onclick="blockSelected()" id="btn-block" disabled>Block</button>
                         <div class="cmd-separator"></div>
                         <span style="font-size: 12px; color: var(--ms-gray-600);">Selected: <span id="review-selected-count">0</span></span>
@@ -253,7 +275,7 @@
 
                     <div class="data-grid incident-grid">
                         <div class="grid-header">
-                            <div></div>
+                            <div>Select</div>
                             <div>Incident ID</div>
                             <div>Subject</div>
                             <div>Risk</div>
@@ -269,7 +291,10 @@
 
                 <!-- Completed Panel -->
                 <div id="completed-panel" class="panel">
-                    <div class="panel-title">Completed Triage</div>
+                    <div class="panel-title">
+                        Completed Triage
+                        <button class="cmd-btn" onclick="exportCompletedData()">Export All</button>
+                    </div>
 
                     <div class="stats-row">
                         <div class="stat-card">
@@ -281,8 +306,12 @@
                             <div class="stat-value critical" id="completed-blocked">0</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">Auto-Resolved</div>
+                            <div class="stat-label">Auto-Clean</div>
                             <div class="stat-value success" id="completed-resolved">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Auto-Bulk</div>
+                            <div class="stat-value bulk" id="completed-bulk">0</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-label">Analyst Resolved</div>
@@ -294,19 +323,32 @@
                         </div>
                     </div>
 
-                    <div class="section-title">Auto-Blocked (Malicious)</div>
-                    <div id="completed-malicious" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
-                        <div class="empty-state">No blocked emails yet</div>
+                    <div class="filter-row">
+                        <input type="text" class="search-input" id="completed-search" placeholder="Search by subject or sender..." oninput="filterCompleted()">
+                        <select class="filter-select" id="completed-filter" onchange="filterCompleted()">
+                            <option value="all">All Types</option>
+                            <option value="malicious">Malicious Only</option>
+                            <option value="clean">Clean Only</option>
+                            <option value="bulk">Bulk/Spam Only</option>
+                            <option value="analyst">Analyst Resolved</option>
+                        </select>
+                        <button class="cmd-btn danger" onclick="exportFiltered('malicious')">Export Malicious</button>
+                        <button class="cmd-btn success" onclick="exportFiltered('clean')">Export Clean</button>
+                        <button class="cmd-btn bulk" onclick="exportFiltered('bulk')">Export Bulk</button>
                     </div>
 
-                    <div class="section-title">Auto-Resolved (Clean)</div>
-                    <div id="completed-clean" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
-                        <div class="empty-state">No resolved emails yet</div>
-                    </div>
-
-                    <div class="section-title">Analyst Resolved</div>
-                    <div id="completed-analyst-list" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px; max-height: 200px; overflow-y: auto;">
-                        <div class="empty-state">No analyst-resolved emails yet</div>
+                    <div class="data-grid completed-grid">
+                        <div class="grid-header">
+                            <div>Incident ID</div>
+                            <div>Subject</div>
+                            <div>Sender</div>
+                            <div>Verdict</div>
+                            <div>BCL</div>
+                            <div>Resolved By</div>
+                        </div>
+                        <div id="completed-body">
+                            <div class="empty-state">No completed emails yet</div>
+                        </div>
                     </div>
                 </div>
 
@@ -344,13 +386,15 @@
         let simulationStartTime = null;
         let emailQueue = [];
         let processingEmails = [];
-        let completedEmails = { blocked: [], resolved: [], analyst: [] };
+        let completedEmails = { blocked: [], resolved: [], bulk: [], analyst: [] };
+        let allCompletedEmails = [];
         let reviewQueue = [];
         let selectedQueueIds = new Set();
         let selectedReviewIds = new Set();
         let incidentCounter = 100000;
         let totalProcessed = 0;
         let autoResolved = 0;
+        let bulkResolved = 0;
 
         // Auth
         async function login() {
@@ -391,49 +435,131 @@
             }
         };
 
-        // Generate realistic email
+        // Generate realistic email with full analysis data
         function generateEmail() {
             const subjects = [
-                "Invoice #INV-" + Math.floor(Math.random() * 99999) + " Attached",
-                "Urgent: Password Reset Required",
-                "Your Account Has Been Locked",
-                "Wire Transfer Request - Confidential",
-                "Security Alert: Verify Your Identity",
-                "Action Required: Update Payment Method",
-                "Meeting Notes - Q4 Planning",
-                "Project Status Update",
-                "Team Building Event Next Week",
-                "Monthly Report Summary",
-                "New Policy Document for Review",
-                "Office Closure Notice",
-                "IT Maintenance Scheduled",
-                "Training Session Registration",
-                "Benefits Enrollment Reminder"
+                "Invoice #INV-" + Math.floor(Math.random() * 99999) + " - Payment Due",
+                "Urgent: Password Reset Required Immediately",
+                "Your Account Has Been Temporarily Locked",
+                "Wire Transfer Request - Confidential Action Required",
+                "Security Alert: Unusual Sign-in Activity Detected",
+                "Action Required: Update Your Payment Method",
+                "Meeting Notes - Q4 Planning Session",
+                "Project Status Update - Sprint Review",
+                "Team Building Event Registration",
+                "Monthly Performance Report Summary",
+                "New Company Policy Document for Review",
+                "Office Closure Notice - Holiday Schedule",
+                "IT Maintenance Scheduled - System Downtime",
+                "Training Session: Cybersecurity Awareness",
+                "Benefits Open Enrollment Reminder",
+                "Newsletter: Weekly Industry Updates",
+                "Subscription Renewal Notice",
+                "Marketing Campaign Results - Q3",
+                "Vendor Invoice - Net 30 Terms",
+                "Conference Registration Confirmation"
             ];
-            const domains = [
-                "secure-paypa1.com", "micros0ft-support.net", "account-verify.info",
-                "trusted-vendor.com", "company-hr.org", "internal-notifications.com"
-            ];
-            const senders = ["support", "admin", "noreply", "security", "hr", "finance"];
 
-            const isPhishing = Math.random() < 0.35; // 35% phishing
+            const legitimateDomains = ["company.com", "microsoft.com", "office365.com", "internal.org", "hr-dept.com"];
+            const suspiciousDomains = ["secure-paypa1.com", "micros0ft-support.net", "account-verify.info", "login-secure.xyz", "auth-update.co"];
+            const bulkDomains = ["newsletter.marketing.com", "promo.deals.net", "updates.service.io", "info.vendor.com"];
+
+            const senders = ["support", "admin", "noreply", "security", "hr", "finance", "marketing", "sales"];
+
+            const rand = Math.random();
+            let emailType, domain, bcl, hasAttachment, hasUrls, spfResult, dkimResult, dmarcResult;
+
+            if (rand < 0.30) {
+                // Phishing (30%)
+                emailType = "phishing";
+                domain = suspiciousDomains[Math.floor(Math.random() * suspiciousDomains.length)];
+                bcl = Math.floor(Math.random() * 3); // 0-2
+                hasAttachment = Math.random() < 0.6;
+                hasUrls = true;
+                spfResult = Math.random() < 0.7 ? "Fail" : "SoftFail";
+                dkimResult = Math.random() < 0.6 ? "Fail" : "None";
+                dmarcResult = "Fail";
+            } else if (rand < 0.45) {
+                // Bulk/Spam (15%)
+                emailType = "bulk";
+                domain = bulkDomains[Math.floor(Math.random() * bulkDomains.length)];
+                bcl = 5 + Math.floor(Math.random() * 4); // 5-8
+                hasAttachment = false;
+                hasUrls = true;
+                spfResult = "Pass";
+                dkimResult = "Pass";
+                dmarcResult = "Pass";
+            } else {
+                // Clean (55%)
+                emailType = "clean";
+                domain = legitimateDomains[Math.floor(Math.random() * legitimateDomains.length)];
+                bcl = Math.floor(Math.random() * 3); // 0-2
+                hasAttachment = Math.random() < 0.3;
+                hasUrls = Math.random() < 0.5;
+                spfResult = "Pass";
+                dkimResult = "Pass";
+                dmarcResult = "Pass";
+            }
+
             const subject = subjects[Math.floor(Math.random() * subjects.length)];
-            const domain = domains[Math.floor(Math.random() * domains.length)];
             const sender = senders[Math.floor(Math.random() * senders.length)] + "@" + domain;
 
             let riskScore, verdict, confidence;
-            if (isPhishing && subject.includes("Urgent") || subject.includes("Account") || subject.includes("Wire")) {
-                riskScore = 75 + Math.floor(Math.random() * 25);
-                verdict = "MALICIOUS";
-                confidence = 0.80 + Math.random() * 0.15;
-            } else if (isPhishing) {
-                riskScore = 50 + Math.floor(Math.random() * 30);
-                verdict = "SUSPICIOUS";
-                confidence = 0.55 + Math.random() * 0.20;
-            } else {
-                riskScore = 10 + Math.floor(Math.random() * 30);
-                verdict = "CLEAN";
+            if (emailType === "phishing") {
+                if (subject.includes("Urgent") || subject.includes("Account") || subject.includes("Wire") || subject.includes("Password")) {
+                    riskScore = 75 + Math.floor(Math.random() * 25);
+                    verdict = "MALICIOUS";
+                    confidence = 0.80 + Math.random() * 0.15;
+                } else {
+                    riskScore = 50 + Math.floor(Math.random() * 30);
+                    verdict = "SUSPICIOUS";
+                    confidence = 0.55 + Math.random() * 0.20;
+                }
+            } else if (emailType === "bulk") {
+                riskScore = 20 + Math.floor(Math.random() * 30);
+                verdict = "BULK";
                 confidence = 0.75 + Math.random() * 0.20;
+            } else {
+                riskScore = 5 + Math.floor(Math.random() * 25);
+                verdict = "CLEAN";
+                confidence = 0.80 + Math.random() * 0.18;
+            }
+
+            // Generate URLs if present
+            let urls = [];
+            if (hasUrls) {
+                const urlCount = 1 + Math.floor(Math.random() * 3);
+                for (let i = 0; i < urlCount; i++) {
+                    if (emailType === "phishing") {
+                        urls.push({
+                            url: `https://${domain}/verify?token=${Math.random().toString(36).substring(7)}`,
+                            threat: Math.random() < 0.7 ? "Phishing" : "None",
+                            detonation: Math.random() < 0.5 ? "Malicious" : "Clean"
+                        });
+                    } else {
+                        urls.push({
+                            url: `https://${domain}/page/${Math.random().toString(36).substring(7)}`,
+                            threat: "None",
+                            detonation: "Clean"
+                        });
+                    }
+                }
+            }
+
+            // Generate attachments if present
+            let attachments = [];
+            if (hasAttachment) {
+                const attachmentTypes = emailType === "phishing" ?
+                    [".exe", ".zip", ".js", ".docm", ".xlsm"] :
+                    [".pdf", ".docx", ".xlsx", ".png", ".txt"];
+                const type = attachmentTypes[Math.floor(Math.random() * attachmentTypes.length)];
+                attachments.push({
+                    filename: `document${Math.floor(Math.random() * 999)}${type}`,
+                    type: type,
+                    size: Math.floor(Math.random() * 5000000),
+                    threat: emailType === "phishing" && [".exe", ".js", ".docm", ".xlsm"].includes(type) ? "Malware" : "None",
+                    sha256: Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('')
+                });
             }
 
             return {
@@ -445,8 +571,24 @@
                 riskScore: riskScore,
                 verdict: verdict,
                 confidence: confidence,
+                bcl: bcl,
                 status: "queued",
-                selected: false
+                selected: false,
+                // Analysis data
+                authentication: {
+                    spf: spfResult,
+                    dkim: dkimResult,
+                    dmarc: dmarcResult,
+                    compositeAuth: (spfResult === "Pass" && dkimResult === "Pass") ? "Pass" : "Fail"
+                },
+                urls: urls,
+                attachments: attachments,
+                detectionTechnology: emailType === "phishing" ?
+                    (Math.random() < 0.5 ? "URL detonation" : "Machine learning") :
+                    (emailType === "bulk" ? "Bulk filter" : "None"),
+                threatTypes: verdict === "MALICIOUS" ? ["Phishing"] : (verdict === "BULK" ? ["Bulk"] : []),
+                senderIP: `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+                directionality: "Inbound"
             };
         }
 
@@ -514,21 +656,41 @@
                 const idx = processingEmails.indexOf(email);
                 if (idx > -1) processingEmails.splice(idx, 1);
 
-                // Determine action based on confidence
-                if (email.confidence >= 0.75) {
-                    // Auto-resolve
+                // Assign incident ID to all emails
+                email.incidentId = "INC-" + (incidentCounter++);
+
+                // Determine action based on confidence and BCL
+                if (email.bcl >= 7) {
+                    // High BCL = auto-bulk
                     email.status = "completed";
-                    email.action = email.verdict === "MALICIOUS" ? "blocked" : "resolved";
+                    email.action = "bulk";
+                    email.resolvedBy = "Auto-Bulk";
+                    completedEmails.bulk.push(email);
+                    allCompletedEmails.push(email);
+                    autoResolved++;
+                    bulkResolved++;
+                } else if (email.confidence >= 0.75) {
+                    // High confidence = auto-resolve
+                    email.status = "completed";
                     if (email.verdict === "MALICIOUS") {
+                        email.action = "blocked";
+                        email.resolvedBy = "Auto-Block";
                         completedEmails.blocked.push(email);
+                    } else if (email.verdict === "BULK") {
+                        email.action = "bulk";
+                        email.resolvedBy = "Auto-Bulk";
+                        completedEmails.bulk.push(email);
+                        bulkResolved++;
                     } else {
+                        email.action = "resolved";
+                        email.resolvedBy = "Auto-Clean";
                         completedEmails.resolved.push(email);
                     }
+                    allCompletedEmails.push(email);
                     autoResolved++;
                 } else {
-                    // Needs analyst review
+                    // Low confidence = needs analyst review
                     email.status = "review";
-                    email.incidentId = "INC-" + (incidentCounter++);
                     email.assigned = "Unassigned";
                     reviewQueue.push(email);
                 }
@@ -556,6 +718,7 @@
             document.getElementById('stat-queue').textContent = emailQueue.length;
             document.getElementById('stat-processing').textContent = processingEmails.length;
             document.getElementById('stat-auto').textContent = autoResolved;
+            document.getElementById('stat-bulk').textContent = bulkResolved;
             document.getElementById('stat-review').textContent = reviewQueue.length;
             document.getElementById('stat-avgtime').textContent = totalProcessed > 0 ? "0.3s" : "0s";
 
@@ -575,7 +738,9 @@
             body.innerHTML = allEmails.map(email => {
                 const isSelected = selectedQueueIds.has(email.id);
                 const rowClass = email.status === "processing" ? "grid-row processing" : (isSelected ? "grid-row selected" : "grid-row");
-                const statusBadge = email.status === "processing" ? '<span class="badge badge-processing">PROCESSING</span>' : '<span class="badge badge-' + email.verdict.toLowerCase() + '">' + email.verdict + '</span>';
+                const statusBadge = email.status === "processing" ?
+                    '<span class="badge badge-processing">PROCESSING</span>' :
+                    '<span class="badge badge-' + email.verdict.toLowerCase() + '">' + email.verdict + '</span>';
 
                 return `
                     <div class="${rowClass}" onclick="showEmailDetails('${email.id}', 'queue')">
@@ -617,27 +782,141 @@
         }
 
         function updateCompletedPanel() {
-            document.getElementById('completed-total').textContent = totalProcessed;
+            document.getElementById('completed-total').textContent = allCompletedEmails.length;
             document.getElementById('completed-blocked').textContent = completedEmails.blocked.length;
             document.getElementById('completed-resolved').textContent = completedEmails.resolved.length;
+            document.getElementById('completed-bulk').textContent = completedEmails.bulk.length;
             document.getElementById('completed-analyst').textContent = completedEmails.analyst.length;
 
-            const total = completedEmails.blocked.length + completedEmails.resolved.length + completedEmails.analyst.length;
-            const autoTotal = completedEmails.blocked.length + completedEmails.resolved.length;
+            const total = allCompletedEmails.length;
+            const autoTotal = completedEmails.blocked.length + completedEmails.resolved.length + completedEmails.bulk.length;
             document.getElementById('completed-rate').textContent = total > 0 ? Math.round((autoTotal / total) * 100) + "%" : "0%";
 
-            // Render lists
-            document.getElementById('completed-malicious').innerHTML = completedEmails.blocked.length > 0 ?
-                completedEmails.blocked.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
-                '<div class="empty-state">No blocked emails yet</div>';
+            filterCompleted();
+        }
 
-            document.getElementById('completed-clean').innerHTML = completedEmails.resolved.length > 0 ?
-                completedEmails.resolved.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
-                '<div class="empty-state">No resolved emails yet</div>';
+        function filterCompleted() {
+            const searchTerm = document.getElementById('completed-search').value.toLowerCase();
+            const filterType = document.getElementById('completed-filter').value;
 
-            document.getElementById('completed-analyst-list').innerHTML = completedEmails.analyst.length > 0 ?
-                completedEmails.analyst.slice(-20).reverse().map(e => `<div style="padding: 6px 0; border-bottom: 1px solid var(--ms-gray-100); font-size: 12px;">${e.subject} <span style="color: var(--ms-gray-600);">- ${e.sender}</span></div>`).join('') :
-                '<div class="empty-state">No analyst-resolved emails yet</div>';
+            let filtered = allCompletedEmails;
+
+            // Apply type filter
+            if (filterType === 'malicious') {
+                filtered = completedEmails.blocked;
+            } else if (filterType === 'clean') {
+                filtered = completedEmails.resolved;
+            } else if (filterType === 'bulk') {
+                filtered = completedEmails.bulk;
+            } else if (filterType === 'analyst') {
+                filtered = completedEmails.analyst;
+            }
+
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(e =>
+                    e.subject.toLowerCase().includes(searchTerm) ||
+                    e.sender.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            const body = document.getElementById('completed-body');
+            if (filtered.length === 0) {
+                body.innerHTML = '<div class="empty-state">No emails match the filter criteria</div>';
+                return;
+            }
+
+            body.innerHTML = filtered.slice(-100).reverse().map(e => `
+                <div class="grid-row" onclick="showCompletedDetails('${e.id}')">
+                    <div>${e.incidentId || 'N/A'}</div>
+                    <div title="${e.subject}">${e.subject}</div>
+                    <div>${e.sender}</div>
+                    <div><span class="badge badge-${e.verdict.toLowerCase()}">${e.verdict}</span></div>
+                    <div>${e.bcl}</div>
+                    <div>${e.resolvedBy || 'Manual'}</div>
+                </div>
+            `).join('');
+        }
+
+        // Export functions
+        function exportSimulationData() {
+            const data = [...allCompletedEmails, ...reviewQueue];
+            if (data.length === 0) {
+                alert('No data to export. Run a simulation first.');
+                return;
+            }
+            downloadCSV(data, 'simulation_data.csv');
+        }
+
+        function exportCompletedData() {
+            if (allCompletedEmails.length === 0) {
+                alert('No completed emails to export.');
+                return;
+            }
+            downloadCSV(allCompletedEmails, 'completed_emails.csv');
+        }
+
+        function exportFiltered(type) {
+            let data;
+            let filename;
+            if (type === 'malicious') {
+                data = completedEmails.blocked;
+                filename = 'malicious_emails.csv';
+            } else if (type === 'clean') {
+                data = completedEmails.resolved;
+                filename = 'clean_emails.csv';
+            } else if (type === 'bulk') {
+                data = completedEmails.bulk;
+                filename = 'bulk_emails.csv';
+            }
+
+            if (!data || data.length === 0) {
+                alert(`No ${type} emails to export.`);
+                return;
+            }
+            downloadCSV(data, filename);
+        }
+
+        function downloadCSV(data, filename) {
+            const headers = [
+                'Incident ID', 'Email ID', 'Subject', 'Sender', 'Domain', 'Received',
+                'Verdict', 'Risk Score', 'Confidence', 'BCL', 'Resolved By',
+                'SPF', 'DKIM', 'DMARC', 'Composite Auth',
+                'URL Count', 'Attachment Count', 'Detection Technology',
+                'Sender IP', 'Directionality'
+            ];
+
+            const rows = data.map(e => [
+                e.incidentId || '',
+                e.id,
+                `"${e.subject.replace(/"/g, '""')}"`,
+                e.sender,
+                e.domain,
+                e.received,
+                e.verdict,
+                e.riskScore,
+                (e.confidence * 100).toFixed(1) + '%',
+                e.bcl,
+                e.resolvedBy || 'Manual',
+                e.authentication?.spf || 'Unknown',
+                e.authentication?.dkim || 'Unknown',
+                e.authentication?.dmarc || 'Unknown',
+                e.authentication?.compositeAuth || 'Unknown',
+                e.urls?.length || 0,
+                e.attachments?.length || 0,
+                e.detectionTechnology || 'None',
+                e.senderIP || 'Unknown',
+                e.directionality || 'Unknown'
+            ]);
+
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
         }
 
         // Selection
@@ -674,6 +953,7 @@
                 document.getElementById('review-selected-count').textContent = count;
                 document.getElementById('btn-assign').disabled = count === 0;
                 document.getElementById('btn-clean').disabled = count === 0;
+                document.getElementById('btn-bulk').disabled = count === 0;
                 document.getElementById('btn-block').disabled = count === 0;
             }
         }
@@ -686,7 +966,10 @@
                     const idx = emailQueue.indexOf(email);
                     emailQueue.splice(idx, 1);
                     email.status = "completed";
+                    email.incidentId = "INC-" + (incidentCounter++);
+                    email.resolvedBy = "Manual";
                     completedEmails.resolved.push(email);
+                    allCompletedEmails.push(email);
                     totalProcessed++;
                     autoResolved++;
                 }
@@ -699,9 +982,10 @@
         }
 
         function assignToMe() {
+            const currentUser = document.getElementById('current-user').textContent;
             selectedReviewIds.forEach(id => {
                 const email = reviewQueue.find(e => e.id === id);
-                if (email) email.assigned = "admin";
+                if (email) email.assigned = currentUser;
             });
             renderReviewQueue();
             selectedReviewIds.clear();
@@ -716,7 +1000,29 @@
                     reviewQueue.splice(idx, 1);
                     email.status = "completed";
                     email.verdict = "CLEAN";
+                    email.resolvedBy = "Analyst";
                     completedEmails.analyst.push(email);
+                    allCompletedEmails.push(email);
+                }
+            });
+            selectedReviewIds.clear();
+            renderReviewQueue();
+            updateStats();
+            updateCompletedPanel();
+            updateSelectionUI('review');
+        }
+
+        function markBulkSelected() {
+            selectedReviewIds.forEach(id => {
+                const email = reviewQueue.find(e => e.id === id);
+                if (email) {
+                    const idx = reviewQueue.indexOf(email);
+                    reviewQueue.splice(idx, 1);
+                    email.status = "completed";
+                    email.verdict = "BULK";
+                    email.resolvedBy = "Analyst";
+                    completedEmails.analyst.push(email);
+                    allCompletedEmails.push(email);
                 }
             });
             selectedReviewIds.clear();
@@ -734,7 +1040,9 @@
                     reviewQueue.splice(idx, 1);
                     email.status = "completed";
                     email.verdict = "MALICIOUS";
+                    email.resolvedBy = "Analyst";
                     completedEmails.analyst.push(email);
+                    allCompletedEmails.push(email);
                 }
             });
             selectedReviewIds.clear();
@@ -744,7 +1052,7 @@
             updateSelectionUI('review');
         }
 
-        // Details
+        // Details with full analysis
         function showEmailDetails(id, type) {
             const email = type === 'queue' ?
                 [...processingEmails, ...emailQueue].find(e => e.id === id) :
@@ -752,41 +1060,114 @@
 
             if (!email) return;
 
+            const authIndicators = email.authentication ? `
+                <span class="analysis-indicator ${email.authentication.spf === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">SPF: ${email.authentication.spf}</span>
+                <span class="analysis-indicator ${email.authentication.dkim === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DKIM: ${email.authentication.dkim}</span>
+                <span class="analysis-indicator ${email.authentication.dmarc === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DMARC: ${email.authentication.dmarc}</span>
+                <span class="analysis-indicator ${email.authentication.compositeAuth === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">Composite: ${email.authentication.compositeAuth}</span>
+            ` : '';
+
+            const urlsHtml = email.urls && email.urls.length > 0 ? email.urls.map(u => `
+                <div style="font-size: 12px; margin: 4px 0; padding: 6px; background: var(--ms-gray-100);">
+                    <div style="word-break: break-all;">${u.url}</div>
+                    <div style="margin-top: 4px;">
+                        <span class="analysis-indicator ${u.threat === 'None' ? 'analysis-pass' : 'analysis-fail'}">Threat: ${u.threat}</span>
+                        <span class="analysis-indicator ${u.detonation === 'Clean' ? 'analysis-pass' : 'analysis-fail'}">Detonation: ${u.detonation}</span>
+                    </div>
+                </div>
+            `).join('') : '<div style="font-size: 12px; color: var(--ms-gray-600);">No URLs detected</div>';
+
+            const attachmentsHtml = email.attachments && email.attachments.length > 0 ? email.attachments.map(a => `
+                <div style="font-size: 12px; margin: 4px 0; padding: 6px; background: var(--ms-gray-100);">
+                    <div><strong>${a.filename}</strong> (${(a.size / 1024).toFixed(1)} KB)</div>
+                    <div style="margin-top: 4px;">
+                        <span class="analysis-indicator ${a.threat === 'None' ? 'analysis-pass' : 'analysis-fail'}">Threat: ${a.threat}</span>
+                    </div>
+                    <div style="font-size: 10px; color: var(--ms-gray-600); margin-top: 4px; word-break: break-all;">SHA256: ${a.sha256}</div>
+                </div>
+            `).join('') : '<div style="font-size: 12px; color: var(--ms-gray-600);">No attachments</div>';
+
             document.getElementById('details-title').textContent = email.incidentId || email.id;
             document.getElementById('details-content').innerHTML = `
-                <div class="detail-row">
-                    <div class="detail-label">Email ID</div>
-                    <div class="detail-value">${email.id}</div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Email Information</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Email ID</div>
+                        <div class="detail-value">${email.id}</div>
+                    </div>
+                    ${email.incidentId ? `<div class="detail-row"><div class="detail-label">Incident ID</div><div class="detail-value">${email.incidentId}</div></div>` : ''}
+                    <div class="detail-row">
+                        <div class="detail-label">Subject</div>
+                        <div class="detail-value">${email.subject}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Sender</div>
+                        <div class="detail-value">${email.sender}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Sender Domain</div>
+                        <div class="detail-value">${email.domain}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Sender IP</div>
+                        <div class="detail-value">${email.senderIP || 'Unknown'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Received</div>
+                        <div class="detail-value">${new Date(email.received).toLocaleString()}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Directionality</div>
+                        <div class="detail-value">${email.directionality || 'Inbound'}</div>
+                    </div>
                 </div>
-                ${email.incidentId ? `<div class="detail-row"><div class="detail-label">Incident ID</div><div class="detail-value">${email.incidentId}</div></div>` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Subject</div>
-                    <div class="detail-value">${email.subject}</div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">Threat Detection</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Verdict</div>
+                        <div class="detail-value"><span class="badge badge-${email.verdict.toLowerCase()}">${email.verdict}</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Risk Score</div>
+                        <div class="detail-value">${email.riskScore} / 100</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Confidence</div>
+                        <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Bulk Complaint Level (BCL)</div>
+                        <div class="detail-value">${email.bcl} / 9 ${email.bcl >= 7 ? '<span style="color: var(--ms-red);">(High - Likely Spam)</span>' : email.bcl >= 4 ? '<span style="color: var(--ms-orange);">(Medium)</span>' : '<span style="color: var(--ms-green);">(Low)</span>'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Detection Technology</div>
+                        <div class="detail-value">${email.detectionTechnology || 'None'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Threat Types</div>
+                        <div class="detail-value">${email.threatTypes?.length > 0 ? email.threatTypes.join(', ') : 'None'}</div>
+                    </div>
                 </div>
-                <div class="detail-row">
-                    <div class="detail-label">Sender</div>
-                    <div class="detail-value">${email.sender}</div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">Email Authentication</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Authentication Results</div>
+                        <div class="detail-value">${authIndicators}</div>
+                    </div>
                 </div>
-                <div class="detail-row">
-                    <div class="detail-label">Sender Domain</div>
-                    <div class="detail-value">${email.domain}</div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">URLs (${email.urls?.length || 0})</div>
+                    ${urlsHtml}
                 </div>
-                <div class="detail-row">
-                    <div class="detail-label">Received</div>
-                    <div class="detail-value">${new Date(email.received).toLocaleString()}</div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">Attachments (${email.attachments?.length || 0})</div>
+                    ${attachmentsHtml}
                 </div>
-                <div class="detail-row">
-                    <div class="detail-label">Verdict</div>
-                    <div class="detail-value"><span class="badge badge-${email.verdict.toLowerCase()}">${email.verdict}</span></div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Risk Score</div>
-                    <div class="detail-value">${email.riskScore} / 100</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Confidence</div>
-                    <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
-                </div>
+
                 <div class="detail-row">
                     <div class="detail-label">Status</div>
                     <div class="detail-value">${email.status.charAt(0).toUpperCase() + email.status.slice(1)}</div>
@@ -796,8 +1177,75 @@
                     <button class="cmd-btn success" onclick="closeDetails()">Close</button>
                     ${type === 'review' ? `
                         <button class="cmd-btn primary" onclick="resolveFromDetails('${email.id}', 'clean')">Mark Clean</button>
+                        <button class="cmd-btn bulk" onclick="resolveFromDetails('${email.id}', 'bulk')">Mark Bulk</button>
                         <button class="cmd-btn danger" onclick="resolveFromDetails('${email.id}', 'block')">Block</button>
                     ` : ''}
+                </div>
+            `;
+            document.getElementById('details-pane').classList.add('open');
+        }
+
+        function showCompletedDetails(id) {
+            const email = allCompletedEmails.find(e => e.id === id);
+            if (!email) return;
+
+            // Reuse the same details view
+            showEmailDetailsForCompleted(email);
+        }
+
+        function showEmailDetailsForCompleted(email) {
+            const authIndicators = email.authentication ? `
+                <span class="analysis-indicator ${email.authentication.spf === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">SPF: ${email.authentication.spf}</span>
+                <span class="analysis-indicator ${email.authentication.dkim === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DKIM: ${email.authentication.dkim}</span>
+                <span class="analysis-indicator ${email.authentication.dmarc === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DMARC: ${email.authentication.dmarc}</span>
+            ` : '';
+
+            document.getElementById('details-title').textContent = email.incidentId || email.id;
+            document.getElementById('details-content').innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-section-title">Resolution Details</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Incident ID</div>
+                        <div class="detail-value">${email.incidentId}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Final Verdict</div>
+                        <div class="detail-value"><span class="badge badge-${email.verdict.toLowerCase()}">${email.verdict}</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Resolved By</div>
+                        <div class="detail-value">${email.resolvedBy || 'Unknown'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">BCL Score</div>
+                        <div class="detail-value">${email.bcl} / 9</div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Email Information</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Subject</div>
+                        <div class="detail-value">${email.subject}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Sender</div>
+                        <div class="detail-value">${email.sender}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Risk Score</div>
+                        <div class="detail-value">${email.riskScore} / 100</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Confidence</div>
+                        <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Authentication</div>
+                    <div class="detail-value">${authIndicators}</div>
+                </div>
+                <div class="detail-actions">
+                    <button class="cmd-btn success" onclick="closeDetails()">Close</button>
                 </div>
             `;
             document.getElementById('details-pane').classList.add('open');
@@ -809,8 +1257,16 @@
                 const idx = reviewQueue.indexOf(email);
                 reviewQueue.splice(idx, 1);
                 email.status = "completed";
-                email.verdict = action === 'block' ? "MALICIOUS" : "CLEAN";
+                email.resolvedBy = "Analyst";
+                if (action === 'block') {
+                    email.verdict = "MALICIOUS";
+                } else if (action === 'bulk') {
+                    email.verdict = "BULK";
+                } else {
+                    email.verdict = "CLEAN";
+                }
                 completedEmails.analyst.push(email);
+                allCompletedEmails.push(email);
                 renderReviewQueue();
                 updateStats();
                 updateCompletedPanel();
