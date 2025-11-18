@@ -5,22 +5,26 @@ HIPAA-Compliant Authentication & Authorization Layer
 Features:
 - JWT token authentication with encryption
 - Role-based access control (RBAC)
+- Password policy enforcement
+- Account lockout protection
+- Export rate limiting
 - Session management with audit logging
-- Password hashing with bcrypt
 - 45 CFR 164.312(d) compliance
 """
 import os
+import re
 import json
 import hashlib
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, Tuple
+from collections import defaultdict
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from cryptography.fernet import Fernet
 import yaml
 
-# Password hashing - use sha256_crypt for broader compatibility
+# Password hashing
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
 # JWT Settings
@@ -28,6 +32,26 @@ SECRET_KEY = os.environ.get("JWT_SECRET_KEY", Fernet.generate_key().decode())
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 REFRESH_TOKEN_EXPIRE_DAYS = 7
+
+# Security Settings
+LOCKOUT_THRESHOLD = 5
+LOCKOUT_DURATION_MINUTES = 30
+EXPORT_RATE_LIMIT = 10  # exports per hour
+EXPORT_WINDOW_HOURS = 1
+PASSWORD_MIN_LENGTH = 12
+PASSWORD_EXPIRY_DAYS = 90
+
+# Common passwords to block
+COMMON_PASSWORDS = [
+    "password", "123456", "changeme123", "admin", "letmein", "welcome",
+    "password123", "admin123", "qwerty", "abc123", "monkey", "master",
+    "dragon", "111111", "baseball", "iloveyou", "trustno1", "sunshine"
+]
+
+# In-memory rate limiting (would use Redis in production)
+export_tracker = defaultdict(list)
+failed_attempts = defaultdict(int)
+lockout_until = {}
 
 # Roles and Permissions (RBAC)
 ROLES = {
@@ -79,6 +103,7 @@ class Token(BaseModel):
     refresh_token: str
     token_type: str = "bearer"
     expires_in: int = ACCESS_TOKEN_EXPIRE_MINUTES * 60
+    force_password_change: bool = False
 
 
 class TokenData(BaseModel):
@@ -145,13 +170,146 @@ class AuditLogger:
 audit_logger = AuditLogger()
 
 
+# === PASSWORD POLICY ===
+
+def validate_password_strength(password: str) -> Tuple[bool, str]:
+    """
+    Validate password meets security requirements.
+    Returns (is_valid, error_message)
+    """
+    if len(password) < PASSWORD_MIN_LENGTH:
+        return False, f"Password must be at least {PASSWORD_MIN_LENGTH} characters"
+
+    if not re.search(r'[A-Z]', password):
+        return False, "Password must contain at least one uppercase letter"
+
+    if not re.search(r'[a-z]', password):
+        return False, "Password must contain at least one lowercase letter"
+
+    if not re.search(r'[0-9]', password):
+        return False, "Password must contain at least one number"
+
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\\/~`]', password):
+        return False, "Password must contain at least one special character"
+
+    if password.lower() in COMMON_PASSWORDS:
+        return False, "Password is too common, please choose a stronger password"
+
+    # Check for sequential characters
+    if re.search(r'(.)\1{2,}', password):
+        return False, "Password cannot contain 3 or more repeated characters"
+
+    return True, "Password meets requirements"
+
+
+def is_default_password(password: str) -> bool:
+    """Check if password is the default that needs changing"""
+    return password == "changeme123"
+
+
+# === ACCOUNT LOCKOUT ===
+
+def check_account_lockout(username: str) -> Tuple[bool, str]:
+    """
+    Check if account is locked due to failed attempts.
+    Returns (is_locked, message)
+    """
+    if username in lockout_until:
+        lock_time = lockout_until[username]
+        if datetime.utcnow() < lock_time:
+            remaining_minutes = int((lock_time - datetime.utcnow()).total_seconds() / 60) + 1
+            return True, f"Account locked due to too many failed attempts. Try again in {remaining_minutes} minutes."
+        else:
+            # Lockout expired, clear it
+            del lockout_until[username]
+            failed_attempts[username] = 0
+
+    return False, ""
+
+
+def record_failed_login(username: str):
+    """Record failed login attempt and lock account if threshold exceeded"""
+    failed_attempts[username] += 1
+    attempts = failed_attempts[username]
+
+    if attempts >= LOCKOUT_THRESHOLD:
+        lock_until = datetime.utcnow() + timedelta(minutes=LOCKOUT_DURATION_MINUTES)
+        lockout_until[username] = lock_until
+        audit_logger.log_event("ACCOUNT_LOCKED", username, {
+            "reason": "failed_attempts",
+            "attempts": attempts,
+            "locked_until": lock_until.isoformat()
+        })
+        return True
+    return False
+
+
+def clear_failed_attempts(username: str):
+    """Clear failed attempts after successful login"""
+    failed_attempts[username] = 0
+    if username in lockout_until:
+        del lockout_until[username]
+
+
+def unlock_account(username: str, admin_user: str):
+    """Admin function to unlock a locked account"""
+    if username in lockout_until:
+        del lockout_until[username]
+    failed_attempts[username] = 0
+    audit_logger.log_event("ACCOUNT_UNLOCKED", username, {
+        "unlocked_by": admin_user
+    })
+
+
+# === EXPORT RATE LIMITING ===
+
+def check_export_rate_limit(username: str) -> Tuple[bool, str]:
+    """
+    Check if user can export (rate limiting).
+    Returns (can_export, message)
+    """
+    now = datetime.utcnow()
+    window = timedelta(hours=EXPORT_WINDOW_HOURS)
+
+    # Clean old entries
+    export_tracker[username] = [
+        ts for ts in export_tracker[username]
+        if now - ts < window
+    ]
+
+    # Check limit
+    current_count = len(export_tracker[username])
+    if current_count >= EXPORT_RATE_LIMIT:
+        oldest = min(export_tracker[username])
+        reset_time = oldest + window
+        minutes_until_reset = int((reset_time - now).total_seconds() / 60) + 1
+        return False, f"Export rate limit exceeded ({EXPORT_RATE_LIMIT}/hour). Try again in {minutes_until_reset} minutes."
+
+    return True, f"Exports remaining: {EXPORT_RATE_LIMIT - current_count - 1}"
+
+
+def record_export(username: str, export_type: str, record_count: int):
+    """Record an export event for rate limiting and audit"""
+    now = datetime.utcnow()
+    export_tracker[username].append(now)
+
+    audit_logger.log_event("DATA_EXPORT", username, {
+        "export_type": export_type,
+        "record_count": record_count,
+        "timestamp": now.isoformat(),
+        "exports_in_window": len(export_tracker[username])
+    })
+
+
+# === CORE AUTH FUNCTIONS ===
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify password against hash"""
     return pwd_context.verify(plain_password, hashed_password)
 
 
 def get_password_hash(password: str) -> str:
-    """Generate bcrypt hash of password"""
+    """Generate hash of password"""
     return pwd_context.hash(password)
 
 
@@ -201,7 +359,7 @@ def check_permission(token_data: TokenData, permission: str) -> bool:
 
 
 class UserStore:
-    """Simple file-based user store (replace with DB in production)"""
+    """File-based user store with security metadata"""
 
     def __init__(self, store_path: str = "config/users.yaml"):
         self.store_path = store_path
@@ -218,7 +376,9 @@ class UserStore:
                     "role": "admin",
                     "hashed_password": get_password_hash("changeme123"),
                     "disabled": False,
-                    "created_at": datetime.utcnow().isoformat()
+                    "created_at": datetime.utcnow().isoformat(),
+                    "password_changed_at": None,  # Force change on first login
+                    "must_change_password": True
                 }
             }
             with open(self.store_path, 'w') as f:
@@ -231,31 +391,84 @@ class UserStore:
 
         if username in users:
             user_data = users[username]
+            # Handle old format without new fields
+            if 'password_changed_at' not in user_data:
+                user_data['password_changed_at'] = None
+            if 'must_change_password' not in user_data:
+                user_data['must_change_password'] = True
             return UserInDB(**user_data)
         return None
 
-    def create_user(self, user: UserInDB) -> bool:
-        """Create new user"""
+    def must_change_password(self, username: str) -> bool:
+        """Check if user must change password"""
+        with open(self.store_path, 'r') as f:
+            users = yaml.safe_load(f) or {}
+
+        if username in users:
+            user_data = users[username]
+            # Check if explicitly required
+            if user_data.get("must_change_password", True):
+                return True
+            # Check if password expired
+            changed_at = user_data.get("password_changed_at")
+            if changed_at:
+                changed_date = datetime.fromisoformat(changed_at)
+                if datetime.utcnow() - changed_date > timedelta(days=PASSWORD_EXPIRY_DAYS):
+                    return True
+        return False
+
+    def change_password(self, username: str, new_password: str) -> Tuple[bool, str]:
+        """Change user password with validation"""
+        # Validate password strength
+        is_valid, message = validate_password_strength(new_password)
+        if not is_valid:
+            return False, message
+
+        with open(self.store_path, 'r') as f:
+            users = yaml.safe_load(f) or {}
+
+        if username not in users:
+            return False, "User not found"
+
+        users[username]["hashed_password"] = get_password_hash(new_password)
+        users[username]["password_changed_at"] = datetime.utcnow().isoformat()
+        users[username]["must_change_password"] = False
+
+        with open(self.store_path, 'w') as f:
+            yaml.dump(users, f)
+
+        audit_logger.log_event("PASSWORD_CHANGED", username, {})
+        return True, "Password changed successfully"
+
+    def create_user(self, user: UserInDB, password: str) -> Tuple[bool, str]:
+        """Create new user with password validation"""
+        # Validate password
+        is_valid, message = validate_password_strength(password)
+        if not is_valid:
+            return False, message
+
         with open(self.store_path, 'r') as f:
             users = yaml.safe_load(f) or {}
 
         if user.username in users:
-            return False
+            return False, "Username already exists"
 
         users[user.username] = {
             "username": user.username,
             "email": user.email,
             "role": user.role,
-            "hashed_password": user.hashed_password,
+            "hashed_password": get_password_hash(password),
             "disabled": user.disabled,
-            "created_at": user.created_at.isoformat()
+            "created_at": user.created_at.isoformat(),
+            "password_changed_at": datetime.utcnow().isoformat(),
+            "must_change_password": False
         }
 
         with open(self.store_path, 'w') as f:
             yaml.dump(users, f)
 
         audit_logger.log_event("USER_CREATED", user.username, {"role": user.role})
-        return True
+        return True, "User created successfully"
 
     def update_last_login(self, username: str):
         """Update user's last login timestamp"""
@@ -272,22 +485,39 @@ class UserStore:
 user_store = UserStore()
 
 
-def authenticate_user(username: str, password: str) -> Optional[UserInDB]:
-    """Authenticate user with username and password"""
+def authenticate_user(username: str, password: str) -> Tuple[Optional[UserInDB], str]:
+    """
+    Authenticate user with username and password.
+    Returns (user, error_message)
+    """
+    # Check lockout first
+    is_locked, lock_message = check_account_lockout(username)
+    if is_locked:
+        return None, lock_message
+
     user = user_store.get_user(username)
     if not user:
+        record_failed_login(username)
         audit_logger.log_event("LOGIN_FAILED", username, {"reason": "user_not_found"})
-        return None
+        return None, "Invalid username or password"
+
     if not verify_password(password, user.hashed_password):
+        was_locked = record_failed_login(username)
         audit_logger.log_event("LOGIN_FAILED", username, {"reason": "invalid_password"})
-        return None
+        if was_locked:
+            return None, f"Account locked due to {LOCKOUT_THRESHOLD} failed attempts. Try again in {LOCKOUT_DURATION_MINUTES} minutes."
+        return None, "Invalid username or password"
+
     if user.disabled:
         audit_logger.log_event("LOGIN_FAILED", username, {"reason": "user_disabled"})
-        return None
+        return None, "Account is disabled"
+
+    # Clear failed attempts on successful login
+    clear_failed_attempts(username)
 
     user_store.update_last_login(username)
     audit_logger.log_event("LOGIN_SUCCESS", username, {"role": user.role})
-    return user
+    return user, ""
 
 
 def create_tokens_for_user(user: UserInDB) -> Token:
@@ -301,8 +531,12 @@ def create_tokens_for_user(user: UserInDB) -> Token:
     access_token = create_access_token(token_data)
     refresh_token = create_refresh_token(token_data)
 
+    # Check if password change is required
+    force_change = user_store.must_change_password(user.username)
+
     return Token(
         access_token=access_token,
         refresh_token=refresh_token,
-        expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60
+        expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        force_password_change=force_change
     )

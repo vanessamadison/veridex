@@ -32,7 +32,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from src.auth.security import (
     authenticate_user, create_tokens_for_user, decode_token,
     check_permission, audit_logger, user_store, get_password_hash,
-    UserInDB, Token, TokenData
+    UserInDB, Token, TokenData, check_export_rate_limit, record_export,
+    validate_password_strength, unlock_account
 )
 from src.generators.ollama_email_generator import OllamaEmailGenerator
 from src.core.mdo_field_extractor import MDOFieldExtractor
@@ -53,7 +54,7 @@ app = FastAPI(
 # CORS for local frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8000", "http://127.0.0.1:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -176,15 +177,57 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     - **password**: User's password
 
     Returns access and refresh tokens for authenticated sessions.
+    Includes force_password_change flag if password needs to be changed.
     """
-    user = authenticate_user(form_data.username, form_data.password)
+    user, error_message = authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail=error_message or "Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
     return create_tokens_for_user(user)
+
+
+class PasswordChangeRequest(BaseModel):
+    new_password: str
+
+
+@app.post("/auth/change-password", tags=["Authentication"])
+async def change_password(
+    password_data: PasswordChangeRequest,
+    current_user: TokenData = Depends(get_current_user)
+):
+    """
+    Change current user's password.
+
+    Password must meet complexity requirements:
+    - Minimum 12 characters
+    - At least one uppercase letter
+    - At least one lowercase letter
+    - At least one number
+    - At least one special character
+    - Cannot be a common password
+    """
+    success, message = user_store.change_password(current_user.username, password_data.new_password)
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=message
+        )
+    return {"message": message}
+
+
+@app.post("/auth/unlock-account/{username}", tags=["Authentication"])
+async def admin_unlock_account(
+    username: str,
+    current_user: TokenData = Depends(require_permission("can_manage_users"))
+):
+    """
+    Unlock a locked account (admin only).
+    """
+    unlock_account(username, current_user.username)
+    return {"message": f"Account {username} unlocked successfully"}
 
 
 @app.post("/auth/register", tags=["Authentication"])
@@ -197,21 +240,30 @@ async def register_user(
 
     - **username**: New user's username
     - **email**: User's email
-    - **password**: User's password
+    - **password**: User's password (must meet complexity requirements)
     - **role**: User's role (analyst, admin, auditor)
     """
+    # Validate password strength first
+    is_valid, message = validate_password_strength(user_data.password)
+    if not is_valid:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=message
+        )
+
     new_user = UserInDB(
         username=user_data.username,
         email=user_data.email,
         role=user_data.role,
-        hashed_password=get_password_hash(user_data.password),
+        hashed_password="",  # Will be set by create_user
         disabled=False
     )
 
-    if not user_store.create_user(new_user):
+    success, message = user_store.create_user(new_user, user_data.password)
+    if not success:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Username already exists"
+            detail=message
         )
 
     return {"message": f"User {user_data.username} created successfully", "role": user_data.role}
@@ -653,6 +705,55 @@ async def get_audit_logs(
         "total_entries": len(entries),
         "entries": entries[-limit:],
         "hash_chain_valid": True  # In production, verify hash chain
+    }
+
+
+# === EXPORT TRACKING ENDPOINTS ===
+
+class ExportRequest(BaseModel):
+    export_type: str
+    record_count: int
+
+
+@app.post("/export/check", tags=["Export"])
+async def check_export_limit(
+    current_user: TokenData = Depends(require_permission("can_export_data"))
+):
+    """
+    Check if user can export data (rate limiting).
+    Returns remaining exports in the current window.
+    """
+    can_export, message = check_export_rate_limit(current_user.username)
+    if not can_export:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=message
+        )
+    return {"can_export": True, "message": message}
+
+
+@app.post("/export/record", tags=["Export"])
+async def record_data_export(
+    export_data: ExportRequest,
+    current_user: TokenData = Depends(require_permission("can_export_data"))
+):
+    """
+    Record a data export for audit trail and rate limiting.
+    Call this after each successful export.
+    """
+    can_export, message = check_export_rate_limit(current_user.username)
+    if not can_export:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=message
+        )
+
+    record_export(current_user.username, export_data.export_type, export_data.record_count)
+    return {
+        "recorded": True,
+        "export_type": export_data.export_type,
+        "record_count": export_data.record_count,
+        "message": "Export logged to audit trail"
     }
 
 
