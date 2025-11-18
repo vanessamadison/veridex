@@ -1,6 +1,8 @@
 # Email Triage Automation System
 
-**HIPAA-Compliant SOC Automation with 68% Automation Rate**
+**SOC Automation Platform for Internal Use - 68% Automation Rate**
+
+**Status: Research/Internal Deployment Ready | NOT for Production PHI**
 
 ---
 
@@ -16,17 +18,25 @@
 ## Overview
 
 Automated email triage system that processes Microsoft Defender user-reported emails using an ensemble approach:
-- **40% Ollama LLM** - Local HIPAA-compliant inference
+- **40% Ollama LLM** - Local inference (no cloud API calls)
 - **30% Rule-Based** - Analyst SOP logic
-- **30% Defender Signals** - Microsoft threat intelligence
+- **30% Defender Signals** - Microsoft threat intelligence (BCL, authentication)
 
 **Key Features:**
 - Multi-select bulk actions for analyst efficiency
-- Real-time email influx simulation
+- Configurable email simulation (1-15 minutes, 30-200 emails/min)
 - Confidence-based auto-routing (>=75% auto-resolve, <75% analyst review)
+- BCL (Bulk Complaint Level) scoring matching Defender (0-9 scale)
 - Microsoft Defender-style dashboard
-- HIPAA-compliant audit logging with immutable hash chain
+- Audit logging with SHA-256 hash chain
 - JWT authentication with Role-Based Access Control (RBAC)
+
+**Security Features (Phase 1 Implemented):**
+- Password policy enforcement (12+ characters, complexity requirements)
+- Account lockout protection (5 failed attempts, 30-minute lock)
+- Export rate limiting (10 exports/hour with audit trail)
+- Common password blocking
+- Password expiration tracking (90 days)
 
 ---
 
@@ -52,7 +62,10 @@ This will:
   - Username: `admin`
   - Password: `changeme123`
 
-**CHANGE DEFAULT PASSWORD IMMEDIATELY IN PRODUCTION**
+**IMPORTANT: Change default password immediately!**
+- New passwords must meet policy: 12+ characters, uppercase, lowercase, number, special character
+- System enforces password complexity and blocks common passwords
+- Accounts lock after 5 failed login attempts (30-minute auto-unlock)
 
 ### 3. Dashboard Features
 
@@ -75,10 +88,12 @@ This will:
 - Audit trail for compliance
 
 **Simulation Mode**
-- Click "Start Simulation" for 5-minute email influx test
-- Generates realistic mix of phishing/clean emails
-- Processes 70-80 emails per minute
-- Demonstrates automation rate and throughput
+- Configurable duration: 1, 3, 5, 10, or 15 minutes
+- Configurable volume: Low (30/min), Medium (60/min), High (120/min), Surge (200/min)
+- Generates realistic mix: phishing (all auth fail), bulk (BCL 7-9), clean (auth pass)
+- Realistic authentication patterns (15% phishing from compromised legitimate accounts)
+- BCL scoring matches Microsoft Defender (0-9 scale)
+- Export functionality with CSV download and audit logging
 
 ---
 
@@ -160,19 +175,26 @@ Incoming Email → MDO Field Extractor → Ensemble Engine → Verdict
 
 ---
 
-## HIPAA Compliance
+## Security Status
 
-### Data Protection
+**IMPORTANT: This system demonstrates good security patterns but is NOT fully HIPAA compliant for production use with real PHI.**
+
+### What Works (Good Patterns)
 - **Metadata Only**: No email body content processed
-- **Local Processing**: All Ollama inference runs locally
-- **Encrypted Storage**: JWT tokens with HS256
-- **No Cloud Calls**: Zero external API communication
+- **Local Processing**: All Ollama inference runs locally (no cloud calls)
+- **JWT Authentication**: Token-based with HS256 encryption
+- **Audit Logging**: SHA-256 hash chain for tamper detection
+- **RBAC**: Role-based permissions (analyst/admin/auditor)
+- **Password Policy**: Enforced complexity (12+ chars, uppercase, lowercase, number, special)
+- **Account Lockout**: Brute-force protection (5 attempts, 30-min lock)
+- **Export Rate Limiting**: Data exfiltration prevention (10/hour limit)
 
-### Audit Logging
-- Immutable hash chain using SHA-256
-- Every action logged with timestamp and user
-- 6-year retention (45 CFR 164.312(d))
-- Hash verification prevents tampering
+### What's Missing (Phase 2)
+- **No HTTPS/TLS**: API runs on HTTP (credentials in plaintext on network)
+- **No MFA**: Single-factor authentication only
+- **No Database Encryption**: Users stored in YAML file
+- **Network Binding**: Not restricted to specific subnet yet
+- **No External Audit**: Hash chain can theoretically be regenerated
 
 ### Access Control (RBAC)
 ```python
@@ -197,6 +219,8 @@ ROLES = {
     }
 }
 ```
+
+**For full security assessment, see:** `docs/SECURITY_STATUS.md`
 
 ---
 
@@ -245,8 +269,14 @@ item = {
 ## API Endpoints
 
 ### Authentication
-- `POST /auth/token` - Get JWT access token
+- `POST /auth/login` - Get JWT access token
 - `POST /auth/refresh` - Refresh expired token
+- `POST /auth/change-password` - Change user password (enforces policy)
+- `POST /auth/unlock-account/{username}` - Admin unlock locked account
+
+### Export Control (Rate Limited)
+- `POST /export/check` - Check if user can export (rate limit)
+- `POST /export/record` - Record export event to audit log
 
 ### Real Data (Protected)
 - `GET /triage/real-stats` - Overall statistics
@@ -363,29 +393,45 @@ Install: `pip install -r requirements.txt`
 | `start.sh` | One-command startup script |
 | `test_system.py` | Integration test suite |
 | `requirements.txt` | Python dependencies |
-| `src/api/main.py` | FastAPI backend with auth |
-| `src/auth/security.py` | HIPAA-compliant authentication |
+| `src/api/main.py` | FastAPI backend with auth and rate limiting |
+| `src/auth/security.py` | Security module (password policy, lockout, exports) |
 | `src/core/data_processor.py` | Real CSV data processing |
-| `src/frontend/templates/index.html` | Dashboard UI |
+| `src/frontend/templates/index.html` | Dashboard UI with configurable simulation |
 | `src/generators/ollama_email_generator.py` | Email simulation |
-| `docs/HIPAA_COMPLIANCE.md` | Compliance documentation |
+| `docs/SECURITY_STATUS.md` | Security assessment and gaps |
+| `docs/RESEARCH_AND_DEPLOYMENT.md` | Organizational deployment guide |
+| `docs/RESEARCH_CONSIDERATIONS.md` | Research methodology |
 
 ---
 
 ## Deployment Checklist
 
-Before production deployment:
+### Before Internal Deployment (Current State):
 
+- [x] Password policy enforcement (12+ chars, complexity)
+- [x] Account lockout protection (5 attempts, 30-min lock)
+- [x] Export rate limiting (10/hour with audit trail)
+- [x] Common password blocking
+- [x] RBAC with three roles
+- [x] Audit logging with hash chain
 - [ ] Change default admin password
-- [ ] Configure proper JWT secret key (environment variable)
-- [ ] Enable HTTPS/TLS
-- [ ] Set up database for user storage (replace YAML)
-- [ ] Configure proper backup procedures
-- [ ] Review HIPAA compliance documentation
+- [ ] Configure JWT secret key: `export JWT_SECRET_KEY=$(openssl rand -hex 32)`
 - [ ] Train analysts on dashboard workflow
-- [ ] Set up monitoring and alerting
-- [ ] Document incident response procedures
-- [ ] Sign Business Associate Agreement with Microsoft
+
+### Phase 2 Enhancements (Recommended):
+
+- [ ] Enable HTTPS/TLS with valid certificates
+- [ ] Network interface binding (restrict to SOC subnet)
+- [ ] Set up database for user storage (replace YAML with encrypted DB)
+- [ ] Add MFA (TOTP support)
+- [ ] External SIEM integration for audit logs
+- [ ] Configure proper backup procedures
+
+### NOT Required for Internal Use:
+
+- Microsoft BAA not needed (you own your Defender data)
+- Cloud provider agreements not needed (everything local)
+- Third-party processor contracts not needed (no external services)
 
 ---
 
@@ -395,7 +441,8 @@ Internal use only - SOC Automation Research
 
 ---
 
-**Version:** 2.0 (Dashboard + Real Data Integration)
+**Version:** 3.0 (Phase 1 Security Hardening)
 **Last Updated:** 2025-11-16
-**HIPAA Compliant:** Yes
+**Status:** Research/Internal Deployment Ready
+**Production PHI Ready:** No (requires Phase 2 enhancements)
 **Simulation Results:** 68% automation, 78 emails/min
