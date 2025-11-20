@@ -1,0 +1,22 @@
+From: "Human Resources" <hr@example.com>
+To: user@example.com
+Subject: Weekly Project Update
+Date: Wed, 19 Nov 2025 15:48:47 +0000
+Message-ID: <47081465@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Received-SPF: pass
+Authentication-Results: example.com; spf=pass; dkim=pass; dmarc=pass
+
+Hi Team,
+
+Here are the notes from today's meeting:
+
+1. Project timeline updated
+2. Budget approved for Q2
+3. New team member starting next week
+
+Please review and let me know if you have any questions.
+
+Best regards,
+Human Resources

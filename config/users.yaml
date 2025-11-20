@@ -3,6 +3,6 @@ admin:
   disabled: false
   email: admin@localhost
   hashed_password: $5$rounds=535000$Cx0H3yALrqfxGTYZ$Di5/VMnfF7qke5TXWJ5RrWljJrgw7eEE5ynbZNpI6t9
-  last_login: '2025-11-17T02:11:46.395008'
+  last_login: '2025-11-19T21:17:22.328570'
   role: admin
   username: admin
