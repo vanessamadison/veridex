@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `src/core/*.py`: Example domains in code
 - 📝 **Updated README**
   - Added Initial Setup section with setup script instructions
-  - Fixed GitHub repository URLs (nessakodo/veridex)
+  - Removed GitHub-specific URLs for generic publication
   - Added reference to screenshot assets
   - Updated API authentication examples
   - Enhanced test documentation with coverage details
