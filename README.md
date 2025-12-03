@@ -110,7 +110,7 @@ Tested on **SpamAssassin Spam Corpus 2** (N=500 emails sampled from 1,396 total)
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/veridex.git
+git clone https://github.com/nessakodo/veridex.git
 cd veridex
 
 # Create virtual environment
@@ -125,6 +125,18 @@ pip install -r requirements.txt
 ollama pull mistral
 ```
 
+### Initial Setup
+
+```bash
+# Create admin user (run once before first use)
+python3 scripts/setup_admin.py
+
+# The script will:
+# - Generate a secure password (recommended), OR
+# - Let you set your own password (must meet security requirements)
+# - Save credentials securely
+```
+
 ### Running VERIDEX
 
 ```bash
@@ -134,9 +146,9 @@ python3 -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000 --reload
 # Access the dashboard
 open http://127.0.0.1:8000/dashboard
 
-# Default credentials
+# Login with credentials from setup script
 Username: admin
-Password: changeme123
+Password: [generated during setup]
 ```
 
 ---
@@ -145,10 +157,12 @@ Password: changeme123
 
 ### Dashboard
 
-1. **Login**: Use default credentials (change in production)
+1. **Login**: Use credentials created during setup (scripts/setup_admin.py)
 2. **Active Triage**: View incoming emails with risk scores and Decision Factors
 3. **Analyst Review**: Review low-confidence emails (< 75% threshold)
 4. **Decision Factors**: Click any email to see transparent XAI reasoning
+
+**Dashboard Screenshots**: See [assets/screenshots/](assets/screenshots/) for visual examples of the interface.
 
 ### Standalone Testing
 
@@ -327,14 +341,24 @@ veridex/
 
 ```bash
 # Run all tests
-pytest tests/
+pytest tests/ -v
 
-# Run with coverage
-pytest --cov=src tests/
+# Run with coverage report
+pytest --cov=src --cov-report=term-missing tests/
 
 # Run specific test module
-pytest tests/test_ensemble_engine.py
+pytest tests/test_auth_security.py -v
+pytest tests/test_ensemble_engine.py -v
+pytest tests/test_mdo_extractor.py -v
+pytest tests/test_metrics.py -v
 ```
+
+**Test Coverage:**
+- ✅ Authentication & Security (RBAC, JWT, password policies)
+- ✅ Ensemble Verdict Engine (LLM + Rules logic)
+- ✅ MDO Field Extractor (HIPAA compliance)
+- ✅ Metrics Calculator (Performance evaluation)
+
 
 ### Validate on SpamAssassin
 
@@ -428,7 +452,7 @@ python3 scripts/test_all_datasets.py
 # Login
 curl -X POST http://localhost:8000/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "changeme123"}'
+  -d '{"username": "admin", "password": "YOUR_PASSWORD"}'
 ```
 
 ### Email Triage
@@ -471,7 +495,7 @@ This is a research project for academic publication. Contributions welcome after
 
 ### Reporting Issues
 
-Please report bugs or feature requests via [GitHub Issues](https://github.com/yourusername/veridex/issues).
+Please report bugs or feature requests via [GitHub Issues](https://github.com/nessakodo/veridex/issues).
 
 ### Code of Conduct
 
