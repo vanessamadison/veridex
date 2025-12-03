@@ -53,12 +53,11 @@ defender:
   api_timeout: 30             # Graph API timeout (seconds)
 
 # Internal domain configuration
+# Configure your organization's trusted internal domains
 internal_domains:
-  - "ucdenver.edu"
-  - "cuanschutz.edu"
-  - "cumedicine.us"
-  - "cu.edu"
-  - "sharepointonline.com"
+  - "example.com"
+  - "yourhealthcare.org"
+  - "internal.local"
 
 # Logging
 logging:

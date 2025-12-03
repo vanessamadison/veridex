@@ -368,21 +368,12 @@ class UserStore:
     def _ensure_store(self):
         """Create default admin user if store doesn't exist"""
         if not os.path.exists(self.store_path):
+            # No default users - admin must be created via setup script
+            # This prevents deployment with default credentials
             os.makedirs(os.path.dirname(self.store_path) or ".", exist_ok=True)
-            default_users = {
-                "admin": {
-                    "username": "admin",
-                    "email": "admin@localhost",
-                    "role": "admin",
-                    "hashed_password": get_password_hash("changeme123"),
-                    "disabled": False,
-                    "created_at": datetime.utcnow().isoformat(),
-                    "password_changed_at": None,  # Force change on first login
-                    "must_change_password": True
-                }
-            }
+            # Create empty user store
             with open(self.store_path, 'w') as f:
-                yaml.dump(default_users, f)
+                yaml.dump({}, f)
 
     def get_user(self, username: str) -> Optional[UserInDB]:
         """Retrieve user from store"""

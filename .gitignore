@@ -47,6 +47,10 @@ results/*.json
 results/*.csv
 *.log
 auth_audit.json
+data/users.yaml
+
+# Environment variables (contains credentials)
+.env
 
 # Temporary files
 tmp/
@@ -66,3 +70,6 @@ data/nazario/*.mbox
 !data/**/ground_truth.csv
 !data/**/*.md
 !data/**/README.md
+# Assets
+!assets/screenshots/*.png
+!assets/screenshots/*.jpg

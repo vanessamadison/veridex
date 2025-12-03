@@ -18,7 +18,7 @@ This tool demonstrates **good security patterns** and has implemented Phase 1 se
 6. **Password Policy** - 12+ characters, uppercase, lowercase, number, special character required
 7. **Account Lockout** - 5 failed attempts trigger 30-minute lockout
 8. **Export Rate Limiting** - 10 exports per hour per user
-9. **Common Password Blocking** - Prevents "password123", "changeme123", etc.
+9. **Common Password Blocking** - Prevents "password123", weak passwords, etc.
 10. **Password Expiration Tracking** - 90-day tracking (enforcement requires frontend)
 
 ---
@@ -76,10 +76,10 @@ uvicorn src.api.main:app \
 
 **Current State**:
 - ✅ Password complexity enforced (12+ chars, uppercase, lowercase, number, special)
-- ✅ Common password blocking ("password123", "changeme123", etc.)
+- ✅ Common password blocking (weak and common passwords)
 - ✅ Failed attempt lockout (5 attempts, 30-minute lock)
 - ✅ Password expiration tracking (90 days)
-- 🔄 Default password still "changeme123" (must be changed on first deployment)
+- ✅ No default credentials (secure setup required via scripts/setup_admin.py)
 
 **Implementation**:
 ```python

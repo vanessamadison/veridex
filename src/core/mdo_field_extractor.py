@@ -18,13 +18,11 @@ class MDOFieldExtractor:
     Ensures HIPAA compliance by excluding body content
     """
 
-    # Internal domains for CU Denver / Anschutz
+    # Internal domains - configure these for your organization
     INTERNAL_DOMAINS = [
-        "ucdenver.edu",
-        "cuanschutz.edu",
-        "cumedicine.us",
-        "cu.edu",
-        "sharepointonline.com"  # SharePoint emails
+        "example.com",
+        "yourhealthcare.org",
+        "internal.local"
     ]
 
     # Known safe automated systems

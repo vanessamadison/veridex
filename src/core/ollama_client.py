@@ -99,7 +99,7 @@ SUSPICIOUS indicators (requires analyst review):
 - Mixed authentication results (SPF pass, DKIM fail)
 
 CLEAN indicators (high confidence):
-- Internal sender (@ucdenver.edu, @cuanschutz.edu, @cumedicine.us, @cu.edu)
+- Internal sender from trusted domains (configured in system)
 - Known partner/vendor with good reputation
 - No URLs/attachments + conversational tone
 - Microsoft verdict: No threats found + no user report
@@ -389,11 +389,11 @@ def test_ollama_client():
 
     # Test case 2: Clean internal email
     clean_email = {
-        "sender": "helpdesk@ucdenver.edu",
-        "sender_domain": "ucdenver.edu",
+        "sender": "helpdesk@example.com",
+        "sender_domain": "example.com",
         "sender_ip": "10.0.0.50",
-        "return_path": "helpdesk@ucdenver.edu",
-        "reply_to": "helpdesk@ucdenver.edu",
+        "return_path": "helpdesk@example.com",
+        "reply_to": "helpdesk@example.com",
         "subject": "IT Department Weekly Update",
         "spf_result": "Pass",
         "dkim_result": "Pass",
