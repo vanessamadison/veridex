@@ -5,8 +5,14 @@ echo "=================================================="
 echo " CORRECTED DATASET VALIDATION"
 echo "=================================================="
 
-cd /Users/nessakodo/phishing-analyst
-source venv/bin/activate
+# Get script directory and navigate to project root
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR/.."
+
+# Activate virtual environment if it exists
+if [ -d "venv" ]; then
+    source venv/bin/activate
+fi
 
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 RESULTS_DIR="results/validation_corrected_${TIMESTAMP}"

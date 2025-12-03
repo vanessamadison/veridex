@@ -53,8 +53,11 @@ defender:
   api_timeout: 30             # Graph API timeout (seconds)
 
 # Internal domain configuration
+# Configure your organization's trusted internal domains
 internal_domains:
-
+  - "example.com"
+  - "yourhealthcare.org"
+  - "internal.local"
 
 # Logging
 logging:

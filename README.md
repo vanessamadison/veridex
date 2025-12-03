@@ -6,7 +6,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=for-the-badge+logo=fastapi+logoColor=white)](https://fastapi.tiangolo.com/)
 [![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge+logo=ai+logoColor=white)](https://ollama.ai)
 [![HIPAA Compliant](https://img.shields.io/badge/HIPAA_Compliant-000000?style=for-the-badge+logo=security+logoColor=white)](https://www.hhs.gov/hipaa)
-[![Publication Ready](https://img.shields.io/badge/Publication_Ready-000000?style=for-the-badge+logo=academia+logoColor=white)](https://github.com/nessakodo/veridex)
+[![Publication Ready](https://img.shields.io/badge/Publication_Ready-000000?style=for-the-badge+logo=academia+logoColor=white)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](LICENSE)
 
 ---
@@ -110,7 +110,7 @@ Tested on **SpamAssassin Spam Corpus 2** (N=500 emails sampled from 1,396 total)
 
 ```bash
 # Clone repository
-git clone https://github.com/nessakodo/veridex.git
+git clone https://github.com/YOUR_USERNAME/veridex.git
 cd veridex
 
 # Create virtual environment
@@ -495,7 +495,7 @@ This is a research project for academic publication. Contributions welcome after
 
 ### Reporting Issues
 
-Please report bugs or feature requests via [GitHub Issues](https://github.com/nessakodo/veridex/issues).
+Please report bugs or feature requests via GitHub Issues.
 
 ### Code of Conduct
 
@@ -527,7 +527,7 @@ This project is provided for research and educational purposes. For production h
 **Author**: Vanessa Benavente
 **Program**: VICEROY Scholar Cohort Fall 2025
 **Email**: [Your Email]
-**GitHub**: [@nessakodo](https://github.com/nessakodo)
+**Repository**: [GitHub](https://github.com)
 
 For questions about the research, see [documentation](docs/publication/) or open an issue.
 
