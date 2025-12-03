@@ -17,7 +17,7 @@
 
 This system represents the **first independent academic validation** of metadata-only phishing detection in healthcare, combining local LLM processing with Microsoft Defender signals to provide transparent, explainable AI-powered threat analysis.
 
-**Published Research:** *Automating Phishing Triage in Healthcare: An Efficiency and Compliance Feasibility Study of Microsoft Defender for Office 365* - Vanessa Benavente, VICEROY Scholar Cohort Fall 2025
+**Published Research:** *Automating Phishing Triage in Healthcare: An Efficiency and Compliance Feasibility Study of Microsoft Defender for Office 365* - Vanessa Madison, VICEROY Scholar Cohort Fall 2025
 
 ---
 
@@ -398,10 +398,10 @@ python3 scripts/test_all_datasets.py
 
 **Published Research:**
 ```bibtex
-@article{benavente2025veridex,
+@article{madison2025veridex,
   title={Automating Phishing Triage in Healthcare: An Efficiency and Compliance
          Feasibility Study},
-  author={Benavente, Vanessa},
+  author={Madison, Vanessa},
   journal={[Journal Name]},
   year={2025},
   note={HIPAA-compliant metadata-only phishing detection with 91.74\% F1
@@ -524,10 +524,9 @@ This project is provided for research and educational purposes. For production h
 
 ## 𝘊𝘰𝘯𝘵𝘢𝘤𝘵
 
-**Author**: Vanessa Benavente
+**Author**: Vanessa Madison
 **Program**: VICEROY Scholar Cohort Fall 2025
-**Email**: [Your Email]
-**Repository**: [GitHub](https://github.com)
+**Repository**: [GitHub](https://github.com/vanessamadison/veridex)
 
 For questions about the research, see [documentation](docs/publication/) or open an issue.
 

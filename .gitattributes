@@ -1,0 +1,33 @@
+# VERIDEX Language Detection Configuration
+# Ensures GitHub correctly identifies this as a Python project
+
+# Python is the primary language
+*.py linguist-detectable=true
+*.py linguist-language=Python
+
+# Exclude documentation from language stats
+*.md linguist-documentation=true
+docs/** linguist-documentation=true
+
+# Exclude generated/vendor files
+results/** linguist-generated=true
+*.log linguist-generated=true
+
+# Exclude test data from stats
+data/** linguist-vendored=true
+
+# Mark shell scripts
+*.sh linguist-language=Shell
+
+# Ensure Roff files are excluded from language stats
+# (These are often man pages or documentation)
+*.1 linguist-documentation=true
+*.2 linguist-documentation=true
+*.3 linguist-documentation=true
+*.4 linguist-documentation=true
+*.5 linguist-documentation=true
+*.6 linguist-documentation=true
+*.7 linguist-documentation=true
+*.8 linguist-documentation=true
+*.roff linguist-documentation=true
+*.man linguist-documentation=true
