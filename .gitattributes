@@ -1,0 +1,31 @@
+# Git Attributes Configuration for VERIDEX
+# ==========================================
+# This file configures how Git and GitHub handle various file types in this repository.
+
+# Language Statistics Configuration
+# ----------------------------------
+# The data/ directory contains ~23,000 email samples (ham/spam) used for testing
+# the spam classifier. These are legitimate test datasets from SpamAssassin corpus.
+#
+# Without this configuration, GitHub's linguist incorrectly identifies these
+# extensionless email files as "roff" format due to their structured headers,
+# which skews language statistics away from the actual Python codebase.
+#
+# Marking these as 'linguist-vendored' excludes them from language stats while
+# keeping them accessible in the repository. This is standard practice for
+# ML/data science projects with large datasets.
+
+data/** linguist-vendored
+
+# Result files should also be excluded from language detection
+results/** linguist-vendored
+
+# Documentation
+# -------------
+# Ensure markdown files are properly detected
+*.md linguist-documentation
+
+# Source Code
+# -----------
+# Python files are correctly detected by default, no configuration needed
+# *.py linguist-language=Python
