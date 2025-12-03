@@ -1,0 +1,11 @@
+priority,email_id,subject,sender,verdict,risk_score,confidence,primary_indicators,reasoning
+1,email_20251112_162439,Contact Update,user1@domain1.com,CLEAN,38,0.55,ollama_failure; DKIM authentication failed/missing; DMARC authentication failed/missing; External sender; Urgency keywords in subject (1 found),"Verdict: CLEAN (Ensemble Score: 0.38) 
+Ollama Analysis: Ollama analysis failed (timeout), requires manual review for safety 
+Rule-Based Indicators: DKIM authentication failed/missing, DMARC authentication failed/missing, External sender 
+Defender Signals: Defender: No threats found 
+Key Features: External sender, Failed authentication"
+2,email_20251112_162439,Contact Update,user1@domain1.com,CLEAN,36,0.55,External sender; DKIM authentication failed/missing; DMARC authentication failed/missing; Urgency keywords in subject (1 found); External sender with urgency,"Verdict: CLEAN (Ensemble Score: 0.36) 
+Ollama Analysis: The email was sent from an external domain without SPF/DKIM/DMARC authentication, which raises suspicion. However, since there are no attachments or URLs and the subject is not urgent, it's not marked as MALICIOUS. 
+Rule-Based Indicators: DKIM authentication failed/missing, DMARC authentication failed/missing, External sender 
+Defender Signals: Defender: No threats found 
+Key Features: External sender, Failed authentication"
