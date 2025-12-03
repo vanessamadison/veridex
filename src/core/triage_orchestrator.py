@@ -329,7 +329,7 @@ class TriageOrchestrator:
                 "component_scores": result.get("component_scores"),
                 "component_weights": result.get("component_weights"),
                 "processing_time_seconds": result.get("processing_time_seconds"),
-                "system_version": "phishing-analyst-v1.0",
+                "system_version": "veridex-v1.0",
                 "ollama_model": self.ollama_client.model
             }
 

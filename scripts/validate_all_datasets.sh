@@ -6,10 +6,14 @@ echo " COMPREHENSIVE DATASET VALIDATION"
 echo "=================================================="
 echo ""
 
-cd /Users/nessakodo/phishing-analyst
+# Get script directory and navigate to project root
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR/.."
 
-# Activate virtual environment
-source venv/bin/activate
+# Activate virtual environment if it exists
+if [ -d "venv" ]; then
+    source venv/bin/activate
+fi
 
 # Create timestamped results directory
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
