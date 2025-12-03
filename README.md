@@ -1,12 +1,12 @@
 # 𝘝𝘌𝘙𝘐𝘋𝘌𝘟
 
-![Version](https://img.shields.io/badge/Version-v1.0.0-000000?style=for-the-badge+logo=github+logoColor=white)
+![Version](https://img.shields.io/badge/Version-v1.0.0-000000?style=for-the-badge&logo=github&logoColor=white)
 
-[![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge+logo=python+logoColor=white)](https://www.python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=for-the-badge+logo=fastapi+logoColor=white)](https://fastapi.tiangolo.com/)
-[![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge+logo=ai+logoColor=white)](https://ollama.ai)
-[![HIPAA Compliant](https://img.shields.io/badge/HIPAA_Compliant-000000?style=for-the-badge+logo=security+logoColor=white)](https://www.hhs.gov/hipaa)
-[![Publication Ready](https://img.shields.io/badge/Publication_Ready-000000?style=for-the-badge+logo=academia+logoColor=white)](https://github.com)
+[![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ai&logoColor=white)](https://ollama.ai)
+[![HIPAA Compliant](https://img.shields.io/badge/HIPAA_Compliant-000000?style=for-the-badge&logo=security&logoColor=white)](https://www.hhs.gov/hipaa)
+[![Publication Ready](https://img.shields.io/badge/Publication_Ready-000000?style=for-the-badge&logo=academia&logoColor=white)](https://github.com/nessakodo/veridex)
 [![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](LICENSE)
 
 ---
@@ -524,9 +524,9 @@ This project is provided for research and educational purposes. For production h
 
 ## 𝘊𝘰𝘯𝘵𝘢𝘤𝘵
 
-**Author**: Vanessa Madison
-**Program**: VICEROY Scholar Cohort Fall 2025
-**Repository**: [GitHub](https://github.com/vanessamadison/veridex)
+- **Author**: Vanessa Madison
+- **Program**: VICEROY Scholar Cohort Fall 2025
+- **Repository**: [GitHub](https://github.com/vanessamadison/veridex)
 
 For questions about the research, see [documentation](docs/publication/) or open an issue.
 
