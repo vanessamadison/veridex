@@ -110,7 +110,7 @@ Tested on **SpamAssassin Spam Corpus 2** (N=500 emails sampled from 1,396 total)
 
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/veridex.git
+git clone https://github.com/vanessamadison/veridex.git
 cd veridex
 
 # Create virtual environment
