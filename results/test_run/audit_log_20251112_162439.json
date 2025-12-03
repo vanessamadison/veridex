@@ -1,0 +1,72 @@
+{
+  "run_id": "20251112_162439",
+  "run_timestamp": "2025-11-12T16:25:18.663964",
+  "total_emails": 2,
+  "hipaa_compliant": true,
+  "audit_entries": [
+    {
+      "timestamp": "2025-11-12T16:25:09.658196",
+      "email_id": "email_20251112_162439",
+      "verdict": "CLEAN",
+      "action": "analyst_review",
+      "confidence": 0.55,
+      "risk_score": 38,
+      "component_scores": {
+        "ollama": 0.5,
+        "rules": 0.6,
+        "defender": 0.0
+      },
+      "component_weights": {
+        "ollama": 0.4,
+        "rules": 0.3,
+        "defender": 0.3
+      },
+      "processing_time_seconds": 30.01,
+      "system_version": "phishing-analyst-v1.0",
+      "ollama_model": "mistral:latest",
+      "audit_features": {
+        "sender_domain": "domain1.com",
+        "spf_result": "None",
+        "dkim_result": "None",
+        "dmarc_result": "None",
+        "threat_types": [],
+        "url_count": 0,
+        "attachment_count": 0,
+        "is_user_reported": false,
+        "directionality": "Inbound"
+      }
+    },
+    {
+      "timestamp": "2025-11-12T16:25:18.662123",
+      "email_id": "email_20251112_162439",
+      "verdict": "CLEAN",
+      "action": "analyst_review",
+      "confidence": 0.55,
+      "risk_score": 36,
+      "component_scores": {
+        "ollama": 0.45,
+        "rules": 0.6,
+        "defender": 0.0
+      },
+      "component_weights": {
+        "ollama": 0.4,
+        "rules": 0.3,
+        "defender": 0.3
+      },
+      "processing_time_seconds": 9.0,
+      "system_version": "phishing-analyst-v1.0",
+      "ollama_model": "mistral:latest",
+      "audit_features": {
+        "sender_domain": "domain1.com",
+        "spf_result": "None",
+        "dkim_result": "None",
+        "dmarc_result": "None",
+        "threat_types": [],
+        "url_count": 0,
+        "attachment_count": 0,
+        "is_user_reported": false,
+        "directionality": "Inbound"
+      }
+    }
+  ]
+}

@@ -1,0 +1,394 @@
+Phishing Detection System - Multi-Dataset Validation Results
+Generated: Mon Dec  1 21:43:55 MST 2025
+=========================================================================
+
+
+============================================================
+STANDALONE PHISHING TRIAGE SYSTEM
+============================================================
+Dataset:       data/spamassassin/spam_2
+Ground Truth:  data/spamassassin/ground_truth.csv
+LLM:           Disabled (Rules-Only)
+Threat Intel:  Disabled
+============================================================
+
+Initializing components...
+  ✓ EmailParser initialized
+  ✓ Ollama disabled (rules-only mode)
+  ✓ StandaloneEnsembleEngine initialized
+  ✓ MetricsCalculator initialized
+  ✓ StandaloneEvaluator initialized
+
+============================================================
+STARTING EVALUATION
+============================================================
+
+
+Generating reports...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Dataset: data/spamassassin/spam_2
+Total Emails: 1396
+
+Metrics:
+  Precision:          100.00%
+  Recall:             84.74%
+  F1 Score:           91.74%
+  Accuracy:           84.74%
+  False Positive Rate: 0.00%
+  False Negative Rate: 15.26%
+
+Confusion Matrix:
+  True Positives:  1183
+  False Positives:    0
+  True Negatives:     0
+  False Negatives:  213
+
+Misclassifications: 1396
+
+Top 5 Misclassifications:
+  1. 01246.d0ee9c7ebf9d953b21de9414cc96c2f9
+     GT: MALICIOUS, Predicted: SUSPICIOUS
+     Subject: Dialogue et Rencontre ? Rejoins nous !
+  2. 01099.f33c6cb5a233f19e1dc1956871c50681
+     GT: MALICIOUS, Predicted: SUSPICIOUS
+     Subject: Take your love life to the next level             
+  3. 00346.d93a823fb3350a5da8f0c612ce1156cd
+     GT: MALICIOUS, Predicted: SUSPICIOUS
+     Subject: [dcms-dev] MY INHERITANCE
+  4. 00012.cb9c9f2a25196f5b16512338625a85b4
+     GT: MALICIOUS, Predicted: CLEAN
+     Subject: Gain Major Cash
+  5. 00993.32d00ccd0a831830838667fed1371d5f
+     GT: MALICIOUS, Predicted: SUSPICIOUS
+     Subject: < Make $50,000 in 90 Days Sending Emails at Home >
+
+Errors: 1
+============================================================
+
+Report saved to: results/dataset_validation/spamassassin_spam2_20251201_214355.json
+
+============================================================
+EVALUATION COMPLETE
+============================================================
+
+Results saved to:
+  - JSON: results/dataset_validation/spamassassin_spam2_20251201_214355.json
+  - CSV:  results/dataset_validation/spamassassin_spam2_20251201_214355.csv
+
+🎯 Key Metrics:
+  F1 Score:  91.74%
+  Precision: 100.00%
+  Recall:    84.74%
+
+
+============================================================
+STANDALONE PHISHING TRIAGE SYSTEM
+============================================================
+Dataset:       data/spamassassin/easy_ham/easy_ham
+Ground Truth:  data/spamassassin/easy_ham_ground_truth.csv
+LLM:           Disabled (Rules-Only)
+Threat Intel:  Disabled
+Max Emails:    500
+============================================================
+
+Initializing components...
+  ✓ EmailParser initialized
+  ✓ Ollama disabled (rules-only mode)
+  ✓ StandaloneEnsembleEngine initialized
+  ✓ MetricsCalculator initialized
+  ✓ StandaloneEvaluator initialized
+
+============================================================
+STARTING EVALUATION
+============================================================
+
+
+Generating reports...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Dataset: data/spamassassin/easy_ham/easy_ham
+Total Emails: 500
+
+Metrics:
+  Precision:          0.00%
+  Recall:             0.00%
+  F1 Score:           0.00%
+  Accuracy:           6.60%
+  False Positive Rate: 93.40%
+  False Negative Rate: 0.00%
+
+Confusion Matrix:
+  True Positives:     0
+  False Positives:  467
+  True Negatives:    33
+  False Negatives:    0
+
+Misclassifications: 467
+
+Top 5 Misclassifications:
+  1. 00769.25bf9a767b5db0ed93f03c1637281663
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: Re: liberal defnitions
+  2. 01074.8590d61ac0aeeadb58dc2f2ba776c406
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: problems with apt update
+  3. 02479.14365bcad3a60fcf24c5c1813f6291fb
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: Re: Are bad developer libraries the problem with M
+  4. 00357.d559b71616f64ba1d1c1e61a03644fd4
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: RE: Gecko adhesion finally sussed.
+  5. 01465.b1fa1feb0603eff01231fa4a5a74cf37
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: Re: [SAtalk] Bayesian and bogofilter
+
+Errors: 0
+============================================================
+
+Report saved to: results/dataset_validation/spamassassin_easy_ham_20251201_214355.json
+
+============================================================
+EVALUATION COMPLETE
+============================================================
+
+Results saved to:
+  - JSON: results/dataset_validation/spamassassin_easy_ham_20251201_214355.json
+  - CSV:  results/dataset_validation/spamassassin_easy_ham_20251201_214355.csv
+
+🎯 Key Metrics:
+  F1 Score:  0.00%
+  Precision: 0.00%
+  Recall:    0.00%
+
+
+============================================================
+STANDALONE PHISHING TRIAGE SYSTEM
+============================================================
+Dataset:       data/spamassassin/hard_ham/hard_ham
+Ground Truth:  data/spamassassin/hard_ham_ground_truth.csv
+LLM:           Disabled (Rules-Only)
+Threat Intel:  Disabled
+============================================================
+
+Initializing components...
+  ✓ EmailParser initialized
+  ✓ Ollama disabled (rules-only mode)
+  ✓ StandaloneEnsembleEngine initialized
+  ✓ MetricsCalculator initialized
+  ✓ StandaloneEvaluator initialized
+
+============================================================
+STARTING EVALUATION
+============================================================
+
+
+Generating reports...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Dataset: data/spamassassin/hard_ham/hard_ham
+Total Emails: 251
+
+Metrics:
+  Precision:          0.00%
+  Recall:             0.00%
+  F1 Score:           0.00%
+  Accuracy:           2.39%
+  False Positive Rate: 97.61%
+  False Negative Rate: 0.00%
+
+Confusion Matrix:
+  True Positives:     0
+  False Positives:  245
+  True Negatives:     6
+  False Negatives:    0
+
+Misclassifications: 245
+
+Top 5 Misclassifications:
+  1. 00113.1d37bdbcad4975b5012cc6d87a048ecf
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: [Lockergnome Windows Daily]  Sticker Courtesy
+  2. 00165.4e1923f1c9091dc00d79dfe004eedf26
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: Re: remove
+  3. 00044.b2f03a4d512deb2c4702a3bd60a4fd88
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: Great deals on perfect Summer cameras! (CNET SHOPP
+  4. 00138.1bf66894faa2d923b2a673a016dc6afd
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: How Microsoft plans to take over your living room 
+  5. 00211.1ca67c3677fa0051ccfa27c756d32b5a
+     GT: CLEAN, Predicted: SUSPICIOUS
+     Subject: [NOVICE] pl/pgsql and returns timestamp type
+
+Errors: 0
+============================================================
+
+Report saved to: results/dataset_validation/spamassassin_hard_ham_20251201_214355.json
+
+============================================================
+EVALUATION COMPLETE
+============================================================
+
+Results saved to:
+  - JSON: results/dataset_validation/spamassassin_hard_ham_20251201_214355.json
+  - CSV:  results/dataset_validation/spamassassin_hard_ham_20251201_214355.csv
+
+🎯 Key Metrics:
+  F1 Score:  0.00%
+  Precision: 0.00%
+  Recall:    0.00%
+
+
+============================================================
+STANDALONE PHISHING TRIAGE SYSTEM
+============================================================
+Dataset:       data/ling_spam/processed
+Ground Truth:  data/ling_spam/ground_truth.csv
+LLM:           Disabled (Rules-Only)
+Threat Intel:  Disabled
+Max Emails:    1000
+============================================================
+
+Initializing components...
+  ✓ EmailParser initialized
+  ✓ Ollama disabled (rules-only mode)
+  ✓ StandaloneEnsembleEngine initialized
+  ✓ MetricsCalculator initialized
+  ✓ StandaloneEvaluator initialized
+
+============================================================
+STARTING EVALUATION
+============================================================
+
+
+Generating reports...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Dataset: data/ling_spam/processed
+Total Emails: 0
+
+Metrics:
+  Precision:          0.00%
+  Recall:             0.00%
+  F1 Score:           0.00%
+  Accuracy:           0.00%
+  False Positive Rate: 0.00%
+  False Negative Rate: 0.00%
+
+Confusion Matrix:
+  True Positives:     0
+  False Positives:    0
+  True Negatives:     0
+  False Negatives:    0
+
+Misclassifications: 0
+
+Errors: 0
+============================================================
+
+Report saved to: results/dataset_validation/ling_spam_20251201_214355.json
+
+============================================================
+EVALUATION COMPLETE
+============================================================
+
+Results saved to:
+  - JSON: results/dataset_validation/ling_spam_20251201_214355.json
+  - CSV:  results/dataset_validation/ling_spam_20251201_214355.csv
+
+🎯 Key Metrics:
+  F1 Score:  0.00%
+  Precision: 0.00%
+  Recall:    0.00%
+
+
+============================================================
+STANDALONE PHISHING TRIAGE SYSTEM
+============================================================
+Dataset:       data/combined_test
+Ground Truth:  data/combined_test/ground_truth.csv
+LLM:           Disabled (Rules-Only)
+Threat Intel:  Disabled
+Max Emails:    1000
+============================================================
+
+Initializing components...
+  ✓ EmailParser initialized
+  ✓ Ollama disabled (rules-only mode)
+  ✓ StandaloneEnsembleEngine initialized
+  ✓ MetricsCalculator initialized
+  ✓ StandaloneEvaluator initialized
+
+============================================================
+STARTING EVALUATION
+============================================================
+
+
+Generating reports...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Dataset: data/combined_test
+Total Emails: 0
+
+Metrics:
+  Precision:          0.00%
+  Recall:             0.00%
+  F1 Score:           0.00%
+  Accuracy:           0.00%
+  False Positive Rate: 0.00%
+  False Negative Rate: 0.00%
+
+Confusion Matrix:
+  True Positives:     0
+  False Positives:    0
+  True Negatives:     0
+  False Negatives:    0
+
+Misclassifications: 0
+
+Errors: 0
+============================================================
+
+Report saved to: results/dataset_validation/combined_test_20251201_214355.json
+
+============================================================
+EVALUATION COMPLETE
+============================================================
+
+Results saved to:
+  - JSON: results/dataset_validation/combined_test_20251201_214355.json
+  - CSV:  results/dataset_validation/combined_test_20251201_214355.csv
+
+🎯 Key Metrics:
+  F1 Score:  0.00%
+  Precision: 0.00%
+  Recall:    0.00%
+
+
+=========================================================================
+VALIDATION COMPLETED SUCCESSFULLY
+=========================================================================
+
+Results saved to: results/dataset_validation
+
+Datasets tested:
+  1. SpamAssassin Spam_2 (1,396 spam)
+  2. SpamAssassin Easy Ham (2,500 ham, tested 500)
+  3. SpamAssassin Hard Ham (250 ham)
+  4. Ling-Spam (mixed, tested 1,000)
+  5. Combined Multi-Source (tested 1,000)
+
+Total emails processed: ~4,146 emails across 5 datasets
+

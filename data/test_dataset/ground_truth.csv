@@ -1,0 +1,11 @@
+filename,verdict
+phishing_001.eml,malicious
+phishing_002.eml,malicious
+phishing_003.eml,malicious
+phishing_004.eml,malicious
+legitimate_001.eml,clean
+legitimate_002.eml,clean
+legitimate_003.eml,clean
+legitimate_004.eml,clean
+legitimate_005.eml,clean
+legitimate_006.eml,clean

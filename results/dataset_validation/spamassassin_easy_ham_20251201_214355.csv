@@ -1,0 +1,501 @@
+filename,ground_truth,predicted,match,confidence,ensemble_score,subject
+00769.25bf9a767b5db0ed93f03c1637281663,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: liberal defnitions
+01074.8590d61ac0aeeadb58dc2f2ba776c406,CLEAN,SUSPICIOUS,False,0.55,0.6,problems with apt update
+02479.14365bcad3a60fcf24c5c1813f6291fb,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Are bad developer libraries the problem with M
+01417.ce7b07a2114218dbac682b599785820d,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] all but one testing
+00357.d559b71616f64ba1d1c1e61a03644fd4,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Gecko adhesion finally sussed.
+01465.b1fa1feb0603eff01231fa4a5a74cf37,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Bayesian and bogofilter
+01083.68ca1eec938ec95c00e6fcd3ed282dd3,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: http://apt.nixia.no/
+01235.ba9c966dd1894a1206da779f572da412,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: K3B
+01404.789355d67d32ceeedce39b891883eed5,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] Razor with sendmail
+01866.75c5029703de73d75e5ed23b657ea052,CLEAN,SUSPICIOUS,False,0.5,0.405,Google News
+02105.4b566a220773c7dfde49b30a87949d22,CLEAN,SUSPICIOUS,False,0.5,0.405,Randy Moss smokes ganja
+01932.f8c1d938ebba259e2926cf4400891c86,CLEAN,SUSPICIOUS,False,0.55,0.48,Usability Problems with Mozilla
+00723.e72e8e80f67f30983c089943e184f5e6,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Goodbye Global Warming
+01321.837b8a696b13b820d154fcb1a0ef6465,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Whitelisting (Re: [SAtalk] SA In The News)
+01596.fa947ffc2560132f53cc7c0bbf39b584,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] Using razor with maildrop
+02070.5686ae05b8d5e6eb569995e3e4fb2751,CLEAN,SUSPICIOUS,False,0.5,0.405,Sourceforge sells out
+01683.59383d91430d9cb58e7d0aa4e25b1320,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] understanding high false negative rate
+02293.2ae2c667486323afb16d109b406b8783,CLEAN,SUSPICIOUS,False,0.5,0.405,Another fine mess I've got myself into...
+00852.8be48f515c9ecb089aa3fc5983eaf038,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: ActiveBuddy
+00655.cf1f1255898932a567c5f7c39faab3b9,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Hanson's Sept 11 message in the National Revie
+02131.bdbca1d0e61528e8b86d759dedc06665,CLEAN,SUSPICIOUS,False,0.5,0.405,The worst Freddy Krueger costume ever
+01716.8e1547062c811ff9b62183ad65bf4ed6,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] test sets?
+00190.e26c75eb1c827ea35cf2e3407595fa67,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: The GOv gets tough on Net Users.....er Pirates
+00865.ffa802dadbaca77b74f05cc1c23c30bd,CLEAN,SUSPICIOUS,False,0.55,0.48,Apple Sauced...again
+02454.7015a418cb0c3ca707b8b63e267bc6a0,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Mercedes-Benz G55
+02432.529ee53cd95ce5c419495625a6727f1e,CLEAN,SUSPICIOUS,False,0.5,0.405,Critical US satellites could be hacked
+01270.49d052edd258d0f9eb08ca05e177f965,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RH 8 no DMA for DVD drive
+02266.dc8353bea2a93134f0e947ec60106c32,CLEAN,SUSPICIOUS,False,0.5,0.405,"Blood pressure drugs ""slow ageing"""
+00050.74d3103c5691914a530dcae2f656a1f5,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] O.T. Habeus -- Why?
+01254.e1ba700d620871e67b4f7db4b8859ac3,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Xine dependencies
+00900.04d3fc4b18f2def855155994cd956529,CLEAN,SUSPICIOUS,False,0.5,0.455,"RE: Our friends the Palestinians, Our servants in "
+00783.14a724489223eda0063e308c6914ee38,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Digital radio playlists are prohibited?!
+01979.d734b8873a97f8bdd28ff533c2a57bd9,CLEAN,SUSPICIOUS,False,0.5,0.405,First direct estimate of hidden vCJD cases
+01816.6b3df134031475f588f5f5533afd344e,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-10-07
+01991.27c828be78e15dbf223bb3f3944508d6,CLEAN,SUSPICIOUS,False,0.55,0.455,Black entrepreneurs 'face bank bias'
+00453.1b26da8f96711b00e186def7371d1e0d,CLEAN,SUSPICIOUS,False,0.5,0.455,Selling Wedded Bliss (was Re: Ouch...)
+00983.42eb62cc4057d03dfd3eb1c8afc270e2,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Sorting
+02493.f9f2870094430b7db8b0c1052b302cf1,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] Linux Install
+01247.2a40443c1cba2e07a993b186db41971d,CLEAN,SUSPICIOUS,False,0.55,0.54,Psyche: Anyone else tried it?
+01663.16e55768065036480deaa72ebb3bd8d5,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Deployment
+00829.7c74d7c59a6a5f0d0e54562ef671d14b,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: EBusiness Webforms: cluetrain has left the sta
+00104.1a66c829aa9b0883591a2e8266c18bb2,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] serial port transient failure
+01045.5f6b92624699ddf883fc56e9b158c031,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: ALSA (almost) made easy
+01478.6539703e21dfb4f52faa4db689dbc6d5,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Getting yourself removed from spam li
+01928.d1ee764b9abe31d0074a052066b62e81,CLEAN,SUSPICIOUS,False,0.55,0.48,Missing the Point
+00173.253a0161257f4fe309df9d9ffabd5ef3,CLEAN,SUSPICIOUS,False,0.55,0.465,Re: [zzzzteana] Bad Buffalo
+00635.b30f8636725812c0d15a96f31c07f8b6,CLEAN,SUSPICIOUS,False,0.5,0.455,Re[2]: AA Meetings the Hottest Place to Meet Women
+00088.945614c3f6213f59548ab21306451675,CLEAN,SUSPICIOUS,False,0.5,0.405,[ILUG] VPN implementation
+01863.bd70d6cfad21b043c84dab8e1e86e2be,CLEAN,SUSPICIOUS,False,0.5,0.405,Rights Fight
+01467.3c3e579305d1975c1792ab734c99cdda,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [SAtalk] 2.41/2.50 spamd/spamc problem
+01042.5379f7151fef6cce3e2638aee3b193fa,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: ALSA (almost) made easy
+02460.553f4ad4ee6fe63fb789337ab097ab97,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: Archer-UK TV Alert
+01801.1724b0100b279470dfe73c76f0f12b90,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-09-23
+00951.23649926ba46e21259b518be64d300af,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Exmh && speed
+01746.06fb7b96d18dae121abb94e8a7624f4b,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] timtest broke?
+01357.cf1f4075b85a439abfc8c0b81bca73ec,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] updating SA
+01021.3fc1c0955f38f5873882a577f00a5f2c,CLEAN,SUSPICIOUS,False,0.55,0.615,Automated forwarding
+01826.ad12430bacae88235edc88001bf80c9e,CLEAN,SUSPICIOUS,False,0.55,0.465,TRAMP Update
+00198.abf0f5bd6209bb8e268d51902158e0aa,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] Got me a crappy laptop
+01289.1546c81997f7f3f154f6ef18d6e6bbf7,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: /home/dude
+01044.33acf4acbd1ac5f96486771baeda20c7,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: ALSA (almost) made easy
+02250.f947b89c1c14ac1d0e806219ad0d2161,CLEAN,SUSPICIOUS,False,0.5,0.405,Government plans to hand out free Valium
+00661.e779083f6d4522af5231edf0b9371a1d,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Avast there matey
+02399.80c1a552b08b3c77ded87e0b3de97c8e,CLEAN,SUSPICIOUS,False,0.5,0.405,Feedback from my posting about FogBUGZ Setup fell 
+02242.069e8b99ee8a2d62ec97d0e9d389aa5f,CLEAN,SUSPICIOUS,False,0.5,0.405,Cast not the first stone
+00121.333fff2f2cb3dfd617a6210b669757d3,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [zzzzteana] The tenth planet
+00652.dde353b33fdd09f8daa33ffcdb016188,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Oh ma gawd - funny site of the day...
+02398.799b8be8a8ee865c6dfd22989e77a7c0,CLEAN,SUSPICIOUS,False,0.5,0.405,Bournemouth blues
+02209.af015c8af7d05a011604be64d0417ed7,CLEAN,SUSPICIOUS,False,0.55,0.48,"Don't do the brown WiFi, the brown WiFi is BAD"
+00098.90c05d1ad65ea3fa796bfa2808f71052,CLEAN,SUSPICIOUS,False,0.5,0.405,[ILUG] Marketing SIG has a good start :)
+00215.d09b3f3c0df56258c17c3de4dfbfc6c6,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] directory merging
+01447.98e4b20ceb192594e992f7db9f8dfc53,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Lotus Notes users?
+01227.0c0989577c7476c986aa5328e4ef6118,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: alsa-driver.spec tweak for homemade kernels
+02155.bda8d6fe384d01fbd2bf35694c5f8d07,CLEAN,SUSPICIOUS,False,0.5,0.405,Detective sends out Al Qaeda warning based on Onio
+01859.8998777b348fa74fc13a7140fd95766c,CLEAN,SUSPICIOUS,False,0.5,0.405,San Francisco caffeine tour
+00483.0ce5057dc155d6a6aca6c917b4eb0793,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Re[2]: Selling Wedded Bliss (was Re: Ouch...)
+01191.07778802f15f6579b274b85a867ebde6,CLEAN,SUSPICIOUS,False,0.55,0.54,Red Hat 8.0
+01560.62422bb7104da6017e5568907fd41fb7,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Windows port / bug reports?
+00560.e49654efbb65ad7539d43d356457a322,CLEAN,SUSPICIOUS,False,0.55,0.48,Keillor voices up on what to do with the WTC site
+01028.9bc3697b9d9eb23fc4427b482b012f40,CLEAN,SUSPICIOUS,False,0.55,0.615,customising FTOC display for specific folders...
+01883.16589be1ac43846c99b29ce78cd60223,CLEAN,SUSPICIOUS,False,0.5,0.405,Looks like Google did a deal to index the NY Times
+02111.b9e939730374567a02cc9163ad2bdae9,CLEAN,SUSPICIOUS,False,0.5,0.405,Wedding etiquette
+02120.335e5984c47786e3ebf25a2b2b8df23b,CLEAN,SUSPICIOUS,False,0.5,0.405,West Coast port closures may cancel Christmas.
+01975.cf8723fe55a068c4cc86a29ba3d7a96a,CLEAN,SUSPICIOUS,False,0.5,0.405,Human-chimp DNA difference trebled
+01598.3e6e25959eae3d358e21d7144f61c42b,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] razor unblessed reference
+00755.798a2e0b9045d90a9bddbb501dc1fcfb,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Goodbye Global Warming
+02054.56a00df5b128866454ef832ec5ce78a2,CLEAN,SUSPICIOUS,False,0.5,0.405,Apple Switch parodies
+00307.a2256465cea488cb0ffe6da0a2b0fb07,CLEAN,SUSPICIOUS,False,0.55,0.555,Computational Recreations
+01727.d6713b65baf275582be556a87a824dd4,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] testing results
+01629.0ff6ccf08604c57e81a797521f9c0e6d,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: use of base image / delta image for automated 
+00774.1af9be3cd1aba6a371ee11dacc7d1025,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Random hack Q: drawing on CDs with lasers?
+00977.8046655ae38293b58a69a94389f20020,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Sorting
+01026.96f87ecca532224622e3910ba33d8a13,CLEAN,SUSPICIOUS,False,0.55,0.615,MyIncErrors
+01386.4421abca51be5e71c1651102468420e2,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] SA very slow (hangs?) on this message
+00196.5a8ba13e30d79286b01472ef383d773d,CLEAN,SUSPICIOUS,False,0.55,0.465,[zzzzteana] The new Steve Earle
+00239.849f683f7532fe3ef85d3ae6cf2d7153,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: Cincinnati Group Wants To Stamp Ou
+00440.02086b5f064e33a48c34183441934bd3,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: CD player UI for toddlers
+00732.3ed34429d759468e94c14ca1e2bb231c,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Goodbye Global Warming
+01320.f1760dca874206f2189cd242da670499,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] Version 1.1.11 of the DCC (fwd)
+00877.fb94c382f9f10548db78b9d0339621e7,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Living Love - Another legacy of the 60's
+01567.451fa9142ae23a1c09dbbc87a09c557d,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [Razor-users] Problem with Razor 2.14 and Spam
+00693.6849440c3e1d1584a9f05b067d0062aa,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: sed /s/United States/Roman Empire/g
+01088.a46067a122aa5ad5d062961e6ecb3951,CLEAN,SUSPICIOUS,False,0.55,0.54,Problem with an rpm...
+02215.7378c7c75e977c87de39e8b48291c8b7,CLEAN,SUSPICIOUS,False,0.5,0.405,TV democracy in action
+01931.95bc125f167b45a2fe51796fc69af04c,CLEAN,SUSPICIOUS,False,0.55,0.48,Thunder Stealing
+02245.665f72308396aa60a33375e5834de93c,CLEAN,SUSPICIOUS,False,0.5,0.405,CSS and mobile devices
+02124.6bdfa74ca5ba8137a6e3cb9e239da331,CLEAN,SUSPICIOUS,False,0.5,0.405,Farker Chakalasp dares you to Photoshop him
+02211.06ce65e84569f2a40763e9c9ac2ee6cc,CLEAN,SUSPICIOUS,False,0.5,0.405,Insanely complicated
+00866.670508b848fa453d194f443f4737b351,CLEAN,SUSPICIOUS,False,0.55,0.48,"NYTimes.com Article: Stop Those Presses! Blonds, I"
+01591.7504f83163aa1c627354192d452a43e3,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [Razor-users] early experiences with Razor2 (a
+02246.b353269018884d01ee252bca5bd419ef,CLEAN,SUSPICIOUS,False,0.55,0.48,Microsoft redesign
+01895.45d546ac150b5bdfc6eee0e122aabbcb,CLEAN,SUSPICIOUS,False,0.5,0.405,"Flying cars here, jetpacks next?"
+02161.4b942bb106ecf89f8cec2699e8a9a7be,CLEAN,SUSPICIOUS,False,0.5,0.405,"False teeth to fake limbs, crazy things left behin"
+01189.cca889df55c39eb86b57501a014c3e59,CLEAN,SUSPICIOUS,False,0.55,0.54,hi
+01902.7911c2c7f6b6f3ca8ecf8fc35df8aa28,CLEAN,SUSPICIOUS,False,0.5,0.405,"Jeremy Bowers: ""None of the trackback mechanisms h"
+01370.2b2624810ea623cb3b83e4181c114964,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] O.T. Habeus -- Why?
+00213.cbab995631e4345875a326d533cf6cd6,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [ILUG] [OT] Dell machine giving me hassle.
+00702.bf064c61d1ba308535d0d8af3bcb1789,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Oh my...
+02175.05074ef986eed2c7c332b0cba9c6dabb,CLEAN,SUSPICIOUS,False,0.5,0.405,RedHat 8.0 ISO Mirror(s)
+00531.711a16c97d6955bdc3d4b09656e44d93,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Re[3]: Selling Wedded Bliss (was Re: Ouch...)
+01807.08bdc96ca0f8ca425fe8acd21fb25c70,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-10-01
+01944.246605bdc72c4edf26299853775632d8,CLEAN,SUSPICIOUS,False,0.5,0.405,Peruvian congressman has challenged his Vice Presi
+01692.3349a6670b58d2a39307e87ae0012294,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] speed
+01217.ca4f6cab0653e40829f209aefb242ae0,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+01056.3b111e8f39863835cc7133841b4649b5,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: apt and a hybrid system
+00856.b71f98991ee068f642498810ba0c5383,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: ActiveBuddy
+01186.84abe104b1ba13a5fece47a170d5dbf1,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: sylpheed-claws
+01999.be500ef9ae24936ccde1ec4300fb97b8,CLEAN,SUSPICIOUS,False,0.5,0.405,You can't beat city hall
+01476.63631b2e613c4c2cafa59a581e2f620b,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [SAtalk] Still confused about spamd/c
+02397.87db84626f7e5927b6fabc96e6be2b2e,CLEAN,SUSPICIOUS,False,0.5,0.405,Critical breast cancer gene identified
+00797.f9905519971d08a70a6d9815016f8295,CLEAN,SUSPICIOUS,False,0.55,0.48,"RE: OSCOM Berkeley report: Xopus, Bitflux, Plone, "
+00803.a9faabf181ecae3ece9f7003a005aeea,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: EBusiness Webforms: cluetrain has left the sta
+00399.a7f6ab4a02fcda6c06662a660a75e677,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Fw: Re: When are we going to get. [making ALSA
+00594.805dae98d1ad6f99a7792418c1faccfd,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: introductions
+02116.ef7558c9207d8d3fd813506328130c92,CLEAN,SUSPICIOUS,False,0.5,0.405,Synthetic vitamin boosts bone growth
+01903.7cd58b43139e430224c5de7639b0d5d7,CLEAN,SUSPICIOUS,False,0.5,0.405,Ken Dow reports that the current version of OmniOu
+00085.badc533c7037554017afb30c94dfcb55,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Java is for kiddies
+01401.70777d5f3e75c701de00d7df66e0dcd2,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Razor 2.14 - the day after
+00959.68fb2328c01cd34b7e0f1763c85f9c66,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Anolther sequence related traceback
+01679.e027f2af78c05f8498f09d7979cd127d,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] understanding high false negative rate
+02401.015271d0ec5160083028b8644b9d8e55,CLEAN,SUSPICIOUS,False,0.5,0.405,Japa-crappers get high-tech
+01171.bc028721505534967b4371da24b1e042,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Anolther sequence related traceback
+01324.277cb41dbcbdb083741a66b0c0900cf6,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Re: Other uses for SA?
+00344.99ffe210a9d425a86ab01840bdfd86c9,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: The MIME information you requested (last chang
+01713.7e6c3f51ab4a45f60fbb0968d56f512c,CLEAN,SUSPICIOUS,False,0.5,0.405,[Spambayes] test sets?
+02184.63621c20176bcd2a19a94a1a99042740,CLEAN,SUSPICIOUS,False,0.5,0.405,International agreements
+00515.e84988067a252d765f7d24f15c0b0670,CLEAN,SUSPICIOUS,False,0.5,0.455,Re[2]: Selling Wedded Bliss (was Re: Ouch...)
+02396.0a7da4e5438d7316dd2fa1cf838dce13,CLEAN,SUSPICIOUS,False,0.5,0.405,Mystery Indian virus heading for Europe
+00393.b7ba3f196286b0c5ce6e5b1ec9078cd3,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: New Sequences Window
+01717.7b6864b6307973a30ec24e69fc4a466a,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] spambayes package?
+01572.75046f3a9b60454aa0432ddfe764154d,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] removing Razor1
+00671.daf16d838d9b71f5f6cf09d54ebc1e3c,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: AA Meetings the Hottest Place to Meet Women Wi
+00660.91d1af396b1bc7b8703f5fae9de020d8,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [meta-forkage]
+00758.af02ef2952273218fb9d6c7ddbec7910,CLEAN,SUSPICIOUS,False,0.5,0.455,liberal defnitions
+01904.c85458b60f9ef9b77f1f9530a7d3729e,CLEAN,SUSPICIOUS,False,0.5,0.405,"Ray Ozzie: ""How long before we see auto pingback g"
+01812.feffa846675a880e453fd3445af97ee0,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-10-03
+01896.516f258e3f8185d4a0e002a7d806bddf,CLEAN,SUSPICIOUS,False,0.5,0.405,Energy gamers screwed California economy
+00115.d5db4a9d477aa17a19669e3945b7aedb,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [zzzzteana] Re: Megalithomania UnPissup
+00514.d44bd760b7ea720b9d1e1a7ba105e696,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Selling Wedded Bliss (was Re: Ouch...)
+00458.ad4375d9c03bdcd1828da9c405441b65,CLEAN,SUSPICIOUS,False,0.5,0.455,Re[2]: Selling Wedded Bliss (was Re: Ouch...)
+01787.8c7c325481bbce39e57c1fc224ded7d5,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Headlines for 2002-09-14
+01597.03954d8ac44189d40142445ac632f6cf,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Forged email address
+02156.74c1dcd4f27d57b0ffe636326f652c5b,CLEAN,SUSPICIOUS,False,0.5,0.405,"""Cram school"" operator arrested for trying to cram"
+01400.a654793f35a555abaef51abf76d47d75,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Razor with sendmail
+02220.4280613b5d6f26a438b380b45b10c833,CLEAN,SUSPICIOUS,False,0.5,0.405,Fight Piracy -- Regulate Potty Chairs!
+00633.a3d861bf0435fda936962c572ce0956a,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: boycotting yahoo
+01570.8328542217bef2e4eb7ee644609efdbb,CLEAN,SUSPICIOUS,False,0.5,0.455,[Razor-users] spamassassin+razor2
+01678.8f5053b1fda58d8224b0fb4827413912,CLEAN,SUSPICIOUS,False,0.5,0.405,[Spambayes] [ANN] Trained classifier available
+02403.e2243f5db10d146f2b44dbb87159cc88,CLEAN,SUSPICIOUS,False,0.55,0.48,Live forever or die trying
+00682.7b96194cc45dfc4d54679a198dda3244,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: sed /s/United States/Roman Empire/g
+00677.b957e34b4dd0d9263b56bf71b1168d8a,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sed /s/United States/Roman Empire/g
+00364.30f174421507d353f1f602919dec35af,CLEAN,SUSPICIOUS,False,0.5,0.455,"Re: ""Holiday Season"" 2002 begins"
+01513.80c5fbd984e4ff243d1deeae20ca78b8,CLEAN,SUSPICIOUS,False,0.55,0.48,"[SACVS] CVS: spamassassin spamassassin.raw,1.68.2."
+00048.1e067f31e83cc6ea3e9103b52f15588e,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Internet saturation (but not in Iceland)
+00690.f56ab439b3ce565dd3fbbefa5fefd0bc,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sed /s/United States/Roman Empire/g
+02356.e517c740ad66697bba95a671d902563f,CLEAN,SUSPICIOUS,False,0.5,0.405,"Welcome, Danny and Quinn!"
+01006.4a648f164dd2f6076f59272ea14c3c03,CLEAN,SUSPICIOUS,False,0.55,0.615,bad focus/click behaviours
+01326.d8a709dac6b1c32aa355f0556350b4ab,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] 2.40 RELEASE: oops -- newer freqs.
+02423.1dc909c6b3be62619e6679bb3fec1ab0,CLEAN,SUSPICIOUS,False,0.5,0.405,Brown accused of backtracking on regional museums
+02380.25e823fa7a52cdd64be4b53caf862f34,CLEAN,SUSPICIOUS,False,0.5,0.405,"$15,000 umbrella stand: nothing exceeds like exces"
+00304.d02fe9b0a4d9111f79643c1e0793d846,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: A biblical digression
+01877.ef69b53341e4f02ccf01ffdf83db34fa,CLEAN,SUSPICIOUS,False,0.55,0.465,"Wired: ""An urgent business proposition and request"
+01789.f0bfa328796c1dbfb2be2b30c54b1d8f,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Headlines for 2002-09-17
+00989.59155225507b38fbee48407ebb6cc68d,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Sorting
+02102.1c6772318e1a478b7363393023e8615d,CLEAN,SUSPICIOUS,False,0.5,0.405,Portillo dig at Blunkett in fringe double act
+00699.29e599983f044aee500f3a58c34acffc,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sed /s/United States/Roman Empire/g
+00589.38f809ae603fbabb0d3f2389011e9150,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Slaughter in the Name of God
+02069.6a2d4fb29121bc81427eb1519b5fdf9c,CLEAN,SUSPICIOUS,False,0.5,0.405,Apple Switch parodies
+01264.a6ae16864e0d116132a7d3850e33e9a6,CLEAN,SUSPICIOUS,False,0.55,0.54,RH 8 no DMA for DVD drive
+01334.03de0c9d7098f5546c8b95ba9bba0265,CLEAN,CLEAN,True,0.5,0.38,Re: [SAdev] SpamAssassin POP3 proxy
+01001.ea532debe8b8f0f94d2fdbbaa743204b,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: exmh bug?
+00640.bd6aaf961fe455813d6cd9448c29f312,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Oh ma gawd - funny site of the day...
+00321.c3dda1549b97568144b8290208504673,CLEAN,SUSPICIOUS,False,0.55,0.555,RE: sprint delivers the next big thing??
+01406.73967a202d2dbbc9651d0828f3fea38f,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [Razor-users] Razor with sendmail
+00401.fccfd3c52e43aa3512874c3efec9edcb,CLEAN,SUSPICIOUS,False,0.55,0.54,"Re: New gkrellm 2.0.0, gtk2 version"
+00564.e6fc359c277f507a2e01198b9c60ae61,CLEAN,SUSPICIOUS,False,0.5,0.455,TheThresher
+01092.de7b8468488cc45962d2f2d4882aeb66,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Problem with an rpm...
+00549.a847ea8934802a0ec67a7fd1d136d26d,CLEAN,SUSPICIOUS,False,0.5,0.455,More on promiscuity and word choice Re: Selling We
+00114.240461056916c0cdd555ba9d2bc9e63e,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: Megalithomania UnPissup
+01066.f1bb150ef4ede1f6e29ea63ad2ef5684,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: http://apt.nixia.no/
+02495.5064946e77b3046873da91fc47656465,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [ILUG] Linux Install
+01546.600ca62f96dca0db15aa9ebbb19426a8,CLEAN,CLEAN,True,0.5,0.38,Re: [SAdev] fully-public corpus of mail available 
+02043.aa852e4d083325078cad6d701ffd99f7,CLEAN,SUSPICIOUS,False,0.5,0.405,A matter of opinion
+00365.b73623c2ea40e64854121432f02a5a15,CLEAN,SUSPICIOUS,False,0.55,0.48,Internet saturation (but not in Iceland)
+01913.2a83ce1d003b4e136cc6a4f35cb09b50,CLEAN,SUSPICIOUS,False,0.5,0.405,Daypop is back. _Ye-hi._
+00975.23aa3095e145bf342502ee60bc602c28,CLEAN,SUSPICIOUS,False,0.55,0.515,Re: Changed location of incoming mail. exmh not wo
+00731.23dbba60cc6ea56f735599461109200d,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Goodbye Global Warming
+01967.c30def1b9cb26faec22834ab35e8a4d8,CLEAN,SUSPICIOUS,False,0.5,0.405,"Africa's deserts are in ""spectacular"" retreat"
+00840.fd947072df20db5eebb0d015f20073a4,CLEAN,SUSPICIOUS,False,0.55,0.515,Re: So I missed this one...
+00188.f416128c8a1bc74ac615e5bdf7ae0172,CLEAN,SUSPICIOUS,False,0.55,0.465,RE: [zzzzteana] Digest Number 2453
+02412.23b29d8b8bea2c522888d2344a6b971b,CLEAN,SUSPICIOUS,False,0.5,0.405,Twilight Zone
+02113.9c60c7a3fdfda46f4a2946ac84a2b368,CLEAN,SUSPICIOUS,False,0.5,0.405,Truck driver leaves trail of smelly pizza waste al
+02039.e857d7be701dfbf786040367b1a7c4ab,CLEAN,SUSPICIOUS,False,0.5,0.405,Of Muslims and Morris men
+02204.ecd97a0ec1b96cb73d8a6765a6cd03cc,CLEAN,SUSPICIOUS,False,0.5,0.405,Mathematics film-festival in October in Berkeley
+02015.3eb2d99abc124ddf8e557c21412b7c1a,CLEAN,SUSPICIOUS,False,0.5,0.405,Rats' intestines and pigs' teeth
+02281.0c788946658a7633490bd31043cc513e,CLEAN,SUSPICIOUS,False,0.5,0.405,Cosmic crash of speeding jets tracked
+00937.1442bfa30552275d60548860104339c3,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: DataPower announces XML-in-silicon
+02075.5273c4e858a891ff02f032381abbab4b,CLEAN,SUSPICIOUS,False,0.5,0.405,Stupid for a Day
+01110.852a6d27fe8dabfba9b811d8016faa1a,CLEAN,SUSPICIOUS,False,0.55,0.54,New testing packages
+02491.c26245be2a5096fa86647d594561c511,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] dual keyboards
+02060.0b202908cd60ea1f719c700ed73f2806,CLEAN,SUSPICIOUS,False,0.5,0.405,My talk at UT Austin
+00525.08f2f03dc58bc667d28140d30c203cea,CLEAN,SUSPICIOUS,False,0.5,0.455,Re[2]: Selling Wedded Bliss (was Re: Ouch...)
+02405.09deeb2c650f3f44789439c91e2d0a62,CLEAN,SUSPICIOUS,False,0.5,0.405,Wedding music
+02434.37126367f2a918fead5ff8ea834cc334,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RE: [zzzzteana] Sitting Bull über alles [Long]
+02268.4453eaf85c9daec0bb335986e639dbaa,CLEAN,SUSPICIOUS,False,0.5,0.405,Phone companies compared
+00247.e14fcbf137267399278507b469811f0a,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Hitler-style applicant welcomed by par
+00943.c87bed16cca1b008f6e796a9e652ddbf,CLEAN,SUSPICIOUS,False,0.55,0.48,"Fwd: [POLITICOS] Re: ""Bowling for Columbine,"" Open"
+00118.f15bf997342540b404a4672c47d57d55,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [zzzzteana] Re: Megalithomania UnPissup
+00395.01a60f5f85141b74be6aa6e347feb5d9,CLEAN,SUSPICIOUS,False,0.55,0.54,latest php upgrade in 7.3
+00329.84bd9e3cd5592c4335ded8736acbccae,CLEAN,SUSPICIOUS,False,0.55,0.555,Enlightenment
+01201.2da17f4409568ea3fad63130544ede70,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: apt 0.5.7 on RH 7.x
+00668.c788422df192a179d3a6ddbcb8b8b612,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Hanson's Sept 11 message in the National Revie
+00335.a48aba9076c75a8eb74f74ae1f9be1e9,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: A biblical digression
+00261.9e12183461e1f5e5061eb9f8d39d9822,CLEAN,SUSPICIOUS,False,0.55,0.48,The Disappearing Alliance
+00055.8481bc92aa3ab9d23ca30c0eaecfc5e4,CLEAN,SUSPICIOUS,False,0.55,0.54,people we know on the web
+00033.2ceb520d2c6500ccf24357f2ebdce618,CLEAN,SUSPICIOUS,False,0.5,0.405,Re: hauns_froehlingsdorf@infinetivity.com
+00581.9922b0f34aa8f51fb4adf4bf4ecf1464,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: The Big Jump
+00489.2a739cd71c4667d635698fff5120bceb,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Selling Wedded Bliss (was Re: Ouch...)
+01402.602c05e4bdb1f3e4d293f3f9f5a7baad,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] Razor 2.14 - the day after
+01318.db11c5ecba49aba4fb12fbead712f815,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Re: SA In The News
+01754.8fbef0589564bb19c088156227772fb9,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Current histograms
+02025.0beab0f85f7c33fe9fd50d2006defbfc,CLEAN,SUSPICIOUS,False,0.5,0.405,Man finds lost marbles after 70 years....
+00874.d9f0374ce55cb5e03ca46a5459894e34,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: The Wrong Business
+00684.1969c6baadceb721cc2a565b93e7f63f,CLEAN,SUSPICIOUS,False,0.5,0.455,Oh my...
+02385.f62055b86361f86a511971dfcbe54fd6,CLEAN,SUSPICIOUS,False,0.5,0.405,Excellent Tim Biskup card deck
+01450.b1d4f6eb3023d388319422cec20d1b0d,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Lotus Notes users?
+00584.1994033689471c5000d715aeaaf7be24,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Slaughter in the Name of God
+01106.4a0535d0232e24b9b7107bcd16da1ae0,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Holidays for freshrpms.net :-)
+00728.b5de363dc254b32b4a44fc37743d9322,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Goodbye Global Warming
+02270.860a99063549ce66ec006fa54cf23720,CLEAN,SUSPICIOUS,False,0.5,0.405,Internet creaks after huge network crash
+01290.41e79a15cd074594f220dfaed53d51aa,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: alsa-driver rebuild fails with undeclared USB 
+00273.b57629503558401c3945450dc5dfc5eb,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] mini-itx
+01069.a94a9df489c4da9bf8cf3cbca70b3e53,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: http://apt.nixia.no/
+02146.08b5ca9cb17ad30a0295e17560307aeb,CLEAN,SUSPICIOUS,False,0.5,0.405,Photoshop Theme.. ways to smuggle weapons-grade Ur
+01901.b9c2a64e9531ae9f0f6aedbb42b7c1fb,CLEAN,SUSPICIOUS,False,0.5,0.405,"Liberation: Les jouebs, stars editoriales du Web."
+01340.2ad5807dd42687fa1f00f40143e175e4,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] test
+00574.6c736036ab8317e753dae53ef19123e9,CLEAN,SUSPICIOUS,False,0.55,0.48,"Re: dylsexics of the wrold, untie!"
+01674.6bb054bf786bfbfeacc78dd1918ffbfa,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Deployment
+01939.189b450fa1626558188f4eea2216a77f,CLEAN,SUSPICIOUS,False,0.55,0.48,More fun with the PTC
+02009.905783cbb4da8e14c78b45e7e22a024c,CLEAN,SUSPICIOUS,False,0.5,0.405,Lonely iguana discovered in Salford
+02267.411e9ce8e8de3ee987f22ab7ce7fc008,CLEAN,SUSPICIOUS,False,0.5,0.405,Cellular doom
+00674.6dcadfb64e1a333f826a1c7b5c722f5f,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: AA Meetings the Hottest Place to Meet Women Wi
+00940.2d6167e70e2aaa01e531409f1dbdd551,CLEAN,SUSPICIOUS,False,0.55,0.48,Netscape 7 Review
+01120.acaa2a2d6d3688986104cce5b2d3bc95,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: New testing packages
+01474.87ab36335ec20ae5f4f60955a1c07c5f,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [SAtalk] spamc -c problems on 2.41?
+01224.62979c059bdc69eae460be6a91f0bf1a,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+01166.8ab8acc80452beed11a4b841a05d4456,CLEAN,SUSPICIOUS,False,0.55,0.555,Anolther sequence related traceback
+01206.d6053e42110b3d3279a4e22613df13eb,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: apt 0.5.7 on RH 7.x
+00750.5bf605243948976794d149274a18159b,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Goodbye Global Warming
+01612.cdcef456e3de75e0c6478cee11565c41,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [Razor-users] Collision of hashes?
+00516.139a390f9320423395da77f14f7118db,CLEAN,SUSPICIOUS,False,0.5,0.455,Re[3]: Selling Wedded Bliss (was Re: Ouch...)
+02342.fb90b37c6a682e01e61c9da213e727b7,CLEAN,SUSPICIOUS,False,0.5,0.405,Al-Qaida suspected in tanker blast
+01986.50558fe132d11c723dd80f7b17944d0a,CLEAN,SUSPICIOUS,False,0.5,0.405,British dossier on Iraqi weapons released
+02263.6bdea10315e48c5f22133ac71e43488b,CLEAN,SUSPICIOUS,False,0.5,0.405,Electronic circuits created in a flash
+00181.6831a0d4a6d648236f7ccd26b5e3e7ab,CLEAN,SUSPICIOUS,False,0.55,0.465,[zzzzteana] Six arrested for attacking Palio jocke
+01690.c20b0ff2930d9b36d7aa70e54939d12c,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Maybe change X-Spam-Disposition to som
+01543.044ee0da6eaa44adbadc131be0bcb2d2,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAdev] Interesting approach to Spam handling.
+01485.4efa6516427c6184adbb4f559ee84055,CLEAN,CLEAN,True,0.5,0.38,Re: [SAdev] testing with less rules
+00066.7dda463deb5e41ba1af3a0da55ab504b,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Tiny DNS Swap
+00391.57ff08c2830235fc1315c1745829d190,CLEAN,SUSPICIOUS,False,0.55,0.615,defaulting to showing plaintext versions of e-mail
+02371.32a223c606465d39cb1788f4dde71017,CLEAN,SUSPICIOUS,False,0.5,0.405,"At last, I have an excuse"
+00205.a7ef07a6046817705ce83f59e2bd3ac8,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [ILUG] doolin
+00070.c62a036deb1de40aa32cabc761b0861c,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: The case for spam
+00642.19131d951ee16af5a157685213dbc7b8,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Hanson's Sept 11 message in the National Revie
+00947.488310e3c7ba27ec9d99d390007b8c53,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Exmh && speed
+01810.185304bab9dec6787060fb4580a01729,CLEAN,CLEAN,True,0.5,0.38,I was such an ugly baby...
+01965.05b80e8b7ec20c70737999bdf82714ed,CLEAN,SUSPICIOUS,False,0.5,0.405,Tough Earth bug may be from Mars
+01855.19acbc78b4bb1959ace6f1ec1d6329e8,CLEAN,SUSPICIOUS,False,0.55,0.48,Now heavily medicated
+00425.0ba16e840d94d629f8a3881b4e03a3ad,CLEAN,SUSPICIOUS,False,0.55,0.48,whoa
+00837.d989d85087fd0d2297bdfc4c4d9039fb,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: MIT OpenCourseWare
+02185.cb5555815172c9f244e7e5da118fbcdc,CLEAN,SUSPICIOUS,False,0.5,0.405,The Office: too painful to watch?
+01842.87765cd89a91416e1ac34a38628be46d,CLEAN,SUSPICIOUS,False,0.5,0.405,Gold Lake Mountain Resort looks pretty gooood. Man
+01133.d9329be5511d9ba5af54e36ce4cb3777,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Minor feature request
+01940.8cdfd0318485cb2a285f705c962b783e,CLEAN,SUSPICIOUS,False,0.5,0.405,Photoshop the worlds ugliest truck
+00745.d2df6fc9d5de220dc9b34cf04addf9e2,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: How about subsidizing SSL access to Google?
+01929.9db22d74f8863514abb093de574529c8,CLEAN,SUSPICIOUS,False,0.55,0.48,A Line in the Sand
+02254.a9356b1df0e51b1825e6339f9d1f42bd,CLEAN,SUSPICIOUS,False,0.5,0.405,Culture Jamming
+02047.58252091629643882c4fb2e260954c60,CLEAN,SUSPICIOUS,False,0.5,0.405,Kanu at the double
+00374.67d51286926b6af9ae9be32a9e446b29,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: Java is for kiddies
+00962.52e0a3b43febe264a7010803f7909f88,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: New Sequences Window
+01259.503b1765330dada13ff5c85d8b5d9d29,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RedHat 8.0 and his own freetype
+01109.871741426740bcfa32cdde600ea0805d,CLEAN,SUSPICIOUS,False,0.55,0.54,REQ: Beast/BSE
+00017.08ef2d89f14cf7e2a458b80697eb1837,CLEAN,SUSPICIOUS,False,0.55,0.465,[zzzzteana] Re: Australian Catholic Kiddie Perv St
+01851.7d72251b2e0ef6c5092d34b393efac00,CLEAN,SUSPICIOUS,False,0.5,0.405,"Goats with enormous testicles, and a life-sized co"
+00409.6219d28fb4f2ca0173e3f76acbbec8ce,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: no matter where you go
+01412.c6d74476958fabc3a2a7572079a6ce8c,CLEAN,CLEAN,True,0.5,0.38,Re: Secure Sofware Key
+01480.1d6e92e72f85630b288a712075387058,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAdev] Suggestion - 2 levels of Spam Status
+01540.a88bbd554b661bc22b47ebbd2763e88d,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] False Positive of the Week
+00216.70fc915ba97c52baa07a10c19b89f848,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] PPPD disconnects on me!
+00174.ea47d0c060fa8ce10dfb448db1f27be8,CLEAN,SUSPICIOUS,False,0.55,0.465,RE: [zzzzteana] Moon over ocean
+00904.42d2e7951496bc3b1ee4b67185ce2746,CLEAN,SUSPICIOUS,False,0.55,0.515,Re: The absurdities of life.
+01173.30be73e4da024638bfbdf5afc05b438f,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Ringing bell on other computer
+00850.9435ce0e094b16d0f2c9c458f2900706,CLEAN,SUSPICIOUS,False,0.55,0.48,Polit-spam
+00259.7310c53a2b5baca35187f0ee38aab709,CLEAN,SUSPICIOUS,False,0.55,0.48,process music: Mekons
+01244.b9cb6115cc7d56d7cba71051834a4d06,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Mplayer
+01271.519b987eddc0633ac3a5908c33a1fa2c,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RH 8 no DMA for DVD drive
+00222.09f314ba527328f1537a99a2423af0c6,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] Newbie seeks advice - Suse 7.2
+00505.22cfc49506156219ff2e4441d92e077a,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: whoa
+02449.7b52df455e5abff6fae35979800a27c0,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-12-02
+02395.ff44e9fcba3b3fb6541d320cde0831a1,CLEAN,SUSPICIOUS,False,0.5,0.405,Davis stirs grassroots with right to buy promise
+01638.1025c8d81a3ce398f65fb401537214fb,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] test sets?
+00037.5a7af2f7bd57a2f50b7cfa05d5e37c29,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Entrepreneurs
+02369.c227dfdc5a8086022f67503580b48b96,CLEAN,SUSPICIOUS,False,0.5,0.405,Species at risk of extinction growing
+00468.0aeb96f2dc4a95abedb750a6cff7f343,CLEAN,SUSPICIOUS,False,0.55,0.48,The Needle and the damage done
+02000.b361c999f4744dbbdcc4b63f9136c0ec,CLEAN,SUSPICIOUS,False,0.5,0.405,Congradulate Birthday Boy Putin. Link to send birt
+01228.8d68492f313838ba1c667c04e0886f86,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+00969.2d5fb4b3c8c376b12157cc8e0a2e7111,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: New Sequences Window
+01258.a655740f71f7f330ffd270d20444aac6,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Xine Dependencies
+00045.f0a8de2cf2b3cf745341b960d7a0119f,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Entrepreneurs
+02402.7f699b32ac5965e5086d82b4199ba461,CLEAN,SUSPICIOUS,False,0.5,0.405,America's great misleader
+01916.927341170e7ab60892b8ad1294be7454,CLEAN,SUSPICIOUS,False,0.5,0.405,"Jon Hanna, on the RSS-DEV list, says that RSS, was"
+00689.baf30774fe011781f6822746345015d5,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sed /s/United States/Roman Empire/g
+00164.8a0a728a1d5e56631369e5192f0348b6,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: why is decentralization worth worrying about?
+00636.f15c6eabe3d5204cb8704b0a4b845403,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [VoID] a new low on the personals tip...
+01064.9f4fc60b4e27bba3561e322c82d5f7ff,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Please help a newbie compile mplayer :-)
+00023.e0e815ea1d7fd40e7e70b4c0035bef0c,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] Sun Solaris..
+02353.d1d5be2d594526feaefe01119c9b114e,CLEAN,SUSPICIOUS,False,0.55,0.48,My Good Easy
+01418.de6a5fe900081a0492fb84f6bfae46a1,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] All but one testing
+00547.59bf01e07cf08c7e3a778b747e020989,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: Tech's Major Decline
+00941.6805692546cf6517f808151dcc9dd6f4,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: The Disappearing Alliance
+00463.4d93152b4c4c397486807b53501aed8b,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sprint delivers the next big thing??
+01192.bf5336caa5be79062f70233fa759a1b8,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [gst-devel] Red Hat 8.0
+02497.60497db0a06c2132ec2374b2898084d3,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] Linux Install
+01589.be65e620bca0f1734cd13c71aea78d4c,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] empty mail is spamm?
+00047.39812fcb014cf9c22a2ff4fec61f3c19,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] eircoms adsl modems
+00794.ce4c417f911968e4be6ee1203db0bd94,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Liberalism in America
+01308.18d641ec475649b1a8ea5ba7292b3e05,CLEAN,SUSPICIOUS,False,0.5,0.405,blogged item
+00481.a7bee7a7de9cfdb9ad19c88c0440be61,CLEAN,SUSPICIOUS,False,0.55,0.48,Online contents of Electronic Publishing journal
+01360.542f5bf8fe1935cc079504c0a0269923,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] O.T. Habeus -- Why?
+00312.2909c5a1114ade0b2aa7c3da6960a3f7,CLEAN,SUSPICIOUS,False,0.55,0.555,How unlucky can you get?
+02248.63dc24958fcab409ff3ea0484ee44c4c,CLEAN,SUSPICIOUS,False,0.5,0.405,Executive pay leaps ahead 17%
+00771.2ce14d08f77127e0720658404cc4ce11,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: liberal defnitions
+00930.dd136d3d36e14ab324b79c3cf8c9e6e2,CLEAN,CLEAN,True,0.5,0.38,Re: [SAdev] Integrating SA with Mail::CheckUser ?
+00605.63a8dd42dd6ce5499718d03acfeb0746,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Slaughter in the Name of God
+02173.e732f964a266e408f2ba0b5ded6f867c,CLEAN,SUSPICIOUS,False,0.5,0.405,US rejects Iraq inspections deal
+02446.00be6d27ed9c7ded51a87830b09b1eb4,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [zzzzteana] RE: Argh!
+00488.88642710e6c206d0de1d8a0093ed2700,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Selling Wedded Bliss (was Re: Ouch...)
+02366.27ba8f494336f24905ffd95e1b139438,CLEAN,SUSPICIOUS,False,0.5,0.405,Seeing is believing
+01924.1df566db37be7bab3b91a279282a055a,CLEAN,SUSPICIOUS,False,0.5,0.405,FOAF explorer
+01654.ade7f371dd3f7c4393baf201b803755a,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Deployment
+02295.d6c2920e31d10893221d58aa148719c1,CLEAN,SUSPICIOUS,False,0.5,0.405,to the courthouse
+00713.7b4a3ad6c8b6bbcf358ee5ee23dcdc12,CLEAN,SUSPICIOUS,False,0.55,0.48,Goodbye Global Warming
+02052.b3ed6f4d14c22157fa06ea355abe575f,CLEAN,SUSPICIOUS,False,0.5,0.405,Sourceforge sells out
+02231.f2e821bac37b113fc3e095f4f597d81d,CLEAN,SUSPICIOUS,False,0.5,0.405,Iraq invasion a 'hair-trigger' away
+00094.ef72156b3ba9ff0fc5fedc2125ceb736,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] Email list management howto
+00624.2847b091fbcbd97af477c23439e0f22f,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [VoID] a new low on the personals tip...
+01215.94a01e7d8bb1206fbb2f1cc7fb3dcdbd,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+00793.6da29475fba399c38bb0a93efabcae5c,CLEAN,SUSPICIOUS,False,0.5,0.455,Native American economics (was Re: sed /s/United S
+00019.5322cb10d8819b39499924d852819c27,CLEAN,SUSPICIOUS,False,0.55,0.465,[zzzzteana] Which Muppet Are You?
+00362.bfb007d2df523d5e4ad58dfcdbc1b8cb,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Another low probability event
+01758.ace2433031b3ea150e728b34850cdceb,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Current histograms 
+00263.6be4d6f2afb3d1b5b8acee019e560ce4,CLEAN,SUSPICIOUS,False,0.55,0.515,Re: The absurdities of life.
+01760.bfe819f6abc823642064dc200a54be39,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Current histograms 
+00847.f752ba326e2f6670fb6fecc5fd655d3a,CLEAN,SUSPICIOUS,False,0.55,0.48,ActiveBuddy
+01747.147241797a056a32e99562b240ebb283,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] timtest broke?
+02464.95f59bae730edc01ce4f88d98791ffca,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [ILUG] eircom mail
+01287.c8de1608b71977e5dd6b71da6a2019d7,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: ALSA (almost) made easy
+00150.a4c5a8aaccd6b54f1000e9fa02f53114,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] packaging risks and the reputation of l
+01962.0d30a20c3c442d13266e8818fdbc2e40,CLEAN,SUSPICIOUS,False,0.5,0.405,"""KICK ME"""
+00131.0884e29887b7378ca04f4defe0a069e0,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [zzzzteana] Bigfoot and big feet on display at
+01660.2ac623f4f429bbe90824fa535e73b558,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] test sets?
+01752.a672617b99187e1c4029bc33a4e8a596,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] stack.pop() ate my multipart message
+00448.18e06f65c923e685fb4f72d90962c217,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: asynchronous I/O (was Re: Gasp!)
+01614.005f290e71d13de44d3503c640dfe57c,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Razor and Pine
+00355.9fabc0fb3da1d8376c6db0702b60fb39,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: Java is for kiddies
+00831.dfa70bbdaef79d5863917ba90097ba7a,CLEAN,SUSPICIOUS,False,0.55,0.48,Dinosaurs Eggs and the Origins of Good and Evil
+00892.9dc7dadb7e1258d9d1256673f2ae741c,CLEAN,SUSPICIOUS,False,0.55,0.555,"Re: Economist: Internet models, viral spread, soci"
+01906.9445c6890c7a515634bfd7f52116cb45,CLEAN,SUSPICIOUS,False,0.5,0.405,Labels shoot selves in foot by focusing on stoppin
+01107.18f0cd87bd40e5c64270187a75d668e8,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Holidays for freshrpms.net :-)
+01867.bef318a5c37fc91ac6973482f70e50ce,CLEAN,SUSPICIOUS,False,0.5,0.405,Light reading
+01167.6c1a9d12bb40059b2b3aba3d1c5c0f3c,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Insert signature
+01364.eaba5be49d5662dd5e3f89a7f430e614,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] O.T. Habeus -- Why?
+01529.a34b955e2414056d9d41b48c95f7f15e,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAdev] [Bug 1053] New: IMG tag based rules
+00165.a626a87fa5b56f724e6a00e7c1ec163a,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] FW: please give generously
+00054.f3e1dc8f3a7fdc5bec424db5e07e8ef8,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] eircoms adsl modems
+00093.ee758841ef674e30d7d36f22fffeaeb6,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] Serial number in hosts file
+00267.332a04bf60ba54e3a303ee253fb977ee,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: ActiveBuddy
+01489.408e736d2c2fb22b64f9b588c788dad1,CLEAN,CLEAN,True,0.5,0.38,Re: [SAtalk] checking out Razor2 (and SA 2.41) ins
+01640.75e754f7e80ce9c9e26898513069d35f,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] test sets?
+01442.a81b9c1ad6e37314caa3068a26ca203e,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] Thought for RPM/deb/etc packagers
+01257.cd426b4dcf52fd10d26e645b7ace3e14,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Xine dependencies
+00688.b05bdac7f180a6947d701b974b413dec,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: sed /s/United States/Roman Empire/g
+00021.607c41268c5b0d66e81b58713a66d12c,CLEAN,SUSPICIOUS,False,0.55,0.465,Re: [zzzzteana] Which Muppet Are You?
+01744.add31f8a35fa0fd63e70eacd58c82a44,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Current histograms
+00595.7182665eb052808e2061bacbc75ed5ee,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: RSA (repost)
+00496.6ebe7969144149d6c8c170732a1b63e1,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: whoa
+00848.a99e7c1ff97407816f4c0b323421b5c9,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: ActiveBuddy
+02329.26c7e9813ea8b29dce213bc8275e2904,CLEAN,SUSPICIOUS,False,0.5,0.405,Ministers issue gag orders for MI5 trial
+01849.d52088ef45a2453969e563a04df1e1e4,CLEAN,SUSPICIOUS,False,0.5,0.405,After posting my comment yesterday about next thin
+02286.a21741fc63dabc4454c8d5140d559b22,CLEAN,SUSPICIOUS,False,0.5,0.405,Data-mine your hard-drive with SixDegrees
+01459.47dae1d7997a3d599a8e8f92e53485f4,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Re: [SAdev] File::Spec and v2.41
+00763.509a13b8ff69430aacaa8b786b322939,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: 2002.06.00.00
+01392.775dfd40216f19a11446aa0a3d8d1e73,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [SAtalk] O.T. Habeus -- Why?
+00368.f86324a03e7ae7070cc40f302385f5d3,CLEAN,SUSPICIOUS,False,0.55,0.48,"Re: Rambus, Man"
+00308.ba65bb8c48b44b1767ed1c1de1825892,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: The GOv gets tough on Net Users.....er Pirates
+00744.667c8aba4400684b27c339f72ad86968,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: Comrade Communism (was Re: Crony Capitalism (w
+00076.5aa682e393bfbef53e244acf3b2d23d6,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: [vox] GPL limits put to a test
+02467.b05b3925df99da2a9426f07833ce5a9d,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Christians struck by lightning...
+01362.0892cc75c110776a0de7d611d8bab241,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] Tru64 compile of SA
+01339.363b1a2eaf356c7b0972c1b81b1db5d5,CLEAN,CLEAN,True,0.5,0.38,Re: [SAtalk] Re: patent on TMDA-like system
+02271.713bd681f26262b9af956f74fa3f5719,CLEAN,SUSPICIOUS,False,0.5,0.405,"For you, and you, and Timmy"
+00106.d8f1a8de1b70767b3dbf5ce810da67fd,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [ILUG] rpm dependencies
+01160.98234b7fbbabe3d268a31b17141cf1a8,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: New Sequences Window
+00413.e637d3bed73c6df691dc86dd61d46192,CLEAN,SUSPICIOUS,False,0.55,0.48,InfoWorld profile of Max Levchin
+00834.a73f96c83f5f638954df85ede58a3709,CLEAN,SUSPICIOUS,False,0.55,0.48,If you like graphic novels/comics
+01953.68702f882d7ae19147b1e20ae27fe192,CLEAN,SUSPICIOUS,False,0.5,0.405,<strong>More AmphetaDesk Reviews</strong>
+01316.41c15382cdd5ff4fe78ae3484ff1dc6d,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] Re: [SAdev] 2.40 RELEASE PROCESS: mass-ch
+01431.007d88c08ff1d098101146a0b68f7665,CLEAN,SUSPICIOUS,False,0.5,0.405,Re: [SAtalk] SpamAssassin v2.40 released (finally)
+00099.beef92f5eeeed3e40c1facf42809d510,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [ILUG] Redhat 8.0
+01626.daf72a49b735dc3319a809ec520f2283,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: use of base image / delta image for automated 
+01462.0c2d54d028173cebcb091842144d268a,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] Is DCC for real?
+01558.72508aead37c2c8073e32f9e33e62532,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [Razor-users] razor plugins for mozilla?
+00795.ea9b54832cc27bb552e483a6aefbde47,CLEAN,SUSPICIOUS,False,0.5,0.455,"Re: OSCOM Berkeley report: Xopus, Bitflux, Plone, "
+02126.a174877fa2d5b42dc9f546fb730a1bba,CLEAN,SUSPICIOUS,False,0.5,0.405,Photoshop Sean Connery giving us some good advice
+00807.ee4df461634d0e9d9c7ef72046c3fa2c,CLEAN,SUSPICIOUS,False,0.55,0.48,A moment of silence for the First Amendment (fwd)
+00200.883884dc35bd45feb65b9a351371a7c9,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: [ILUG] Got me a crappy laptop
+00738.5c6ce770da4cc06ebea777b8be30abaa,CLEAN,SUSPICIOUS,False,0.5,0.455,SF Weekly's Ultimate SF Date lineup :-)
+01966.892057de32d635ad24f06844dea3ef71,CLEAN,SUSPICIOUS,False,0.5,0.405,Iraq invasion could 'worsen terrorist threat'
+00695.4ea4110f03a11a6f24b27420647d375f,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: sed /s/United States/Roman Empire/g
+01891.ea821f774736a6a9b155fe0dd4a53ad1,CLEAN,SUSPICIOUS,False,0.5,0.405,"Buy the Enron ""E"""
+01887.733f8aab4f2bb3d9b709acd44dc175f5,CLEAN,SUSPICIOUS,False,0.5,0.405,12 Reasons to Pre-Order my Novel
+00068.5053f669dda8f920e5300ed327cdd986,CLEAN,SUSPICIOUS,False,0.55,0.465,[Ximian Updates] Hyperlink handling in Gaim allows
+00700.7eee792482a5a8cf20f1e4225f905f6b,CLEAN,SUSPICIOUS,False,0.5,0.455,[vox] Anarchist 'Scavenger Hunt' Raises D.C. Polic
+01756.0e8cedd7ff0e281e2da6e6c40fd177a8,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] stack.pop() ate my multipart message
+02445.c8fd8c92ab5a91bbf5e94e5277a47863,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] RE: Argh!
+01972.2cf954aa6e8e1228f1641f222aa1365c,CLEAN,SUSPICIOUS,False,0.5,0.405,Lander risks missing Mars trip
+01208.dd294e4904940446bb82b45b37981bce,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+00029.56d4310a82386b76b9e771523d571e67,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: lifegem
+00166.8feace9f17d092d9532e62c35c37ce95,CLEAN,SUSPICIOUS,False,0.55,0.54,Bush Covers the Waterfront
+01319.683e3c750cb5757c27ee18cf6a2ff905,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] help with postfix + spamassassin
+01838.ca87fad0e36751e30a3595555d3200ab,CLEAN,SUSPICIOUS,False,0.5,0.405,Slashdot reports that Amazon still wants to patent
+00827.b863d1780c6c6ed248a3e9136bd52b72,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: Re[4]: A moment of silence for the First Amend
+01753.ae52e350b9847d6f5c6ca350c4f4eacb,CLEAN,SUSPICIOUS,False,0.5,0.405,[Spambayes] XTreme Training
+01296.d07e5ec1fd7ad9a466deb9cf621e7ed9,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: xine src packge still gives errors
+00238.dab1868a3b43de1e01ebdfd0e53de50f,CLEAN,SUSPICIOUS,False,0.55,0.465,Re: [zzzzteana] Re: That wacky imam
+01830.edfe460e0871e3f0da84f16a76abf064,CLEAN,SUSPICIOUS,False,0.55,0.48,Phil Wolff: Dave Winer books I'll buy. _Sweet! _
+02373.45f4057eab005d140507e72867f7a3c0,CLEAN,SUSPICIOUS,False,0.5,0.405,Nobel prize for British and US scientists
+01060.9c32422288bf0e565cd43473fa6ac5c5,CLEAN,SUSPICIOUS,False,0.55,0.54,Pb with mplayer-0.90pre7
+01265.a6a6ab5606db30f275ee08d3a54b24a9,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RH 8 no DMA for DVD drive
+00503.8371a5419a277838b32355a79e9d00cc,CLEAN,SUSPICIOUS,False,0.5,0.455,Recommended Viewing
+01604.6034486f13e8427d9e70ad088092d856,CLEAN,SUSPICIOUS,False,0.55,0.48,[Razor-users] Problem with SDK 2.03?
+01524.59942583cc58fa95ab7d333121598c2c,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAdev] [Bug 960] COMMENT low-performing rule prun
+02134.be73ba19e760b16a8aaf67fa400e093e,CLEAN,SUSPICIOUS,False,0.5,0.405,Tibetans see hint of detente with China
+00925.f32ef12bc4c8a7f4831cdfecd3b743e5,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [SAtalk] Highest-scoring false positive
+00317.62e22febb8eeb1d0a49673ddd92b543d,CLEAN,SUSPICIOUS,False,0.55,0.555,Re: The Curse of India's Socialism
+02027.60b6c65b051a3172d1277cae222638c7,CLEAN,SUSPICIOUS,False,0.5,0.405,Y! Finance RSS Feeds Off
+01477.705f3f5f15f10c4ed2f2cf802e1a5bf1,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAdev] spamc load balancing to multiple spamd
+01795.81e9f47a31cf1179ec98bf927e26e9de,CLEAN,CLEAN,True,0.5,0.38,Facts about sex.
+01295.c440ea598ea18fee4cf3d2a1a9cd6864,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: Nessus?
+00236.0d42e8e99de86aae42a4f3e3cdc2465b,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] Hayes Accura ISDN PCI
+00380.9426f88747cb44438bb358841649f326,CLEAN,SUSPICIOUS,False,0.5,0.455,SChoolHouseRocks DVD
+00300.e98a210bc3981e1d64524ed9984be049,CLEAN,SUSPICIOUS,False,0.55,0.555,"Re: ""Ouch. Ouch. Ouch. Ouch. Ouch....""(was Re: My "
+02436.5821586f609075c777d251052f6534fe,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: UK rich-b*st*rds TV alert
+00191.41a15d7d511bc977b0fcb93cd9492bd1,CLEAN,SUSPICIOUS,False,0.5,0.455,"Re: Startups, Bubbles, and Unemployment (fwd)"
+01557.25496d0c7fc8acbf284debadd4f1dc07,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [Razor-users] razor plugins for mozilla?
+00108.9ab147c83812fc34f69032c40df5a21f,CLEAN,SUSPICIOUS,False,0.55,0.48,[ILUG] Retrieving read mail from webmail.eircom.ne
+01469.c15d5afb7a49819feadf6c4f3f40c224,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [SAtalk] Getting yourself removed from spam li
+00475.90154e8e3f3761b155d35323f54aaad7,CLEAN,SUSPICIOUS,False,0.55,0.48,Google? Not in China
+00010.145d22c053c1a0c410242e46c01635b3,CLEAN,SUSPICIOUS,False,0.55,0.48,[SAtalk] SA CGI Configurator Scripts
+01800.1fd79d18b9d3c56996ba3c40b26df35a,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Headlines for 2002-09-23
+01251.793e5c04967cb90191e805dfa619c55a,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: RedHat 8.0 and his own freetype
+01019.58335c892624e5dcf06dd7ba8706bfae,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Linking message [was: Re: Patch to complete a 
+01210.3b4f94e91b69061def190573072e880c,CLEAN,SUSPICIOUS,False,0.55,0.54,Re: use new apt to do null to RH8 upgrade?
+00193.56c58a594fe8a1e7b830f48eaf12e654,CLEAN,SUSPICIOUS,False,0.5,0.455,Canadians
+01878.e825bd2722968151f439704c324ca9d9,CLEAN,SUSPICIOUS,False,0.5,0.405,Jeremy Allaire: Wholistic Web Services.
+01874.e7532bf3a643c2eba1d2ff1dda98aa25,CLEAN,SUSPICIOUS,False,0.5,0.405,MacNet Journal reports that OmniOutliner will supp
+01773.e0850dc6f3d7e902f61de852025ad50b,CLEAN,SUSPICIOUS,False,0.5,0.405,[use Perl] Stories for 2002-09-01
+01225.394c24658bf3f9f8f741bcbc94ca017c,CLEAN,SUSPICIOUS,False,0.55,0.515,Re: alsa-driver.spec tweak for homemade kernels
+00628.4a185fee450d8239cf82bee902dbd1af,CLEAN,SUSPICIOUS,False,0.5,0.455,Re: [VoID] a new low on the personals tip...
+01363.77a99b8d1fa345c7fa3af272f41591e1,CLEAN,SUSPICIOUS,False,0.55,0.48,[SACVS] CVS: spamassassin/masses parse-rules-for-m
+00461.94c0b7cab722e5ac253b285e50b047e1,CLEAN,SUSPICIOUS,False,0.5,0.455,RE: sprint delivers the next big thing??
+01938.da956f847b734888d96d8dd4ee736f40,CLEAN,SUSPICIOUS,False,0.5,0.405,John Robb has an interesting perspective on trust-
+00782.6600ba2aef2816e4852a4c8e43130591,CLEAN,SUSPICIOUS,False,0.5,0.455,Kissinger
+00645.2d95a6a89614625aafb7b333e799e111,CLEAN,SUSPICIOUS,False,0.55,0.48,Re: [VoID] a new low on the personals tip...
+02489.85c20a6f9d75714d9f44398baeddd416,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: By the way
+00984.6f4ec805e2e78d5310e0a4ae931e67b3,CLEAN,SUSPICIOUS,False,0.55,0.615,Re: Sorting
+02490.7be0f683db6994ddd8445cdcc2eb5042,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Bomb Ikea
+02494.a14f2d3a9bef3f59aa419b03aee8f871,CLEAN,SUSPICIOUS,False,0.55,0.54,[zzzzteana] Re: Bomb Ikea
+01405.e574cc5a3baa8e1a715977d29474c6a2,CLEAN,SUSPICIOUS,False,0.55,0.48,RE: [Razor-users] Razor with sendmail
+01666.531649d2c834408569b5aba7d5b2b9fb,CLEAN,CLEAN,True,0.5,0.38,[Spambayes] Deployment
