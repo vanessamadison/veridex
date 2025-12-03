@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft Defender - Email Triage Automation</title>
+    <title>VERIDEX - Phishing Triage System</title>
     <style>
         :root {
             --ms-blue: #0078d4;
@@ -112,6 +112,19 @@
         .analysis-pass { background: #dff6dd; border-color: var(--ms-green); }
         .analysis-fail { background: #fde7e9; border-color: var(--ms-red); }
         .analysis-warn { background: #fff4ce; border-color: var(--ms-orange); }
+        .factor-breakdown { margin-top: 16px; }
+        .factor-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; margin: 4px 0; background: var(--ms-gray-100); border-left: 3px solid var(--ms-gray-300); }
+        .factor-item.positive { border-left-color: var(--ms-green); }
+        .factor-item.negative { border-left-color: var(--ms-red); }
+        .factor-item.neutral { border-left-color: var(--ms-orange); }
+        .factor-label { font-size: 12px; font-weight: 600; }
+        .factor-value { font-size: 11px; color: var(--ms-gray-600); }
+        .factor-impact { font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-left: 8px; }
+        .factor-impact.high { background: #fde7e9; color: var(--ms-red); }
+        .factor-impact.medium { background: #fff4ce; color: #7a6400; }
+        .factor-impact.low { background: #dff6dd; color: var(--ms-green); }
+        .verdict-summary { background: var(--ms-gray-100); padding: 12px; margin: 16px 0; border-left: 4px solid var(--ms-blue); }
+        .verdict-summary strong { color: var(--ms-blue); }
         .simulation-controls { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 16px; margin-bottom: 16px; }
         .sim-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
         .sim-stat { text-align: center; }
@@ -129,7 +142,7 @@
 <body>
     <div id="login-container" class="login-container">
         <div class="login-box">
-            <h2>Defender Triage Portal</h2>
+            <h2>VERIDEX Triage Portal</h2>
             <input type="text" id="username" placeholder="Username" value="admin">
             <input type="password" id="password" placeholder="Password" value="changeme123">
             <button onclick="login()">Sign in</button>
@@ -140,8 +153,8 @@
     <div id="app" class="hidden">
         <header class="header">
             <div class="header-left">
-                <h1>Microsoft Defender</h1>
-                <span class="header-badge">EMAIL TRIAGE AUTOMATION</span>
+                <h1>VERIDEX</h1>
+                <span class="header-badge">RAPID EMAIL THREAT DEFENSE</span>
             </div>
             <div style="font-size: 13px;">
                 <span id="current-user">admin</span> |
@@ -1140,6 +1153,147 @@
             updateSelectionUI('review');
         }
 
+        // Helper functions for factor analysis
+        function getFactorCount(email) {
+            let count = 0;
+            if (email.authentication) count += 4; // SPF, DKIM, DMARC, Composite
+            if (email.bcl) count += 1;
+            if (email.urls && email.urls.length > 0) count += email.urls.length;
+            if (email.attachments && email.attachments.length > 0) count += email.attachments.length;
+            if (email.threatTypes && email.threatTypes.length > 0) count += 1;
+            if (email.senderIP) count += 1;
+            return count;
+        }
+
+        function generateFactorBreakdown(email) {
+            let factors = [];
+
+            // Authentication Factors
+            if (email.authentication) {
+                const spfPass = email.authentication.spf === 'Pass';
+                const dkimPass = email.authentication.dkim === 'Pass';
+                const dmarcPass = email.authentication.dmarc === 'Pass';
+
+                factors.push({
+                    label: 'SPF Authentication',
+                    value: email.authentication.spf,
+                    impact: spfPass ? 'low' : 'high',
+                    type: spfPass ? 'positive' : 'negative',
+                    weight: spfPass ? '+15' : '-25'
+                });
+
+                factors.push({
+                    label: 'DKIM Signature',
+                    value: email.authentication.dkim,
+                    impact: dkimPass ? 'low' : 'high',
+                    type: dkimPass ? 'positive' : 'negative',
+                    weight: dkimPass ? '+15' : '-25'
+                });
+
+                factors.push({
+                    label: 'DMARC Policy',
+                    value: email.authentication.dmarc,
+                    impact: dmarcPass ? 'low' : 'high',
+                    type: dmarcPass ? 'positive' : 'negative',
+                    weight: dmarcPass ? '+20' : '-30'
+                });
+            }
+
+            // BCL Factor
+            if (email.bcl !== undefined) {
+                const bclImpact = email.bcl >= 7 ? 'high' : email.bcl >= 4 ? 'medium' : 'low';
+                const bclType = email.bcl >= 7 ? 'negative' : email.bcl >= 4 ? 'neutral' : 'positive';
+                const bclWeight = email.bcl >= 7 ? '-40' : email.bcl >= 4 ? '-20' : '+10';
+
+                factors.push({
+                    label: 'Bulk Complaint Level',
+                    value: `${email.bcl}/9 ${email.bcl >= 7 ? '(High Spam)' : email.bcl >= 4 ? '(Medium)' : '(Low)'}`,
+                    impact: bclImpact,
+                    type: bclType,
+                    weight: bclWeight
+                });
+            }
+
+            // URL Threats
+            if (email.urls && email.urls.length > 0) {
+                const maliciousUrls = email.urls.filter(u => u.threat !== 'None').length;
+                if (maliciousUrls > 0) {
+                    factors.push({
+                        label: 'Malicious URLs Detected',
+                        value: `${maliciousUrls} of ${email.urls.length} URLs`,
+                        impact: 'high',
+                        type: 'negative',
+                        weight: `-${maliciousUrls * 30}`
+                    });
+                } else {
+                    factors.push({
+                        label: 'URL Analysis',
+                        value: `${email.urls.length} URLs - All Clean`,
+                        impact: 'low',
+                        type: 'positive',
+                        weight: '+5'
+                    });
+                }
+            }
+
+            // Attachment Threats
+            if (email.attachments && email.attachments.length > 0) {
+                const maliciousAttachments = email.attachments.filter(a => a.threat !== 'None').length;
+                if (maliciousAttachments > 0) {
+                    factors.push({
+                        label: 'Malicious Attachments',
+                        value: `${maliciousAttachments} of ${email.attachments.length} files`,
+                        impact: 'high',
+                        type: 'negative',
+                        weight: `-${maliciousAttachments * 35}`
+                    });
+                } else {
+                    factors.push({
+                        label: 'Attachment Scan',
+                        value: `${email.attachments.length} files - No threats`,
+                        impact: 'low',
+                        type: 'positive',
+                        weight: '+5'
+                    });
+                }
+            }
+
+            // Defender Threat Detection
+            if (email.threatTypes && email.threatTypes.length > 0 && !email.threatTypes.includes('NoThreatsFound')) {
+                factors.push({
+                    label: 'Microsoft Defender Detection',
+                    value: email.threatTypes.join(', '),
+                    impact: 'high',
+                    type: 'negative',
+                    weight: '-50'
+                });
+            }
+
+            // Sender Reputation
+            if (email.senderIP) {
+                factors.push({
+                    label: 'Sender IP Reputation',
+                    value: email.senderIP,
+                    impact: 'medium',
+                    type: 'neutral',
+                    weight: '±10'
+                });
+            }
+
+            // Generate HTML
+            return factors.map(f => `
+                <div class="factor-item ${f.type}">
+                    <div>
+                        <div class="factor-label">${f.label}</div>
+                        <div class="factor-value">${f.value}</div>
+                    </div>
+                    <div>
+                        <span class="factor-impact ${f.impact}">Impact: ${f.weight}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         // Details with full analysis
         function showEmailDetails(id, type) {
             const email = type === 'queue' ?
@@ -1235,6 +1389,17 @@
                     <div class="detail-row">
                         <div class="detail-label">Threat Types</div>
                         <div class="detail-value">${email.threatTypes?.length > 0 ? email.threatTypes.join(', ') : 'None'}</div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">📊 Decision Factors Analysis</div>
+                    <div class="verdict-summary">
+                        <strong>How This Verdict Was Determined:</strong><br>
+                        The system analyzed ${getFactorCount(email)} key factors using a 50/50 ensemble approach (Rules-Based + LLM Analysis) to reach this verdict with ${(email.confidence * 100).toFixed(1)}% confidence.
+                    </div>
+                    <div class="factor-breakdown">
+                        ${generateFactorBreakdown(email)}
                     </div>
                 </div>
 
