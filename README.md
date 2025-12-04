@@ -17,8 +17,6 @@
 
 This system represents the **first independent academic validation** of metadata-only phishing detection in healthcare, combining local LLM processing with Microsoft Defender signals to provide transparent, explainable AI-powered threat analysis.
 
-**Published Research:** *Automating Phishing Triage in Healthcare: An Efficiency and Compliance Feasibility Study of Microsoft Defender for Office 365* - Vanessa Madison, VICEROY Scholar Cohort Fall 2025
-
 ---
 
 ## 𝘝𝘢𝘭𝘪𝘥𝘢𝘵𝘦𝘥 𝘗𝘦𝘳𝘧𝘰𝘳𝘮𝘢𝘯𝘤𝘦
@@ -274,7 +272,7 @@ Action: Route to Analyst Review
 | LLM + Rules (Ensemble) | 0.3s | 3.3 emails/sec | Balanced accuracy |
 | Full Analysis | 0.3s | 3.3 emails/sec | Maximum precision |
 
-### Comparison with Published Research
+### Comparison with Research
 
 | System | F1 Score | Precision | Recall | Approach | HIPAA |
 |:---|:---|:---|:---|:---|:---|
