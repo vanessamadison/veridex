@@ -62,16 +62,16 @@ Tested on **SpamAssassin Spam Corpus 2** (N=500 emails sampled from 1,396 total)
          v
 ┌─────────────────────────────────┐
 │ Microsoft Defender Signals      │
-│ (SPF/DKIM/DMARC, BCL, URLs)    │
+│ (SPF/DKIM/DMARC, BCL, URLs)     │
 └────────┬────────────────────────┘
          │
     ┌────┴────┐
     │         │
     v         v
-┌───────┐ ┌──────────┐
-│ Rules │ │Local LLM │
-│  50%  │ │   50%    │
-└───┬───┘ └────┬─────┘
+┌───────┐ ┌─────────┐
+│ Rules │ │Local LLM│
+│  50%  │ │   50%   │
+└───┬───┘ └───┬─────┘
     │         │
     └────┬────┘
          v
@@ -553,5 +553,5 @@ For questions about the research, see [documentation](docs/publication/) or open
 
 ---
 
-*Last Updated: December 2, 2025*
+*Last Updated: December 3, 2025*
 *Version: 1.0.0 (Publication Release)*
