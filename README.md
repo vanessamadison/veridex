@@ -396,18 +396,6 @@ python3 scripts/test_all_datasets.py
 - Validates feasibility before large-scale deployment investment
 - Provides explainable AI (XAI) interface for transparent decision-making
 
-**Published Research:**
-```bibtex
-@article{madison2025veridex,
-  title={Automating Phishing Triage in Healthcare: An Efficiency and Compliance
-         Feasibility Study},
-  author={Madison, Vanessa},
-  journal={[Journal Name]},
-  year={2025},
-  note={HIPAA-compliant metadata-only phishing detection with 91.74\% F1
-        and 100\% precision}
-}
-```
 
 ### Key Findings
 
