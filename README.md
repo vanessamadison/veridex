@@ -58,21 +58,21 @@ The VERIDEX dashboard is designed for intuitive email triage, echoing the famili
 Incoming emails are first processed through the VERIDEX engine. The simulation dashboard provides an overview of this initial intake and processing phase.
 
 ![Simulation Dashboard](assets/simulation.png)
-*Figure: The Simulation dashboard shows emails being processed by VERIDEX, with an interface reminiscent of Microsoft Defender's security portals.*
+*The Simulation dashboard shows emails being processed by VERIDEX, with an interface reminiscent of Microsoft Defender's security portals.*
 
 #### 2. Analyst Review Queue
 
 Emails that require human intervention (e.g., those with confidence scores below the automation threshold) are routed to the Analyst Review queue. Here, security analysts can investigate suspicious emails.
 
 ![Analyst Review Dashboard](assets/analyst-review.png)
-*Figure: The Analyst Review dashboard displays emails awaiting human analysis, highlighting the integration of risk scores and decision factors within a clear, actionable interface.*
+*The Analyst Review dashboard displays emails awaiting human analysis, highlighting the integration of risk scores and decision factors within a clear, actionable interface.*
 
 #### 3. Completed Triage
 
 Once an email has been thoroughly analyzed and a final verdict rendered—either automatically or through analyst review—it moves to the Completed Triage view.
 
 ![Completed Triage Dashboard](assets/completed.png)
-*Figure: The Completed Triage dashboard provides a summary of resolved incidents, offering transparency and a historical record of actions taken, all within a consistent Microsoft Defender-like design.*
+*The Completed Triage dashboard provides a summary of resolved incidents, offering transparency and a historical record of actions taken, all within a consistent Microsoft Defender-like design.*
 
 ---
 
