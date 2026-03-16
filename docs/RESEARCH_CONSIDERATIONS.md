@@ -330,7 +330,7 @@ results/
 
 ### Key Contributions
 
-1. HIPAA-compliant local LLM for SOC automation
+1. Metadata-first local LLM for SOC automation (designed with HIPAA alignment in mind)
 2. Ensemble approach combining AI + rules + threat intel
 3. BCL-aware bulk email classification
 4. Quantified analyst workload reduction

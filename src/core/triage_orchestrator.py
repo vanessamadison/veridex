@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Phishing Triage Orchestrator - Master script for end-to-end email analysis
-Integrates: Ollama + MDO Field Extraction + Ensemble Verdict + HIPAA Compliance
+Integrates: Ollama + MDO Field Extraction + Ensemble Verdict + Metadata-Only Processing
 """
 import argparse
 import csv
@@ -47,7 +47,7 @@ class TriageOrchestrator:
     1. Load emails from CSV/API
     2. Extract MDO fields
     3. Run ensemble analysis (Ollama + Rules + Defender)
-    4. Generate verdicts with HIPAA-compliant audit logs
+    4. Generate verdicts with audit logs
     5. Create analyst review queue
     """
 
@@ -238,7 +238,7 @@ class TriageOrchestrator:
         analyst_queue_path = self.output_dir / f"analyst_queue_{self.run_id}.csv"
         self._write_analyst_queue(analyst_queue, analyst_queue_path)
 
-        # 3. HIPAA-Compliant Audit Log (JSON)
+        # 3. Audit Log (JSON)
         audit_log_path = self.output_dir / f"audit_log_{self.run_id}.json"
         self._write_audit_log(results, audit_log_path)
 
@@ -314,11 +314,11 @@ class TriageOrchestrator:
         logger.info(f"  ✓ Analyst Queue: {output_path} ({len(analyst_queue)} emails)")
 
     def _write_audit_log(self, results: List[Dict], output_path: Path):
-        """Write HIPAA-compliant audit log (JSON)"""
+        """Write audit log (JSON, metadata-only)"""
         audit_entries = []
 
         for result in results:
-            # HIPAA-safe: Exclude email body, only metadata
+            # Metadata-only: exclude email body
             audit_entry = {
                 "timestamp": result.get("timestamp"),
                 "email_id": result.get("email_id"),
@@ -358,7 +358,7 @@ class TriageOrchestrator:
                 "audit_entries": audit_entries
             }, f, indent=2)
 
-        logger.info(f"  ✓ Audit Log: {output_path} (HIPAA-compliant)")
+        logger.info(f"  ✓ Audit Log: {output_path} (metadata-only)")
 
     def _write_summary(self, results: List[Dict], output_path: Path):
         """Write summary statistics"""

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Ollama Security Analyst Client - HIPAA-Compliant Local LLM Interface
+Ollama Security Analyst Client - Local LLM Interface
 Handles all communication with local Ollama instance for threat analysis
 """
 import requests
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 class OllamaSecurityAnalyst:
     """
     Local LLM-powered security analyst using Ollama
-    All processing stays on-premise for HIPAA compliance
+    All processing stays on-premise (no cloud exposure)
     """
 
     def __init__(
@@ -74,7 +74,7 @@ class OllamaSecurityAnalyst:
 
     def _default_system_prompt(self) -> str:
         """Default SOC analyst system prompt based on CURRENT_SOP.md"""
-        return """You are an expert SOC analyst specializing in email security for a healthcare organization (HIPAA-compliant).
+        return """You are an expert SOC analyst specializing in email security for a healthcare organization.
 
 Your role: Analyze emails and determine if they are MALICIOUS, SUSPICIOUS, or CLEAN.
 
@@ -129,7 +129,7 @@ Healthcare data protection is paramount - false negatives are more costly than f
         Returns:
             Formatted prompt string
         """
-        # HIPAA-safe: Only use metadata, no email body content
+        # Metadata-only: no email body content
         prompt_parts = [
             "Analyze this email for security threats:",
             "",

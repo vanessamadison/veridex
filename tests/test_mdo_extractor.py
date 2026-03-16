@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Unit tests for Microsoft Defender field extractor
-Tests HIPAA-compliant metadata extraction
+Tests metadata-only extraction
 """
 import pytest
 import sys
