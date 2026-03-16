@@ -1,0 +1,17 @@
+# VERIDEX User Store - Example Configuration
+# This file is generated automatically by scripts/setup_admin.py
+# DO NOT commit the actual users.yaml file to version control
+#
+# To set up your admin user:
+#   python3 scripts/setup_admin.py
+#
+# Example structure (do not use these values):
+# admin:
+#   created_at: '2025-01-01T00:00:00.000000'
+#   disabled: false
+#   email: admin@localhost
+#   hashed_password: <generated-by-setup-script>
+#   must_change_password: false
+#   password_changed_at: '2025-01-01T00:00:00.000000'
+#   role: admin
+#   username: admin
