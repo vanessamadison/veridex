@@ -1,8 +1,8 @@
 # Data Handling Policy
 
-All datasets in this repository are fully **de-identified** and **HIPAA-compliant**.  
-They were generated or sanitized using metadata-only exports (headers, BCL scores, SPF/DKIM/DMARC results)  
-without any Protected Health Information (PHI).
+All datasets in this repository are **simulated, synthetic, or publicly available**.
+They contain metadata-only exports (headers, BCL scores, SPF/DKIM/DMARC results)
+without any Protected Health Information (PHI) or email body content.
 
 ### Validation:
 - Confirmed absence of PHI via `code/hipaa_validator.py`

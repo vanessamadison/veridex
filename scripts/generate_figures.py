@@ -89,7 +89,7 @@ def create_architecture_diagram():
     ax.set_ylim(0, 12)
 
     # Title
-    ax.text(5, 11.5, 'HIPAA-Compliant Phishing Triage System Architecture',
+    ax.text(5, 11.5, 'Metadata-First Phishing Triage System Architecture',
             ha='center', fontsize=16, fontweight='bold')
 
     # Layer 1: Input Sources
@@ -107,7 +107,7 @@ def create_architecture_diagram():
         ax.arrow(x, 9.3, 0, -0.5, head_width=0.15, head_length=0.2, fc='black', ec='black')
 
     # Layer 2: Email Parser (Metadata Extraction)
-    ax.text(5, 8.3, 'METADATA EXTRACTION LAYER (HIPAA-Compliant)', ha='center',
+    ax.text(5, 8.3, 'METADATA EXTRACTION LAYER (No Body Content)', ha='center',
             fontsize=11, fontweight='bold',
             bbox=dict(boxstyle='round,pad=0.5', facecolor='#ffe6cc', edgecolor='black', linewidth=2))
 
@@ -132,7 +132,7 @@ def create_architecture_diagram():
         ('Rule-Based\nScoring', 2, '#c8e6c9',
          'SPF/DKIM Fail: +20\nURL Shorteners: +15\nRisky Attachments: +20\nUrgency Keywords: +12'),
         ('Local LLM\n(Ollama)', 5, '#b3e5fc',
-         'Metadata-only\nanalysis\nNo cloud API\nHIPAA-compliant'),
+         'Metadata-only\nanalysis\nNo cloud API\nLocal processing'),
         ('Microsoft\nDefender Signals', 8, '#f8bbd0',
          'ThreatTypes\nDeliveryAction\nBCL Score\nDetection Tech')
     ]

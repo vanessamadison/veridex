@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class MDOFieldExtractor:
     """
     Extract and normalize Microsoft Defender email entity fields
-    Ensures HIPAA compliance by excluding body content
+    Enforces metadata-only processing by excluding body content
     """
 
     # Internal domains - configure these for your organization
@@ -185,7 +185,7 @@ class MDOFieldExtractor:
             if len(att.get("threat_names", [])) > 0
         )
 
-        # === CONTENT SIGNALS (HIPAA-SAFE) ===
+        # === CONTENT SIGNALS (METADATA-ONLY) ===
         if self.enforce_hipaa:
             # Only first 50 chars of preview (subject-like content)
             body_preview = email_entity.get("BodyPreview") or email_entity.get("body_preview") or ""

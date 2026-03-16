@@ -104,7 +104,7 @@ def extract(self, email_entity: Dict[str, Any]) -> Dict[str, Any]:
     """
     Extract all MDO email entity fields
 
-    HIPAA-compliant: Excludes email body content
+    Metadata-only: Excludes email body content
     Generator-agnostic: Only uses standard Defender metadata
     """
 ```

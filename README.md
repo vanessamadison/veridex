@@ -1,55 +1,69 @@
-# 𝘝𝘌𝘙𝘐𝘋𝘌𝘟
+# VERIDEX
 
 ![Version](https://img.shields.io/badge/Version-v1.0.0-000000?style=for-the-badge&logo=github&logoColor=white)
 
 [![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ai&logoColor=white)](https://ollama.ai)
-[![HIPAA Compliant](https://img.shields.io/badge/HIPAA_Compliant-000000?style=for-the-badge&logo=security&logoColor=white)](https://www.hhs.gov/hipaa)
-[![Publication Ready](https://img.shields.io/badge/Publication_Ready-000000?style=for-the-badge&logo=academia&logoColor=white)](https://github.com/nessakodo/veridex)
+[![Research Phase](https://img.shields.io/badge/Research_Phase-000000?style=for-the-badge&logo=science&logoColor=white)](https://github.com/nessakodo/veridex)
 [![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](LICENSE)
 
 ---
 
-## 𝘖𝘷𝘦𝘳𝘷𝘪𝘦𝘸
+## Overview
 
-**VERIDEX** (*Verification Intelligence for Rapid Email Defense*) is a HIPAA-compliant phishing email triage system designed specifically for healthcare environments. It achieves **91.74% F1 score** and **100% precision (zero false positives)** using only email metadata—no patient data exposure required.
-
-This system represents the **first independent academic validation** of metadata-only phishing detection in healthcare, combining local LLM processing with Microsoft Defender signals to provide transparent, explainable AI-powered threat analysis.
+VERIDEX is a research-phase concept for metadata-first phishing triage in regulated environments. It was designed to explore whether analyst workflow could be accelerated through explainable scoring, routing, and analyst-in-the-loop review before any production handling of sensitive communications.
 
 ---
 
-## 𝘝𝘢𝘭𝘪𝘥𝘢𝘵𝘦𝘥 𝘗𝘦𝘳𝘧𝘰𝘳𝘮𝘢𝘯𝘤𝘦
+## Research Boundary
+
+All evaluation inputs in this public repository are simulated, synthetic, or publicly available. This repository does not include patient records, PHI, live email bodies, or attachment contents. It is intended for feasibility research, interface demonstration, and sandbox testing only.
+
+---
+
+## What This Repository Demonstrates
+
+- Metadata-first triage logic for phishing-related email review
+- Analyst-in-the-loop escalation and override workflow
+- Explainable decision factors for routing and prioritization
+- Local model plus rules-based experimentation
+- A lower-risk path to testing workflow automation before sensitive communications enter scope
+
+---
+
+## Simulated Evaluation Results
 
 Tested on **SpamAssassin Spam Corpus 2** (N=500 emails sampled from 1,396 total):
 
-| Metric | Value | Status |
+| Metric | Value | Note |
 |:---|:---|:---|
-| **F1 Score** | **91.74%** | ✅ Exceeds target (≥85%) |
-| **Precision** | **100.00%** | ✅ **ZERO false positives** |
-| **Recall** | **84.74%** | ✅ Exceeds target (≥70%) |
-| **Accuracy** | **84.74%** | ✅ Strong detection |
-| **Processing Time (LLM)** | **0.3s** | ✅ Real-time capable |
-| **Processing Time (Rules)** | **0.007s** | ✅ 140 emails/second |
-| **Automation Rate** | **68%** | ✅ Operational feasibility |
-| **False Positive Rate** | **0.00%** | ✅ **Clinical workflow safe** |
+| **F1 Score** | **91.74%** | Exceeds target (>=85%) |
+| **Precision** | **100.00%** | Zero false positives in this simulated evaluation |
+| **Recall** | **84.74%** | Exceeds target (>=70%) |
+| **Accuracy** | **84.74%** | Strong detection |
+| **Processing Time (LLM)** | **0.3s** | Real-time capable |
+| **Processing Time (Rules)** | **0.007s** | 140 emails/second |
+| **Automation Rate** | **68%** | Operational feasibility signal |
+| **False Positive Rate** | **0.00%** | Zero false positives in this simulated evaluation |
+
+The results included in this repository come from the public evaluation setup documented here and should be interpreted as feasibility signals, not production performance guarantees.
 
 ---
 
-## 𝘒𝘦𝘺 𝘍𝘦𝘢𝘵𝘶𝘳𝘦𝘴
+## Key Features
 
-- **HIPAA-Compliant**: Metadata-only analysis with zero PHI exposure
-- **Zero False Positives**: 100% precision protects critical clinical communications
+- **Metadata-First**: Designed to evaluate workflow automation without using patient records or PHI in the public research setup
+- **Zero False Positives**: 100% precision in simulated evaluation protects against unnecessary escalation
 - **Real-Time Processing**: Sub-second verdict latency (0.3s with LLM, 0.007s rules-only)
 - **Explainable AI**: Transparent Decision Factors Analysis shows weighted reasoning
-- **68% Automation**: Validated automation rate reduces analyst workload
-- **Enterprise Security**: JWT authentication, RBAC, SHA-256 audit logging
-- **Ensemble Architecture**: 50% Local Ollama LLM + 50% Rules-Based Logic
-- **Production Ready**: Research/Internal deployment validated on 388+ emails
+- **68% Automation**: Simulated automation rate suggests analyst workload reduction potential
+- **Security Controls**: JWT authentication, RBAC, SHA-256 audit logging
+- **Ensemble Architecture**: Local Ollama LLM + Rules-Based Logic
 
 ---
 
-## 𝘝𝘌𝘙𝘐𝘋𝘌𝘟 𝘜𝘴𝘦𝘳 𝘞𝘰𝘳𝘬𝘧𝘭𝘰𝘸
+## VERIDEX User Workflow
 
 The VERIDEX dashboard is designed for intuitive email triage, echoing the familiar styling of Microsoft Defender to ease analyst adoption. This section illustrates the typical workflow: from initial simulation to analyst review and final resolution.
 
@@ -69,14 +83,14 @@ Emails that require human intervention (e.g., those with confidence scores below
 
 #### 3. Completed Triage
 
-Once an email has been thoroughly analyzed and a final verdict rendered—either automatically or through analyst review—it moves to the Completed Triage view.
+Once an email has been thoroughly analyzed and a final verdict rendered---either automatically or through analyst review---it moves to the Completed Triage view.
 
 ![Completed Triage Dashboard](assets/completed.png)
 *Figure: The Completed Triage dashboard provides a summary of resolved incidents, offering transparency and a historical record of actions taken, all within a consistent Microsoft Defender-like design.*
 
 ---
 
-## 𝘈𝘳𝘤𝘩𝘪𝘵𝘦𝘤𝘵𝘶𝘳𝘦
+## Architecture
 
 ```
 ┌─────────────────┐
@@ -116,14 +130,14 @@ Once an email has been thoroughly analyzed and a final verdict rendered—either
 ```
 
 **Components:**
-- **LLM Ensemble Engine**: Local Ollama (mistral) for HIPAA-compliant analysis
+- **LLM Ensemble Engine**: Local Ollama (mistral) for metadata-first analysis without cloud exposure
 - **Rule-Based Logic**: Microsoft Defender signals (SPF, DKIM, DMARC, BCL)
 - **Analyst Dashboard**: Real-time triage with Decision Factors Analysis
 - **Security Layer**: JWT auth, RBAC, password policies, audit logging
 
 ---
 
-## 𝘘𝘶𝘪𝘤𝘬 𝘚𝘵𝘢𝘳𝘵
+## Quick Start
 
 ### Prerequisites
 
@@ -135,7 +149,7 @@ Once an email has been thoroughly analyzed and a final verdict rendered—either
 
 ```bash
 # Clone repository
-git clone https://github.com/vanessamadison/veridex.git
+git clone https://github.com/nessakodo/veridex.git
 cd veridex
 
 # Create virtual environment
@@ -178,7 +192,7 @@ Password: [generated during setup]
 
 ---
 
-## 𝘜𝘴𝘢𝘨𝘦
+## Usage
 
 ### Dashboard
 
@@ -186,8 +200,6 @@ Password: [generated during setup]
 2. **Active Triage**: View incoming emails with risk scores and Decision Factors
 3. **Analyst Review**: Review low-confidence emails (< 75% threshold)
 4. **Decision Factors**: Click any email to see transparent XAI reasoning
-
-**Dashboard Screenshots**: See [assets/screenshots/](assets/screenshots/) for visual examples of the interface.
 
 ### Standalone Testing
 
@@ -208,42 +220,25 @@ python3 standalone_triage.py \
 bash scripts/validate_all_datasets.sh
 ```
 
-### Generating Publication Figures
-
-```bash
-# Generate all figures (300 DPI, publication-quality)
-python3 scripts/generate_figures.py
-
-# Figures saved to: docs/figures/
-# - figure1_confusion_matrix.png
-# - figure2_architecture.png
-# - figure3_multi_dataset_comparison.png
-```
-
 ---
 
-## 𝘋𝘦𝘤𝘪𝘴𝘪𝘰𝘯 𝘍𝘢𝘤𝘵𝘰𝘳𝘴 𝘈𝘯𝘢𝘭𝘺𝘴𝘪𝘴
+## Decision Factors Analysis
 
 VERIDEX provides transparent, explainable AI reasoning for each verdict:
 
 ```
-📊 Decision Factors Analysis
+Decision Factors Analysis
 
-✅ SPF Authentication: Pass (+15)
-✅ DKIM Signature: Pass (+15)
-❌ DMARC Policy: Fail (-30)
-❌ Bulk Complaint Level: 8/9 High Spam (-40)
-✅ URL Analysis: 3 URLs - All Clean (+5)
-✅ Attachment Scan: 1 file - No threats (+5)
+SPF Authentication: Pass (+15)
+DKIM Signature: Pass (+15)
+DMARC Policy: Fail (-30)
+Bulk Complaint Level: 8/9 High Spam (-40)
+URL Analysis: 3 URLs - All Clean (+5)
+Attachment Scan: 1 file - No threats (+5)
 
 Final Verdict: SUSPICIOUS (Confidence: 68%)
 Action: Route to Analyst Review
 ```
-
-**Color-Coded Factors:**
-- 🟢 Green (Positive): Legitimate authentication, clean URLs, low BCL
-- 🔴 Red (Negative): Failed authentication, malicious content, high BCL
-- 🟡 Yellow (Neutral): Missing data, borderline scores
 
 **Weighted Impact Scores:**
 - SPF Pass: +15, Fail: -25
@@ -256,40 +251,38 @@ Action: Route to Analyst Review
 
 ---
 
-## 𝘚𝘦𝘤𝘶𝘳𝘪𝘵𝘺 + 𝘊𝘰𝘮𝘱𝘭𝘪𝘢𝘯𝘤𝘦
+## Current Maturity
 
-### HIPAA Compliance
+This repository reflects research and internal testing, not production deployment. Any real-world use involving sensitive healthcare communications would require formal security review, approved data handling, encryption, identity controls, environment hardening, compliance review, and organization-specific validation.
 
-✅ **Metadata-Only Processing**: No access to email body, subject content, or attachments
-✅ **Minimum Necessary Standard**: Adheres to 45 CFR 164.502(b)
-✅ **Zero PHI Exposure**: Only headers, authentication results, and Defender signals
-✅ **Local LLM Processing**: No cloud-based content analysis
-✅ **Audit Logging**: SHA-256 hash-chained tamper detection
+### Security Controls Implemented
 
-### Authentication + Authorization
-
-- **JWT Token Authentication**: Secure session management
-- **Role-Based Access Control (RBAC)**: Admin, Analyst, Viewer roles
-- **Password Policies**: 12+ characters, complexity requirements
-- **Account Lockout Protection**: Prevents brute-force attacks
-- **Export Rate Limiting**: Prevents data exfiltration
-
-### Deployment Status
-
-**✅ Research/Internal Deployment Ready:**
-- JWT authentication with RBAC
-- Password policy enforcement
-- SHA-256 audit logging
+- JWT Token Authentication with RBAC (Admin, Analyst, Viewer roles)
+- Password policies (12+ characters, complexity requirements)
+- Account lockout protection
+- SHA-256 hash-chained audit logging
 - Export rate limiting
+- Local LLM processing (no cloud-based content analysis)
+- Metadata-only processing (no access to email body, subject content, or attachments)
 
-**⚠️ NOT for Production PHI** (requires Phase 2):
-- HTTPS/TLS encryption required
-- Database encryption required
-- Multi-factor authentication (MFA) required
+### Not Yet Implemented (Required for Production)
+
+- HTTPS/TLS encryption
+- Database encryption at rest
+- Multi-factor authentication (MFA)
+- Secure key management (HSM or cloud KMS)
+- Network segmentation
+- Formal risk assessment and incident response plan
 
 ---
 
-## 𝘗𝘦𝘳𝘧𝘰𝘳𝘮𝘢𝘯𝘤𝘦 𝘉𝘦𝘯𝘤𝘩𝘮𝘢𝘳𝘬𝘴
+## Why It May Matter Operationally
+
+For teams managing high volumes of inbound email in a regulated environment, the point of this work is not to claim that simulated data mirrors production. The point is to test whether a metadata-first triage model can reduce manual review burden, improve analyst prioritization, and generate measurable workflow insight in a controlled setting---before more sensitive integrations are considered.
+
+---
+
+## Performance Benchmarks
 
 ### Processing Speed
 
@@ -299,165 +292,44 @@ Action: Route to Analyst Review
 | LLM + Rules (Ensemble) | 0.3s | 3.3 emails/sec | Balanced accuracy |
 | Full Analysis | 0.3s | 3.3 emails/sec | Maximum precision |
 
-### Comparison with Research
+### Comparison with Related Research
 
-| System | F1 Score | Precision | Recall | Approach | HIPAA |
+| System | F1 Score | Precision | Recall | Approach | Metadata-Only |
 |:---|:---|:---|:---|:---|:---|
-| **VERIDEX** | **91.74%** | **100.00%** | **84.74%** | Metadata-Only | ✅ Yes |
-| PhishLang (2024) | ~96% | 96% | ~96% | Full-Content ML | ❌ No |
-| EXPLICATE (2025) | ~98% | ~98% | ~98% | Full-Content ML | ❌ No |
-| Transformer Models | ~96% | ~94% | ~98% | Full-Content ML | ❌ No |
+| **VERIDEX** | **91.74%** | **100.00%** | **84.74%** | Metadata-Only | Yes |
+| PhishLang (2024) | ~96% | 96% | ~96% | Full-Content ML | No |
+| EXPLICATE (2025) | ~98% | ~98% | ~98% | Full-Content ML | No |
+| Transformer Models | ~96% | ~94% | ~98% | Full-Content ML | No |
 
-VERIDEX demonstrates **competitive performance** with metadata-only analysis while maintaining **HIPAA compliance** and **superior precision** (100% vs. 94-98%), critical for clinical environments.
-
----
-
-## 𝘗𝘳𝘰𝘫𝘦𝘤𝘵 𝘚𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦
-
-```
-veridex/
-├── src/
-│   ├── api/              # FastAPI backend
-│   │   └── main.py       # API endpoints and routes
-│   ├── auth/             # Security + RBAC
-│   │   └── security.py   # JWT, audit logging, RBAC
-│   ├── core/             # Ensemble engine
-│   │   ├── ensemble_verdict_engine.py  # 50/50 ensemble logic
-│   │   ├── ollama_client.py            # Local LLM integration
-│   │   └── mdo_field_extractor.py      # Defender signal parsing
-│   ├── datasets/         # Email parsing
-│   │   └── email_parser.py
-│   ├── evaluation/       # Metrics calculation
-│   │   └── metrics_calculator.py
-│   ├── frontend/         # Dashboard UI
-│   │   └── templates/
-│   │       └── index.html              # VERIDEX dashboard
-│   └── generators/       # Test data generation
-├── config/               # Configuration
-│   └── config.yaml
-├── data/                 # Datasets (ground truth only in git)
-│   ├── spamassassin/
-│   │   └── ground_truth.csv
-│   ├── combined_test/
-│   └── ling_spam/
-├── docs/                 # Documentation
-│   ├── figures/          # Publication figures (300 DPI)
-│   │   ├── figure1_confusion_matrix.png
-│   │   ├── figure2_architecture.png
-│   │   └── figure3_multi_dataset_comparison.png
-│   ├── publication/      # Paper-related docs
-│   │   ├── CRITICAL_PAPER_FIXES.md
-│   │   ├── FINAL_SUBMISSION_GUIDE.md
-│   │   └── GEMINI_ALIGNMENT_PROMPT.md
-│   └── development/      # Development guides
-├── scripts/              # Testing + validation
-│   ├── generate_figures.py
-│   ├── test_all_datasets.py
-│   └── validate_all_datasets.sh
-├── results/              # Test results (excluded from git)
-└── standalone_triage.py  # Core evaluation engine
-```
+VERIDEX demonstrates competitive performance with metadata-only analysis. The 100% precision in this simulated evaluation is notable for environments where false positives carry operational cost.
 
 ---
 
-## 𝘛𝘦𝘴𝘵𝘪𝘯𝘨 + 𝘝𝘢𝘭𝘪𝘥𝘢𝘵𝘪𝘰𝘯
+## Research Notes
 
-### Run Unit Tests
-
-```bash
-# Run all tests
-pytest tests/ -v
-
-# Run with coverage report
-pytest --cov=src --cov-report=term-missing tests/
-
-# Run specific test module
-pytest tests/test_auth_security.py -v
-pytest tests/test_ensemble_engine.py -v
-pytest tests/test_mdo_extractor.py -v
-pytest tests/test_metrics.py -v
-```
-
-**Test Coverage:**
-- ✅ Authentication & Security (RBAC, JWT, password policies)
-- ✅ Ensemble Verdict Engine (LLM + Rules logic)
-- ✅ MDO Field Extractor (HIPAA compliance)
-- ✅ Metrics Calculator (Performance evaluation)
-
-
-### Validate on SpamAssassin
-
-```bash
-# Full validation (500 emails)
-python3 standalone_triage.py \
-    --dataset data/spamassassin/spam_2 \
-    --ground-truth data/spamassassin/ground_truth.csv
-
-# Quick validation (100 emails)
-python3 standalone_triage.py \
-    --dataset data/spamassassin/spam_2 \
-    --ground-truth data/spamassassin/ground_truth.csv \
-    --limit 100
-```
-
-### Comprehensive Multi-Dataset Validation
-
-```bash
-# Test across all datasets
-python3 scripts/test_all_datasets.py
-
-# Generates validation reports in results/
-```
-
----
-
-## 𝘙𝘦𝘴𝘦𝘢𝘳𝘤𝘩 𝘊𝘰𝘯𝘵𝘳𝘪𝘣𝘶𝘵𝘪𝘰𝘯
-
-### Academic Significance
-
-**Novel Contributions:**
-- First independent validation of metadata-only phishing detection in healthcare
-- Demonstrates HIPAA compliance without accuracy tradeoffs
-- Validates feasibility before large-scale deployment investment
-- Provides explainable AI (XAI) interface for transparent decision-making
-
-
-### Key Findings
+### Findings from Simulated Evaluation
 
 1. **Metadata sufficiency**: 91.74% F1 achieved without content access
-2. **Zero false positives**: Critical for clinical workflow protection
-3. **68% automation rate**: Significant analyst workload reduction
-4. **Real-time processing**: 0.3s latency enables operational deployment
+2. **Zero false positives**: Reduces unnecessary analyst escalation in simulation
+3. **68% automation rate**: Suggests significant workload reduction potential
+4. **Real-time processing**: 0.3s latency enables operational feasibility
 5. **Ensemble necessity**: LLM required to filter rule-based false positives
 
 ### Hypothesis Validation
 
 | Hypothesis | Target | Achieved | Status |
 |:---|:---|:---|:---|
-| H1: Alignment Rate | ≥75% | 84.74% | ✅ Validated |
-| H2: Precision | ≥85% | 100% | ✅ Exceeded |
-| H2: Recall | ≥70% | 84.74% | ✅ Exceeded |
-| H3: MTTR Reduction | ≥35% | TBD* | 🔄 Requires deployment |
-| H4: Automation Coverage | 15-25% | 68% | ✅ Exceeded |
+| H1: Alignment Rate | >=75% | 84.74% | Validated |
+| H2: Precision | >=85% | 100% | Exceeded |
+| H2: Recall | >=70% | 84.74% | Exceeded |
+| H3: MTTR Reduction | >=35% | TBD | Requires live deployment |
+| H4: Automation Coverage | 15-25% | 68% | Exceeded |
 
-*H3 and H4 require live deployment for full validation
-
----
-
-## 𝘗𝘭𝘢𝘯𝘯𝘦𝘥 𝘌𝘯𝘩𝘢𝘯𝘤𝘦𝘮𝘦𝘯𝘵𝘴 (𝘝2.0+)
-
-- **Phase 2 Production Hardening**: HTTPS/TLS, database encryption, MFA
-- **Multi-analyst validation**: Extended 4-6 month deployment study
-- **Enhanced LLM models**: GPT-4, Claude integration for improved accuracy
-- **Real-time dashboard updates**: WebSocket integration for live triage
-- **Advanced analytics**: Trend analysis, threat intelligence integration
-- **API expansion**: RESTful API for third-party integrations
-- **Mobile interface**: iOS/Android analyst apps
-- **Automated remediation**: Integration with email security gateways
+H3 and H4 require live deployment for full validation.
 
 ---
 
-## 𝘈𝘗𝘐 𝘌𝘯𝘥𝘱𝘰𝘪𝘯𝘵𝘴
+## API Endpoints
 
 ### Authentication
 
@@ -477,8 +349,6 @@ curl -X POST http://localhost:8000/api/triage \
   -H "Content-Type: application/json" \
   -d '{
     "email_id": "test-001",
-    "subject": "Urgent: Password Reset Required",
-    "from": "support@suspicious-domain.com",
     "authentication": {
       "spf": "Fail",
       "dkim": "Pass",
@@ -502,69 +372,85 @@ curl -X GET http://localhost:8000/api/incidents/review \
 
 ---
 
-## 𝘊𝘰𝘯𝘵𝘳𝘪𝘣𝘶𝘵𝘪𝘯𝘨
+## Testing + Validation
 
-This is a research project for academic publication. Contributions welcome after publication.
+### Run Unit Tests
 
-### Reporting Issues
+```bash
+# Run all tests
+pytest tests/ -v
 
-Please report bugs or feature requests via GitHub Issues.
+# Run with coverage report
+pytest --cov=src --cov-report=term-missing tests/
 
-### Code of Conduct
+# Run specific test module
+pytest tests/test_auth_security.py -v
+pytest tests/test_ensemble_engine.py -v
+pytest tests/test_mdo_extractor.py -v
+pytest tests/test_metrics.py -v
+```
 
-This project follows standard academic research ethics and open-source contribution guidelines.
+### Validate on SpamAssassin
+
+```bash
+# Full validation (500 emails)
+python3 standalone_triage.py \
+    --dataset data/spamassassin/spam_2 \
+    --ground-truth data/spamassassin/ground_truth.csv
+
+# Quick validation (100 emails)
+python3 standalone_triage.py \
+    --dataset data/spamassassin/spam_2 \
+    --ground-truth data/spamassassin/ground_truth.csv \
+    --limit 100
+```
 
 ---
 
-## 𝘓𝘪𝘤𝘦𝘯𝘴𝘦
+## Contributing
+
+This is a research project. Contributions welcome via GitHub Issues or pull requests.
+
+---
+
+## License
 
 MIT License - See [LICENSE](LICENSE) file for details.
 
-This project is provided for research and educational purposes. For production healthcare deployments, ensure full HIPAA compliance validation and Phase 2 security hardening.
+This project is provided for research and educational purposes. Any use involving sensitive healthcare communications requires formal compliance validation and security hardening beyond what is included here.
 
 ---
 
-## 𝘈𝘤𝘬𝘯𝘰𝘸𝘭𝘦𝘥𝘨𝘮𝘦𝘯𝘵𝘴
+## Acknowledgments
 
 - **SpamAssassin Project**: Validation corpus
 - **Microsoft Defender for Office 365**: Signals integration
 - **Ollama**: Local LLM inference
 - **VICEROY Scholar Program**: Research support
 - **FastAPI**: Modern Python web framework
-- **Healthcare Security Community**: Domain expertise
 
 ---
 
-## 𝘊𝘰𝘯𝘵𝘢𝘤𝘵
+## Contact
 
 - **Author**: Vanessa Madison
 - **Program**: VICEROY Scholar Cohort Fall 2025
-- **Repository**: [GitHub](https://github.com/vanessamadison/veridex)
+- **Repository**: [GitHub](https://github.com/nessakodo/veridex)
 
-For questions about the research, see [documentation](docs/publication/) or open an issue.
+For questions about the research, see [documentation](docs/) or open an issue.
 
 ---
 
-## 𝘙𝘦𝘧𝘦𝘳𝘦𝘯𝘤𝘦𝘴
-
-### Academic Research
+## References
 
 - [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 - [HIPAA Privacy Rule (45 CFR 164.506)](https://www.hhs.gov/hipaa/for-professionals/privacy/index.html)
 - [HIPAA Security Rule (45 CFR 164.306)](https://www.hhs.gov/hipaa/for-professionals/security/index.html)
 - [SpamAssassin Public Corpus](https://spamassassin.apache.org/old/publiccorpus/)
-
-### Related Work
-
 - PhishLang (2024): Real-time client-side phishing detection
 - EXPLICATE (2025): LLM-powered explainable phishing detection
-- Microsoft Defender Documentation: Office 365 security features
 
 ---
 
-### 𝘗𝘳𝘰𝘵𝘦𝘤𝘵𝘪𝘯𝘨 𝘩𝘦𝘢𝘭𝘵𝘩𝘤𝘢𝘳𝘦 𝘸𝘪𝘵𝘩 𝘦𝘹𝘱𝘭𝘢𝘪𝘯𝘢𝘣𝘭𝘦 𝘈𝘐, 𝘻𝘦𝘳𝘰 𝘧𝘢𝘭𝘴𝘦 𝘱𝘰𝘴𝘪𝘵𝘪𝘷𝘦𝘴, 𝘢𝘯𝘥 𝘏𝘐𝘗𝘈𝘈 𝘤𝘰𝘮𝘱𝘭𝘪𝘢𝘯𝘤𝘦.
-
----
-
-*Last Updated: March 9, 2026*
-*Version: 1.0.0 (Publication Release)*
+*Last Updated: March 16, 2026*
+*Version: 1.0.0 (Research Phase)*

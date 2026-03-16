@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HIPAA-Compliant Email Triage API
+Email Triage API (Research Phase)
 
 FastAPI backend providing:
 - JWT authentication with RBAC
@@ -9,7 +9,7 @@ FastAPI backend providing:
 - Defender-style dashboard data
 - Comprehensive audit logging
 
-All endpoints enforce HIPAA compliance (metadata-only processing)
+All endpoints enforce metadata-only processing (no email body or PHI)
 """
 import os
 import sys
@@ -45,7 +45,7 @@ from src.core.data_processor import RealDataProcessor
 # FastAPI App
 app = FastAPI(
     title="Email Triage Automation API",
-    description="HIPAA-Compliant SOC Decision Support System",
+    description="Metadata-First SOC Decision Support System (Research Phase)",
     version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -700,7 +700,7 @@ async def get_audit_logs(
     current_user: TokenData = Depends(require_permission("can_view_audit"))
 ):
     """
-    Retrieve HIPAA-compliant audit logs.
+    Retrieve audit logs.
 
     Returns immutable audit trail with hash chain verification.
     """
@@ -787,7 +787,7 @@ async def health_check():
             "api": "running",
             "ollama": "available" if ollama_healthy else "unavailable",
             "authentication": "enabled",
-            "hipaa_compliance": "enforced"
+            "metadata_only": "enforced"
         }
     }
 
@@ -798,7 +798,7 @@ async def root():
     return {
         "name": "Email Triage Automation API",
         "version": "2.0.0",
-        "description": "HIPAA-Compliant SOC Decision Support System",
+        "description": "Metadata-First SOC Decision Support System (Research Phase)",
         "docs": "/docs",
         "health": "/health",
         "dashboard": "/dashboard"
@@ -807,7 +807,7 @@ async def root():
 
 @app.get("/dashboard", response_class=HTMLResponse, tags=["Frontend"])
 async def dashboard():
-    """Serve the HIPAA-compliant dashboard frontend"""
+    """Serve the dashboard frontend"""
     frontend_path = Path(__file__).parent.parent / "frontend" / "templates" / "index.html"
     if not frontend_path.exists():
         raise HTTPException(status_code=404, detail="Dashboard not found")

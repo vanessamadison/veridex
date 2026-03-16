@@ -1,5 +1,5 @@
 # Defender Automation Triage - Main Configuration
-# HIPAA-compliant email triage system
+# Research-phase metadata-first email triage system
 
 # Ollama LLM settings
 ollama:

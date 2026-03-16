@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HIPAA-Compliant Authentication & Authorization Layer
+Authentication & Authorization Layer
 
 Features:
 - JWT token authentication with encryption
@@ -113,7 +113,7 @@ class TokenData(BaseModel):
 
 
 class AuditLogger:
-    """HIPAA-compliant immutable audit logger"""
+    """Immutable audit logger with hash-chain verification"""
 
     def __init__(self, log_path: str = "results/auth_audit.json"):
         self.log_path = log_path

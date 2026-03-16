@@ -104,7 +104,7 @@ class EmailParser:
         metadata["Attachments"] = self._extract_attachments(msg)
         metadata["AttachmentCount"] = len(metadata["Attachments"])
 
-        # === BODY PREVIEW (HIPAA-SAFE: first 50 chars only) ===
+        # === BODY PREVIEW (metadata-only: first 50 chars only) ===
         metadata["BodyPreview"] = body_text[:50] if body_text else ""
 
         # === DIRECTIONALITY ===

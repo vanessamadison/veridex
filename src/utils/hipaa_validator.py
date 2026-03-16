@@ -1,4 +1,4 @@
-# HIPAA Compliance Validator and Immutable Audit Logger
+# Data Minimization Validator and Immutable Audit Logger
 import re
 import hashlib
 import time

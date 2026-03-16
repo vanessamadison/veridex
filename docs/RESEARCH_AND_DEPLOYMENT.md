@@ -280,7 +280,7 @@ For **internal use** without cloud services or external data sharing, the system
 - 🔄 Protecting access (password policy implemented, HTTPS pending Phase 2)
 - ✅ Maintaining accountability (immutable audit logs with hash chain)
 
-**Phase 2** (HTTPS, network binding, database encryption) can be implemented in **2-4 weeks** to achieve production-ready status for internal SOC use.
+**Phase 2** (HTTPS, network binding, database encryption) would be the next step toward internal deployment readiness.
 
 ---
 

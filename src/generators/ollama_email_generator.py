@@ -6,7 +6,7 @@ Generates realistic email metadata (NOT body content) for:
 - Synthetic phishing emails with Defender-style metadata
 - Clean business emails
 - Augmentation of existing sanitized datasets
-- HIPAA-compliant (metadata only, no PHI)
+- Metadata only (no PHI or email body content)
 
 Simulates Microsoft Defender for Office 365 email entity fields.
 """

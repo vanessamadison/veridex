@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ### b. Download the LLM Model
 
-VERIDEX uses a local `mistral` model for HIPAA-compliant analysis. This command downloads the model.
+VERIDEX uses a local `mistral` model for metadata-first analysis without cloud exposure. This command downloads the model.
 
 ```bash
 ollama pull mistral

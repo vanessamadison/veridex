@@ -4,8 +4,12 @@
 
 | Version | Support Status |
 |:---|:---|
-| 1.0.x | ✅ Supported (Current) |
-| < 1.0 | ❌ Not supported |
+| 1.0.x | Supported (Current - Research Phase) |
+| < 1.0 | Not supported |
+
+## Current Maturity
+
+This project is in a **research and internal testing phase**. It is not hardened for production use with sensitive communications or PHI. The security controls described below are implemented for the research prototype and would require significant additional work before any production deployment.
 
 ## Security Features
 
@@ -16,10 +20,9 @@
 - **Account Lockout**: 5 failed attempts triggers 30-minute lockout
 - **No Default Credentials**: Admin password must be set via setup script
 
-### HIPAA Compliance
-- **Metadata-Only Processing**: No access to email body content
-- **Minimum Necessary Standard**: Adheres to 45 CFR 164.502(b)
-- **Zero PHI Exposure**: Only headers and authentication results processed
+### Metadata-Only Processing
+- **No access to email body content**: Only headers and authentication results processed
+- **Minimum Necessary Standard**: Design follows 45 CFR 164.502(b) principles
 - **Local LLM Processing**: No cloud-based content analysis
 - **Audit Logging**: SHA-256 hash-chained tamper detection
 
@@ -31,15 +34,15 @@
 
 ## Deployment Recommendations
 
-### Research/Internal Deployment (Current)
-✅ **Ready for:**
+### Research/Internal Use (Current)
+This prototype is suitable for:
 - Academic research environments
 - Internal testing and validation
 - Proof-of-concept deployments
-- Non-PHI email analysis
+- Analysis of non-sensitive, simulated, or public email data
 
-### Production Deployment (Phase 2 Required)
-⚠️ **Additional requirements for PHI/Production:**
+### Production Deployment (Not Yet Implemented)
+The following would be required before any use involving sensitive communications or PHI:
 - HTTPS/TLS encryption (currently HTTP-only for local dev)
 - Database encryption at rest
 - Multi-factor authentication (MFA)
@@ -47,6 +50,10 @@
 - Network segmentation and firewall rules
 - Regular security audits and penetration testing
 - HIPAA Business Associate Agreement (BAA) compliance
+- Formal risk assessment
+- Incident response plan
+- Breach notification procedures
+- Backup and disaster recovery
 
 ## Initial Setup Security
 
@@ -58,12 +65,12 @@
    ```
    - Generates secure admin password automatically (recommended)
    - OR allows custom password with strength validation
-   - Creates encrypted user store
+   - Creates user store (not committed to version control)
 
 2. **Secure the Password**
-   - Store in password manager (1Password, LastPass, etc.)
+   - Store in password manager
    - Never commit to version control
-   - Rotate every 90 days for production
+   - Rotate regularly
 
 3. **Environment Variables**
    - Copy `.env.example` to `.env`
@@ -75,7 +82,7 @@
 **DO NOT** create public GitHub issues for security vulnerabilities.
 
 Instead:
-1. Email security concerns to: [Your Security Email]
+1. Email security concerns to: security@illapex.com
 2. Include:
    - Description of the vulnerability
    - Steps to reproduce
@@ -93,44 +100,45 @@ Instead:
 
 ### For Operators
 - Change default admin password immediately after setup
-- Enable audit logging: `config.yaml` → `log_all_decisions: true`
+- Enable audit logging: `config.yaml` -> `log_all_decisions: true`
 - Monitor `auth_audit.json` for suspicious activity
 - Restrict network access to internal IPs only
-- Regular password rotation (90-day policy enforced)
 
 ### For Researchers
 - Use test datasets without real PHI
 - Document any modifications to security controls
 - Report findings responsibly
-- Cite security design decisions in publications
 
-## Compliance Statements
+## Compliance Notes (Research Phase)
 
-### HIPAA Compliance (Research Phase)
-- ✅ 45 CFR 164.502(b): Minimum Necessary Standard
-- ✅ 45 CFR 164.306: Security Standards - General Rules
-- ✅ 45 CFR 164.312(a)(1): Access Control
-- ✅ 45 CFR 164.312(d): Person or Entity Authentication
-- ⚠️ 45 CFR 164.312(a)(2)(iv): Encryption required for production
+The following standards informed the design of this prototype. Checkmarks indicate design alignment, not formal certification or audit:
 
-### NIST Cybersecurity Framework
-- ✅ ID.AM: Asset Management (data inventory)
-- ✅ PR.AC: Access Control (RBAC, JWT)
-- ✅ PR.DS: Data Security (metadata-only)
-- ✅ DE.CM: Continuous Monitoring (audit logging)
-- ⚠️ PR.DS-1: Encryption at rest (Phase 2)
+### HIPAA-Aligned Design Principles
+- 45 CFR 164.502(b): Minimum Necessary Standard (metadata-only approach)
+- 45 CFR 164.306: Security Standards - General Rules (access controls implemented)
+- 45 CFR 164.312(a)(1): Access Control (RBAC, JWT)
+- 45 CFR 164.312(d): Person or Entity Authentication (password policies)
+- 45 CFR 164.312(a)(2)(iv): Encryption (not yet implemented; required for production)
+
+### NIST Cybersecurity Framework Alignment
+- ID.AM: Asset Management (data inventory)
+- PR.AC: Access Control (RBAC, JWT)
+- PR.DS: Data Security (metadata-only processing)
+- DE.CM: Continuous Monitoring (audit logging)
+- PR.DS-1: Encryption at rest (not yet implemented; required for production)
 
 ## Security Audit Log
 
 | Date | Version | Change | Impact |
 |:---|:---|:---|:---|
-| 2025-12-03 | 1.0.0 | Removed default credentials | ✅ Eliminates default password risk |
-| 2025-12-03 | 1.0.0 | Added setup script | ✅ Enforces secure password on install |
-| 2025-12-03 | 1.0.0 | Removed institution identifiers | ✅ Genericizes for public release |
-| 2025-12-03 | 1.0.0 | Added comprehensive unit tests | ✅ Validates security controls |
+| 2025-12-03 | 1.0.0 | Removed default credentials | Eliminates default password risk |
+| 2025-12-03 | 1.0.0 | Added setup script | Enforces secure password on install |
+| 2025-12-03 | 1.0.0 | Removed institution identifiers | Genericizes for public release |
+| 2025-12-03 | 1.0.0 | Added comprehensive unit tests | Validates security controls |
+| 2026-03-16 | 1.0.0 | Removed committed user store from history | Eliminates credential exposure in git |
 
 ---
 
-**Last Updated**: December 3, 2025
-**Security Contact**: [Your Contact]
-**Version**: 1.0.0
+**Last Updated**: March 16, 2026
+**Security Contact**: security@illapex.com
+**Version**: 1.0.0 (Research Phase)

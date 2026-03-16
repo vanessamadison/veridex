@@ -73,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial research implementation
 - Ensemble verdict engine (50% LLM + 50% Rules)
-- HIPAA-compliant metadata-only processing
+- Metadata-only processing (HIPAA-aligned design)
 - FastAPI backend with JWT authentication
 - RBAC (Admin, Analyst, Auditor roles)
 - SHA-256 audit logging
@@ -84,7 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version Classification
 
-- **1.0.0**: Public release, production-ready for research/internal use
+- **1.0.0**: Public release, research and internal testing prototype
 - **0.9.x**: Pre-release, research validation phase
 - **Future (2.0.0+)**: Production PHI deployment (HTTPS, encryption, MFA)
 

@@ -223,7 +223,7 @@ def validate_password_strength(password: str) -> Tuple[bool, str]:
 
 ### What This Tool Is NOT:
 
-- A production HIPAA-compliant system (requires Phase 2-4)
+- A production-ready system (requires Phase 2-4 hardening)
 - Ready for real patient data without additional hardening
 - A replacement for enterprise security tools
 - Certified by any regulatory body

@@ -5,7 +5,11 @@
 version: "2025-01"
 last_updated: "2025-01-11"
 
-# Email entity fields currently supported
+# Email entity fields referenced from Microsoft Defender documentation.
+# These are schema definitions for field mapping, not fields used in the
+# simulated public evaluation. Fields like Subject, RecipientsBcc,
+# Attachments[].FileName, and AnalystComments are optional schema references
+# included for completeness and future integration planning.
 email_entity_fields:
 
   # Header information
@@ -97,7 +101,7 @@ feature_updates:
     changes:
       - "Baseline implementation"
       - "All standard MDO email entity fields supported"
-      - "HIPAA-compliant metadata-only processing"
+      - "Metadata-only processing (HIPAA-aligned design)"
 
   # Future updates will be documented here
   # Example:
