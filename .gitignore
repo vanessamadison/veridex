@@ -48,6 +48,7 @@ results/*.csv
 *.log
 auth_audit.json
 data/users.yaml
+config/users.yaml
 
 # Environment variables (contains credentials)
 .env
