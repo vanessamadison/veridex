@@ -720,6 +720,58 @@ async def get_audit_logs(
     }
 
 
+# Allowlisted event types that may be written from the client via POST /audit/event.
+# Anything not in this set gets rejected. Prevents arbitrary log injection.
+ALLOWED_CLIENT_EVENT_TYPES = {
+    "VERDICT_RENDERED",
+    "ANALYST_OVERRIDE",
+    "DASHBOARD_VIEWED",
+    "DATA_EXPORT",
+    "SIMULATION_STARTED",
+    "SIMULATION_STOPPED",
+}
+
+
+class AuditEventRequest(BaseModel):
+    event_type: str
+    details: dict = {}
+
+
+@app.post("/audit/event", tags=["Audit"])
+async def write_audit_event(
+    payload: AuditEventRequest,
+    current_user: TokenData = Depends(get_current_user)
+):
+    """
+    Append a single audit event to the hash-chained log.
+
+    Required for compliance: every verdict the system renders must be
+    immutably recorded with the model, prompt, and rules versions that
+    produced it, plus a SHA-256 hash linked to the previous entry.
+
+    Event types are allowlisted to prevent log injection.
+    """
+    if payload.event_type not in ALLOWED_CLIENT_EVENT_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Event type not permitted: {payload.event_type}"
+        )
+
+    # For VERDICT_RENDERED, ensure compliance fields are present (or stamp defaults)
+    details = dict(payload.details or {})
+    if payload.event_type == "VERDICT_RENDERED":
+        details.setdefault("model_version", "mistral-7b-instruct")
+        details.setdefault("prompt_version", "v1.4")
+        details.setdefault("rules_version", "v0.9")
+
+    # Attribute the event to whichever user is acting. The system itself
+    # logs verdicts under "system" so they are not attributed to a person.
+    actor = "system" if payload.event_type == "VERDICT_RENDERED" else current_user.username
+
+    entry_hash = audit_logger.log_event(payload.event_type, actor, details)
+    return {"status": "logged", "entry_hash": entry_hash}
+
+
 # === EXPORT TRACKING ENDPOINTS ===
 
 class ExportRequest(BaseModel):

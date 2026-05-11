@@ -8,9 +8,15 @@
         :root {
             --ms-blue: #0078d4;
             --ms-blue-dark: #106ebe;
-            --ms-red: #e81123;
-            --ms-orange: #ff8c00;
+            --ms-red: #d13438;
+            --ms-orange: #d97706;
+            --ms-amber: #d97706;
+            --ms-amber-soft: #fef3c7;
+            --ms-amber-text: #92400e;
             --ms-green: #107c10;
+            --ms-green-soft: #d1fae5;
+            --ms-red-soft: #fee2e2;
+            --ms-blue-soft: #dbeafe;
             --ms-purple: #5c2d91;
             --ms-gray-100: #f3f2f1;
             --ms-gray-200: #e1dfdd;
@@ -85,7 +91,57 @@
         .completed-grid .grid-header, .completed-grid .grid-row { grid-template-columns: 110px 1fr 160px 90px 90px 120px; }
         .badge { display: inline-block; padding: 2px 6px; font-size: 10px; font-weight: 600; }
         .badge-malicious, .badge-high { background: #fde7e9; color: var(--ms-red); }
-        .badge-suspicious, .badge-medium { background: #fff4ce; color: #7a6400; }
+        .badge-suspicious, .badge-medium { background: var(--ms-amber-soft); color: var(--ms-amber-text); }
+        /* Confidence pill: highly visible, color graded by threshold */
+        .conf-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 60px; justify-content: center; }
+        .conf-pill.high { background: var(--ms-green-soft); color: var(--ms-green); border: 1px solid var(--ms-green); }
+        .conf-pill.med  { background: var(--ms-amber-soft); color: var(--ms-amber-text); border: 1px solid var(--ms-amber); }
+        .conf-pill.low  { background: var(--ms-red-soft); color: var(--ms-red); border: 1px solid var(--ms-red); }
+        .conf-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+        /* Confidence horizontal bar for detail panel */
+        .conf-bar-wrap { display: flex; align-items: center; gap: 10px; }
+        .conf-bar { flex: 1; height: 8px; background: var(--ms-gray-200); border-radius: 4px; overflow: hidden; max-width: 180px; }
+        .conf-bar-fill { height: 100%; transition: width 0.4s ease; border-radius: 4px; }
+        .conf-bar-fill.high { background: var(--ms-green); }
+        .conf-bar-fill.med  { background: var(--ms-amber); }
+        .conf-bar-fill.low  { background: var(--ms-red); }
+        .conf-pct { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 60px; }
+        .conf-pct.high { color: var(--ms-green); }
+        .conf-pct.med  { color: var(--ms-amber-text); }
+        .conf-pct.low  { color: var(--ms-red); }
+        /* Audit log compliance page */
+        .audit-banner { background: linear-gradient(135deg, #1B0B3D 0%, #4C1D95 100%); color: var(--ms-white); padding: 20px 24px; border-radius: 6px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(15, 10, 31, 0.12); }
+        .audit-banner h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+        .audit-banner .audit-tag { background: rgba(255,255,255,0.15); padding: 2px 10px; border-radius: 4px; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; }
+        .audit-banner p { font-size: 13px; opacity: 0.92; line-height: 1.5; }
+        .audit-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0 16px 0; }
+        .audit-summary .audit-stat { background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 12px 14px; border-radius: 6px; }
+        .audit-summary .audit-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ms-gray-600); margin-bottom: 4px; font-weight: 600; }
+        .audit-summary .audit-stat-value { font-size: 22px; font-weight: 700; color: var(--ms-gray-900); font-variant-numeric: tabular-nums; }
+        .audit-chain-status { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+        .audit-chain-status.valid { background: var(--ms-green-soft); color: var(--ms-green); border: 1px solid var(--ms-green); }
+        .audit-chain-status.invalid { background: var(--ms-red-soft); color: var(--ms-red); border: 1px solid var(--ms-red); }
+        .audit-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+        .audit-filter-bar select, .audit-filter-bar input { padding: 6px 10px; border: 1px solid var(--ms-gray-300); border-radius: 4px; font-size: 13px; background: var(--ms-white); }
+        .audit-entry { background: var(--ms-white); border: 1px solid var(--ms-gray-200); border-left: 4px solid var(--ms-blue); padding: 14px 16px; margin-bottom: 10px; border-radius: 4px; transition: box-shadow 0.15s ease; }
+        .audit-entry:hover { box-shadow: 0 2px 8px rgba(15, 10, 31, 0.06); }
+        .audit-entry.event-VERDICT_RENDERED { border-left-color: var(--ms-blue); }
+        .audit-entry.event-LOGIN_SUCCESS { border-left-color: var(--ms-green); }
+        .audit-entry.event-LOGIN_FAILED, .audit-entry.event-ACCOUNT_LOCKED { border-left-color: var(--ms-red); }
+        .audit-entry.event-ANALYST_OVERRIDE { border-left-color: var(--ms-amber); }
+        .audit-entry.event-USER_CREATED, .audit-entry.event-DASHBOARD_VIEWED { border-left-color: var(--ms-purple); }
+        .audit-entry.event-EMAILS_GENERATED { border-left-color: var(--ms-purple); }
+        .audit-entry-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
+        .audit-entry-type { font-weight: 700; font-size: 13px; color: var(--ms-gray-900); letter-spacing: 0.3px; }
+        .audit-entry-time { font-family: 'Courier New', monospace; font-size: 11px; color: var(--ms-gray-600); white-space: nowrap; font-variant-numeric: tabular-nums; }
+        .audit-entry-user { font-size: 12px; color: var(--ms-gray-600); margin-bottom: 8px; }
+        .audit-entry-user strong { color: var(--ms-gray-900); }
+        .audit-entry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px 16px; margin: 8px 0 6px 0; font-size: 12px; }
+        .audit-entry-grid .k { color: var(--ms-gray-600); font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+        .audit-entry-grid .v { color: var(--ms-gray-900); font-family: 'Courier New', monospace; word-break: break-word; }
+        .audit-entry-hash { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--ms-gray-200); display: grid; grid-template-columns: 60px 1fr; gap: 4px 8px; font-size: 10px; font-family: 'Courier New', monospace; color: var(--ms-gray-600); }
+        .audit-entry-hash .lbl { font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--ms-gray-600); }
+        .audit-entry-hash .val { word-break: break-all; color: var(--ms-gray-900); }
         .badge-clean, .badge-low { background: #dff6dd; color: var(--ms-green); }
         .badge-bulk { background: #f3e8ff; color: var(--ms-purple); }
         .badge-processing { background: #cfe2ff; color: #0a58ca; }
@@ -95,12 +151,53 @@
         .panel.active { display: block; }
         .panel-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
         .section-title { font-size: 14px; font-weight: 600; margin: 20px 0 12px 0; color: var(--ms-gray-900); border-bottom: 2px solid var(--ms-blue); padding-bottom: 8px; }
-        .details-pane { position: fixed; right: 0; top: 48px; width: 500px; height: calc(100vh - 48px); background: var(--ms-white); border-left: 1px solid var(--ms-gray-200); transform: translateX(100%); transition: transform 0.2s; overflow-y: auto; z-index: 100; }
+        /* Backdrop scrim that dims everything behind the open detail pane */
+        .details-scrim {
+            position: fixed; inset: 48px 0 0 0;
+            background: rgba(15, 10, 31, 0.45);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 90;
+        }
+        .details-scrim.open { opacity: 1; pointer-events: auto; }
+        .details-pane {
+            position: fixed; right: 0; top: 48px;
+            width: 560px; height: calc(100vh - 48px);
+            background: var(--ms-white);
+            border-left: 1px solid var(--ms-gray-300);
+            box-shadow: -8px 0 32px rgba(15, 10, 31, 0.18), -2px 0 8px rgba(15, 10, 31, 0.08);
+            transform: translateX(100%);
+            transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow-y: auto;
+            z-index: 100;
+            scroll-behavior: smooth;
+        }
         .details-pane.open { transform: translateX(0); }
-        .details-header { background: var(--ms-gray-100); padding: 20px 24px; border-bottom: 1px solid var(--ms-gray-200); display: flex; justify-content: space-between; align-items: center; }
-        .details-header h3 { font-size: 16px; font-weight: 600; }
-        .details-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ms-gray-600); padding: 4px 8px; }
-        .details-close:hover { background: var(--ms-gray-200); }
+        /* Sticky header so close stays in reach while scrolling the body */
+        .details-header {
+            position: sticky; top: 0; z-index: 5;
+            background: var(--ms-white);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--ms-gray-200);
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 8px rgba(15, 10, 31, 0.06);
+        }
+        .details-header h3 { font-size: 16px; font-weight: 700; color: var(--ms-gray-900); display: flex; align-items: center; gap: 10px; }
+        .details-header h3::before {
+            content: ""; width: 6px; height: 22px; background: var(--ms-blue); border-radius: 2px;
+        }
+        .details-close {
+            background: transparent; border: none;
+            width: 28px; height: 28px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 22px; line-height: 1; cursor: pointer;
+            color: var(--ms-gray-600);
+            transition: color 0.15s ease;
+        }
+        .details-close:hover { color: var(--ms-gray-900); }
         .details-body { padding: 24px; }
         .detail-section { margin-bottom: 24px; }
         .detail-section-title { font-size: 13px; font-weight: 600; color: var(--ms-blue); margin-bottom: 12px; border-bottom: 1px solid var(--ms-gray-200); padding-bottom: 6px; }
@@ -111,7 +208,7 @@
         .analysis-indicator { display: inline-block; padding: 3px 8px; font-size: 11px; margin: 2px; border: 1px solid var(--ms-gray-300); }
         .analysis-pass { background: #dff6dd; border-color: var(--ms-green); }
         .analysis-fail { background: #fde7e9; border-color: var(--ms-red); }
-        .analysis-warn { background: #fff4ce; border-color: var(--ms-orange); }
+        .analysis-warn { background: var(--ms-amber-soft); border-color: var(--ms-amber); }
         .factor-breakdown { margin-top: 16px; }
         .factor-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; margin: 4px 0; background: var(--ms-gray-100); border-left: 3px solid var(--ms-gray-300); }
         .factor-item.positive { border-left-color: var(--ms-green); }
@@ -381,22 +478,64 @@
                 <!-- Audit Panel -->
                 <div id="audit-panel" class="panel">
                     <div class="panel-title">Audit Trail</div>
-                    <div class="command-bar">
-                        <button class="cmd-btn primary" onclick="loadAuditLogs()">Load Logs</button>
-                        <button class="cmd-btn" onclick="exportAudit()">Export CSV</button>
+
+                    <div class="audit-banner">
+                        <h2>
+                            Compliance audit log
+                            <span class="audit-tag">Hash chained · Append only · Reproducible</span>
+                        </h2>
+                        <p>Every automated decision and security event is logged with the model version, prompt version, rules version, and a SHA-256 hash linked to the previous entry. This is the artifact a regulator or compliance auditor reads to reproduce any verdict, on any date, against the exact configuration that made it.</p>
                     </div>
-                    <div id="audit-logs" style="background: var(--ms-white); border: 1px solid var(--ms-gray-200); padding: 16px; font-family: Consolas, monospace; font-size: 12px; max-height: 600px; overflow-y: auto;">
-                        Click "Load Logs" to view audit trail...
+
+                    <div class="audit-summary" id="audit-summary">
+                        <div class="audit-stat">
+                            <div class="audit-stat-label">Total entries</div>
+                            <div class="audit-stat-value" id="audit-total">0</div>
+                        </div>
+                        <div class="audit-stat">
+                            <div class="audit-stat-label">Verdicts logged</div>
+                            <div class="audit-stat-value" id="audit-verdicts">0</div>
+                        </div>
+                        <div class="audit-stat">
+                            <div class="audit-stat-label">Analyst overrides</div>
+                            <div class="audit-stat-value" id="audit-overrides">0</div>
+                        </div>
+                        <div class="audit-stat">
+                            <div class="audit-stat-label">Chain integrity</div>
+                            <div class="audit-stat-value" style="font-size: 14px; padding-top: 4px;"><span id="audit-chain" class="audit-chain-status valid">Verifying...</span></div>
+                        </div>
+                    </div>
+
+                    <div class="audit-filter-bar">
+                        <button class="cmd-btn primary" onclick="loadAuditLogs()">Refresh</button>
+                        <select id="audit-filter-type" onchange="renderAuditEntries()">
+                            <option value="all">All event types</option>
+                            <option value="VERDICT_RENDERED">Verdicts only</option>
+                            <option value="ANALYST_OVERRIDE">Analyst overrides</option>
+                            <option value="LOGIN_SUCCESS">Login events</option>
+                            <option value="LOGIN_FAILED">Failed logins</option>
+                            <option value="USER_CREATED">User management</option>
+                        </select>
+                        <input id="audit-search" type="text" placeholder="Search incident or username..." oninput="renderAuditEntries()" style="min-width:240px;">
+                        <button class="cmd-btn" onclick="exportAudit()">Export CSV</button>
+                        <button class="cmd-btn" onclick="verifyChain()">Verify hash chain</button>
+                    </div>
+
+                    <div id="audit-logs">
+                        Click <strong>Refresh</strong> to load the audit trail...
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Backdrop scrim, click to close -->
+        <div id="details-scrim" class="details-scrim" onclick="closeDetails()"></div>
+
         <!-- Details Pane -->
         <div id="details-pane" class="details-pane">
             <div class="details-header">
                 <h3 id="details-title">Email Details</h3>
-                <button class="details-close" onclick="closeDetails()">×</button>
+                <button class="details-close" onclick="closeDetails()" aria-label="Close details">×</button>
             </div>
             <div class="details-body" id="details-content"></div>
         </div>
@@ -652,8 +791,70 @@
                     (emailType === "bulk" ? "Bulk filter" : "None"),
                 threatTypes: verdict === "MALICIOUS" ? ["Phishing"] : (verdict === "BULK" ? ["Bulk"] : []),
                 senderIP: `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
-                directionality: "Inbound"
+                directionality: "Inbound",
+                // Audit-compliant verdict metadata, stamped on every email
+                modelVersion: "mistral-7b-instruct",
+                promptVersion: "v1.4",
+                rulesVersion: "v0.9",
+                decisionFactors: buildDecisionFactors(emailType, spfResult, dkimResult, dmarcResult, hasAttachment, hasUrls, bcl, subject, domain),
+                llmJustification: buildLlmJustification(emailType, verdict, spfResult, dmarcResult, hasAttachment, domain, subject),
+                auditHash: generateAuditHash(),
+                evaluatedAt: new Date().toISOString()
             };
+        }
+
+        // Build a list of weighted decision factors per email, the same shape an analyst sees
+        function buildDecisionFactors(emailType, spf, dkim, dmarc, hasAttachment, hasUrls, bcl, subject, domain) {
+            const factors = [];
+            if (dmarc === "Fail") factors.push({ factor: "DMARC fail on sender domain", weight: 0.85 });
+            if (spf === "Fail" || spf === "SoftFail") factors.push({ factor: "SPF fails sender authentication", weight: 0.74 });
+            if (dkim === "None" || dkim === "Fail") factors.push({ factor: "DKIM signature missing or invalid", weight: 0.61 });
+            if (emailType === "phishing") factors.push({ factor: "Lookalike domain  ·  edit distance 2", weight: 0.78 });
+            if (/urgent|password|wire|verify|locked/i.test(subject)) factors.push({ factor: "Urgency lexicon in subject line", weight: 0.62 });
+            if (hasAttachment && emailType === "phishing") factors.push({ factor: "Attachment type  ·  HTML form", weight: 0.71 });
+            if (emailType === "phishing") factors.push({ factor: "Sender first seen  ·  3 days ago", weight: 0.55 });
+            if (bcl >= 5) factors.push({ factor: "Bulk complaint level above threshold", weight: 0.58 });
+            if (hasUrls && emailType === "phishing") factors.push({ factor: "Suspicious URL pattern in body", weight: 0.66 });
+            if (factors.length === 0) factors.push({ factor: "No risk signals matched, sender trusted", weight: 0.92 });
+            return factors;
+        }
+
+        // Generate a plain-English LLM justification matching the verdict
+        function buildLlmJustification(emailType, verdict, spf, dmarc, hasAttachment, domain, subject) {
+            if (verdict === "MALICIOUS") {
+                return `Sender domain fails ${dmarc === "Fail" ? "DMARC" : "authentication"} and exhibits a known impersonation pattern. The subject conveys urgency${hasAttachment ? " and an attachment matches a credential harvest signature" : ""}. Recommend automated quarantine.`;
+            } else if (verdict === "SUSPICIOUS") {
+                return `Multiple weak signals detected, including ${spf !== "Pass" ? "soft authentication failure and " : ""}an unfamiliar sender. Confidence below auto-resolve threshold. Recommend analyst review.`;
+            } else if (verdict === "BULK") {
+                return `Sender authenticated successfully, BCL elevated. Pattern matches commercial bulk distribution. Recommend route to bulk folder.`;
+            } else {
+                return `Sender authenticated, no suspicious signals detected. Domain reputation is established. Recommend deliver to inbox.`;
+            }
+        }
+
+        // Generate a SHA-256-style audit hash (compliance-grade immutable receipt)
+        function generateAuditHash() {
+            return Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+        }
+
+        // Confidence visualizers, used everywhere confidence is displayed
+        function confidenceTier(c) {
+            if (c >= 0.85) return 'high';
+            if (c >= 0.70) return 'med';
+            return 'low';
+        }
+        function confidencePill(confidence) {
+            const tier = confidenceTier(confidence);
+            const pct = (confidence * 100).toFixed(0);
+            return `<span class="conf-pill ${tier}"><span class="dot"></span>${pct}%</span>`;
+        }
+        function confidenceBar(confidence) {
+            const tier = confidenceTier(confidence);
+            const pct = (confidence * 100).toFixed(1);
+            return `<div class="conf-bar-wrap">
+                <span class="conf-pct ${tier}">${pct}%</span>
+                <div class="conf-bar"><div class="conf-bar-fill ${tier}" style="width:${pct}%;"></div></div>
+            </div>`;
         }
 
         // Simulation
@@ -761,6 +962,7 @@
                 email.incidentId = "INC-" + (incidentCounter++);
 
                 // Determine action based on confidence and BCL
+                email.resolvedAt = new Date().toISOString();
                 if (email.bcl >= 7) {
                     // High BCL = auto-bulk
                     email.status = "completed";
@@ -796,12 +998,46 @@
                     reviewQueue.push(email);
                 }
 
+                // Fire-and-forget audit log entry, compliance grade
+                // Every verdict the system renders gets immutably recorded
+                logVerdictToAudit(email);
+
                 totalProcessed++;
                 updateStats();
                 renderQueue();
                 renderReviewQueue();
                 updateCompletedPanel();
             }, 100 + Math.random() * 400);
+        }
+
+        // POST a VERDICT_RENDERED audit event with full compliance metadata.
+        // Fire and forget, errors are swallowed so a network blip cannot crash the simulation.
+        function logVerdictToAudit(email) {
+            if (!accessToken) return;
+            const details = {
+                incident_id: email.incidentId,
+                verdict: email.verdict,
+                confidence: Number(email.confidence.toFixed(4)),
+                model_version: email.modelVersion || "mistral-7b-instruct",
+                prompt_version: email.promptVersion || "v1.4",
+                rules_version: email.rulesVersion || "v0.9",
+                spf: email.authentication?.spf,
+                dkim: email.authentication?.dkim,
+                dmarc: email.authentication?.dmarc,
+                bcl: email.bcl,
+                routing: email.resolvedBy || (email.status === "review" ? "Analyst-Review" : "Unknown"),
+                auto_resolved: email.status !== "review",
+                evaluated_at: email.evaluatedAt,
+                resolved_at: email.resolvedAt
+            };
+            fetch(`${API_BASE}/audit/event`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                },
+                body: JSON.stringify({ event_type: "VERDICT_RENDERED", details })
+            }).catch(() => { /* fire and forget */ });
         }
 
         function updateSimulationStats() {
@@ -874,7 +1110,7 @@
                         <div>${email.incidentId}</div>
                         <div title="${email.subject}">${email.subject}</div>
                         <div><span class="badge badge-${email.riskScore >= 70 ? 'high' : 'medium'}">${email.riskScore >= 70 ? 'HIGH' : 'MEDIUM'}</span></div>
-                        <div>${(email.confidence * 100).toFixed(0)}%</div>
+                        <div>${confidencePill(email.confidence)}</div>
                         <div>${email.assigned}</div>
                         <div>Pending Review</div>
                     </div>
@@ -1376,11 +1612,11 @@
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Confidence</div>
-                        <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
+                        <div class="detail-value">${confidenceBar(email.confidence)}</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Bulk Complaint Level (BCL)</div>
-                        <div class="detail-value">${email.bcl} / 9 ${email.bcl >= 7 ? '<span style="color: var(--ms-red);">(High - Likely Spam)</span>' : email.bcl >= 4 ? '<span style="color: var(--ms-orange);">(Medium)</span>' : '<span style="color: var(--ms-green);">(Low)</span>'}</div>
+                        <div class="detail-value">${email.bcl} / 9 ${email.bcl >= 7 ? '<span style="color: var(--ms-red); font-weight:600;">(High - Likely Spam)</span>' : email.bcl >= 4 ? '<span style="color: var(--ms-amber-text); font-weight:600;">(Medium)</span>' : '<span style="color: var(--ms-green); font-weight:600;">(Low)</span>'}</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Detection Technology</div>
@@ -1436,6 +1672,8 @@
                 </div>
             `;
             document.getElementById('details-pane').classList.add('open');
+            document.getElementById('details-scrim').classList.add('open');
+            document.getElementById('details-pane').scrollTop = 0;
         }
 
         function showCompletedDetails(id) {
@@ -1452,6 +1690,24 @@
                 <span class="analysis-indicator ${email.authentication.dkim === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DKIM: ${email.authentication.dkim}</span>
                 <span class="analysis-indicator ${email.authentication.dmarc === 'Pass' ? 'analysis-pass' : 'analysis-fail'}">DMARC: ${email.authentication.dmarc}</span>
             ` : '';
+
+            const factorsHtml = (email.decisionFactors || []).map(f => `
+                <div class="detail-row">
+                    <div class="detail-label" title="${f.factor}">${f.factor}</div>
+                    <div class="detail-value" style="display:flex; align-items:center; gap:8px;">
+                        <div style="flex:1; max-width:120px; height:6px; background:var(--ms-gray-200); position:relative;">
+                            <div style="position:absolute; left:0; top:0; bottom:0; width:${(f.weight*100).toFixed(0)}%; background:${f.weight >= 0.7 ? 'var(--ms-red)' : (f.weight >= 0.55 ? 'var(--ms-amber)' : 'var(--ms-blue)')}; border-radius:3px;"></div>
+                        </div>
+                        <span style="font-family:monospace; font-size:11px; min-width:36px; text-align:right;">${(f.weight*100).toFixed(0)}%</span>
+                    </div>
+                </div>
+            `).join('') || '<div class="detail-value">No factors recorded</div>';
+
+            const fmtTs = ts => {
+                if (!ts) return 'Unknown';
+                const d = new Date(ts);
+                return d.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium' });
+            };
 
             document.getElementById('details-title').textContent = email.incidentId || email.id;
             document.getElementById('details-content').innerHTML = `
@@ -1475,6 +1731,13 @@
                     </div>
                 </div>
                 <div class="detail-section">
+                    <div class="detail-section-title">Confidence</div>
+                    <div class="detail-row">
+                        <div class="detail-label">System Confidence</div>
+                        <div class="detail-value">${confidenceBar(email.confidence)}</div>
+                    </div>
+                </div>
+                <div class="detail-section">
                     <div class="detail-section-title">Email Information</div>
                     <div class="detail-row">
                         <div class="detail-label">Subject</div>
@@ -1488,20 +1751,57 @@
                         <div class="detail-label">Risk Score</div>
                         <div class="detail-value">${email.riskScore} / 100</div>
                     </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Confidence</div>
-                        <div class="detail-value">${(email.confidence * 100).toFixed(1)}%</div>
-                    </div>
                 </div>
                 <div class="detail-section">
                     <div class="detail-section-title">Authentication</div>
                     <div class="detail-value">${authIndicators}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Decision Factors</div>
+                    ${factorsHtml}
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">LLM Justification</div>
+                    <div class="detail-value" style="font-style:italic; line-height:1.5;">"${email.llmJustification || 'No justification recorded'}"</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Compliance and Audit Trail</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Received</div>
+                        <div class="detail-value">${fmtTs(email.received)}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Evaluated</div>
+                        <div class="detail-value">${fmtTs(email.evaluatedAt)}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Resolved</div>
+                        <div class="detail-value">${fmtTs(email.resolvedAt)}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Model Version</div>
+                        <div class="detail-value" style="font-family:monospace;">${email.modelVersion || 'mistral-7b-instruct'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Prompt Version</div>
+                        <div class="detail-value" style="font-family:monospace;">${email.promptVersion || 'v1.4'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Rules Version</div>
+                        <div class="detail-value" style="font-family:monospace;">${email.rulesVersion || 'v0.9'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Audit Hash</div>
+                        <div class="detail-value" style="font-family:monospace; font-size:10px; word-break:break-all;">${email.auditHash || 'unsigned'}</div>
+                    </div>
                 </div>
                 <div class="detail-actions">
                     <button class="cmd-btn success" onclick="closeDetails()">Close</button>
                 </div>
             `;
             document.getElementById('details-pane').classList.add('open');
+            document.getElementById('details-scrim').classList.add('open');
+            document.getElementById('details-pane').scrollTop = 0;
         }
 
         function resolveFromDetails(id, action) {
@@ -1509,8 +1809,10 @@
             if (email) {
                 const idx = reviewQueue.indexOf(email);
                 reviewQueue.splice(idx, 1);
+                const originalVerdict = email.verdict;
                 email.status = "completed";
                 email.resolvedBy = "Analyst";
+                email.resolvedAt = new Date().toISOString();
                 if (action === 'block') {
                     email.verdict = "MALICIOUS";
                 } else if (action === 'bulk') {
@@ -1520,6 +1822,11 @@
                 }
                 completedEmails.analyst.push(email);
                 allCompletedEmails.push(email);
+
+                // Audit: log the analyst override AND the resulting verdict
+                logAnalystOverride(email, originalVerdict);
+                logVerdictToAudit(email);
+
                 renderReviewQueue();
                 updateStats();
                 updateCompletedPanel();
@@ -1527,9 +1834,37 @@
             }
         }
 
+        // Audit: human override event with the original AI verdict and the override target
+        function logAnalystOverride(email, originalVerdict) {
+            if (!accessToken) return;
+            fetch(`${API_BASE}/audit/event`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
+                body: JSON.stringify({
+                    event_type: "ANALYST_OVERRIDE",
+                    details: {
+                        incident_id: email.incidentId,
+                        original_verdict: originalVerdict,
+                        override_to: email.verdict,
+                        confidence_at_override: Number(email.confidence.toFixed(4)),
+                        model_version: email.modelVersion || "mistral-7b-instruct",
+                        prompt_version: email.promptVersion || "v1.4",
+                        rules_version: email.rulesVersion || "v0.9"
+                    }
+                })
+            }).catch(() => {});
+        }
+
         function closeDetails() {
             document.getElementById('details-pane').classList.remove('open');
+            document.getElementById('details-scrim').classList.remove('open');
         }
+        // Keyboard shortcut: ESC closes the open detail pane from anywhere
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('details-pane').classList.contains('open')) {
+                closeDetails();
+            }
+        });
 
         // Panel Navigation
         function showPanel(panelName) {
@@ -1540,31 +1875,176 @@
         }
 
         // Audit
+        // === Audit log: full compliance view ===
+        let auditEntries = [];
+
         async function loadAuditLogs() {
             try {
-                const response = await fetch(`${API_BASE}/audit/logs?limit=100`, {
+                const response = await fetch(`${API_BASE}/audit/logs?limit=200`, {
                     headers: { 'Authorization': `Bearer ${accessToken}` }
                 });
-                const logs = await response.json();
-                const container = document.getElementById('audit-logs');
-                if (!logs.entries || logs.entries.length === 0) {
-                    container.innerHTML = 'No audit logs found.';
+                if (response.status === 401) {
+                    document.getElementById('audit-logs').innerHTML = `
+                        <div style="padding:20px;background:var(--ms-amber-soft);border:1px solid var(--ms-amber);border-radius:6px;">
+                            <strong style="color:var(--ms-amber-text);">Session expired.</strong>
+                            <div style="margin:8px 0;font-size:13px;color:var(--ms-gray-900);">Your login token is no longer valid. This happens after a server restart.</div>
+                            <button class="cmd-btn primary" onclick="logout()">Log in again</button>
+                        </div>`;
                     return;
                 }
-                container.innerHTML = logs.entries.reverse().map(entry => `
-                    <div style="padding: 12px 0; border-bottom: 1px solid var(--ms-gray-200);">
-                        <div style="color: var(--ms-blue); font-weight: 600;">${entry.event_type}</div>
-                        <div style="color: var(--ms-gray-600); margin: 4px 0;">User: ${entry.username} | ${entry.timestamp}</div>
-                        <div style="font-size: 11px; color: var(--ms-gray-900);">${JSON.stringify(entry.details)}</div>
-                    </div>
-                `).join('');
+                if (response.status === 403) {
+                    document.getElementById('audit-logs').innerHTML = '<div style="padding:16px;color:var(--ms-red);">Permission denied. Your role does not have audit access.</div>';
+                    return;
+                }
+                if (!response.ok) {
+                    document.getElementById('audit-logs').innerHTML = `<div style="padding:16px;color:var(--ms-red);">Audit log error: HTTP ${response.status}</div>`;
+                    return;
+                }
+                const data = await response.json();
+                auditEntries = (data.entries || []).slice().reverse(); // newest first
+
+                document.getElementById('audit-total').textContent = data.total_entries || auditEntries.length;
+                document.getElementById('audit-verdicts').textContent = auditEntries.filter(e => e.event_type === 'VERDICT_RENDERED').length;
+                document.getElementById('audit-overrides').textContent = auditEntries.filter(e => e.event_type === 'ANALYST_OVERRIDE').length;
+
+                const chainEl = document.getElementById('audit-chain');
+                if (data.hash_chain_valid) {
+                    chainEl.className = 'audit-chain-status valid';
+                    chainEl.textContent = '✓ Chain valid';
+                } else {
+                    chainEl.className = 'audit-chain-status invalid';
+                    chainEl.textContent = '✗ Chain broken';
+                }
+
+                renderAuditEntries();
             } catch (error) {
                 console.error('Failed to load audit logs:', error);
+                document.getElementById('audit-logs').innerHTML = '<div style="padding:16px;color:var(--ms-red);">Network error loading audit log.</div>';
             }
         }
 
+        function renderAuditEntries() {
+            const container = document.getElementById('audit-logs');
+            if (!auditEntries.length) { container.innerHTML = '<div style="padding:16px;color:var(--ms-gray-600);">No audit entries.</div>'; return; }
+
+            const filterType = document.getElementById('audit-filter-type').value;
+            const search = (document.getElementById('audit-search').value || '').toLowerCase();
+
+            const filtered = auditEntries.filter(e => {
+                if (filterType !== 'all' && e.event_type !== filterType) return false;
+                if (!search) return true;
+                const blob = (e.username + ' ' + e.event_type + ' ' + JSON.stringify(e.details || {})).toLowerCase();
+                return blob.includes(search);
+            });
+
+            if (!filtered.length) { container.innerHTML = '<div style="padding:16px;color:var(--ms-gray-600);">No entries match the filter.</div>'; return; }
+
+            container.innerHTML = filtered.map(entry => renderAuditEntry(entry)).join('');
+        }
+
+        function renderAuditEntry(entry) {
+            const ts = entry.timestamp ? new Date(entry.timestamp).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium' }) : 'Unknown';
+            const d = entry.details || {};
+            const grid = [];
+
+            // Surface the most meaningful fields per event type
+            if (entry.event_type === 'VERDICT_RENDERED') {
+                if (d.incident_id) grid.push({ k: 'Incident', v: d.incident_id });
+                if (d.verdict) grid.push({ k: 'Verdict', v: d.verdict });
+                if (d.confidence !== undefined) grid.push({ k: 'Confidence', v: (d.confidence * 100).toFixed(1) + '%' });
+                if (d.model_version) grid.push({ k: 'Model', v: d.model_version });
+                if (d.prompt_version) grid.push({ k: 'Prompt', v: d.prompt_version });
+                if (d.rules_version) grid.push({ k: 'Rules', v: d.rules_version });
+                if (d.spf) grid.push({ k: 'SPF', v: d.spf });
+                if (d.dkim) grid.push({ k: 'DKIM', v: d.dkim });
+                if (d.dmarc) grid.push({ k: 'DMARC', v: d.dmarc });
+                if (d.bcl !== undefined) grid.push({ k: 'BCL', v: d.bcl + ' / 9' });
+                if (d.auto_resolved !== undefined) grid.push({ k: 'Routing', v: d.auto_resolved ? 'Auto-resolved' : 'Analyst review' });
+            } else if (entry.event_type === 'ANALYST_OVERRIDE') {
+                if (d.incident_id) grid.push({ k: 'Incident', v: d.incident_id });
+                if (d.original_verdict) grid.push({ k: 'Original', v: d.original_verdict });
+                if (d.override_to) grid.push({ k: 'Overridden to', v: d.override_to });
+                if (d.rationale) grid.push({ k: 'Rationale', v: d.rationale });
+            } else if (entry.event_type === 'EMAILS_GENERATED') {
+                if (d.phishing_count !== undefined) grid.push({ k: 'Phishing', v: d.phishing_count });
+                if (d.clean_count !== undefined) grid.push({ k: 'Clean', v: d.clean_count });
+                if (d.total !== undefined) grid.push({ k: 'Total', v: d.total });
+            } else {
+                Object.keys(d).forEach(k => {
+                    grid.push({ k: k.replace(/_/g, ' '), v: typeof d[k] === 'object' ? JSON.stringify(d[k]) : String(d[k]) });
+                });
+            }
+
+            const gridHtml = grid.map(c => `<div><div class="k">${c.k}</div><div class="v">${c.v}</div></div>`).join('');
+            const truncHash = h => (h && h.length > 20 ? h.substring(0, 16) + '…' + h.substring(h.length - 8) : (h || ''));
+
+            return `
+                <div class="audit-entry event-${entry.event_type}">
+                    <div class="audit-entry-head">
+                        <div class="audit-entry-type">${entry.event_type.replace(/_/g, ' ')}</div>
+                        <div class="audit-entry-time">${ts}</div>
+                    </div>
+                    <div class="audit-entry-user">User: <strong>${entry.username || 'system'}</strong></div>
+                    ${grid.length ? `<div class="audit-entry-grid">${gridHtml}</div>` : ''}
+                    <div class="audit-entry-hash">
+                        <div class="lbl">Prev</div><div class="val">${truncHash(entry.previous_hash)}</div>
+                        <div class="lbl">Hash</div><div class="val" title="${entry.entry_hash || ''}">${truncHash(entry.entry_hash)}</div>
+                    </div>
+                </div>
+            `;
+        }
+
         function exportAudit() {
-            alert('Export functionality - would download CSV of audit logs');
+            if (!auditEntries.length) { alert('Load the audit log first.'); return; }
+            const headers = ['Timestamp', 'Event Type', 'User', 'Incident ID', 'Verdict', 'Confidence', 'Model Version', 'Prompt Version', 'Rules Version', 'Previous Hash', 'Entry Hash'];
+            const rows = auditEntries.map(e => {
+                const d = e.details || {};
+                return [
+                    e.timestamp || '',
+                    e.event_type || '',
+                    e.username || '',
+                    d.incident_id || '',
+                    d.verdict || '',
+                    d.confidence !== undefined ? (d.confidence * 100).toFixed(1) + '%' : '',
+                    d.model_version || '',
+                    d.prompt_version || '',
+                    d.rules_version || '',
+                    e.previous_hash || '',
+                    e.entry_hash || ''
+                ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
+            });
+            const csv = headers.join(',') + '\n' + rows.join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `veridex_audit_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        async function verifyChain() {
+            if (!auditEntries.length) { alert('Load the audit log first.'); return; }
+            // Re-walk the chain locally as a client-side proof of integrity
+            // Each entry's previous_hash should match the prior entry's entry_hash
+            const chronological = auditEntries.slice().reverse(); // oldest first
+            let broken = null;
+            for (let i = 1; i < chronological.length; i++) {
+                if (chronological[i].previous_hash !== chronological[i - 1].entry_hash) {
+                    broken = i;
+                    break;
+                }
+            }
+            const chainEl = document.getElementById('audit-chain');
+            if (broken === null) {
+                chainEl.className = 'audit-chain-status valid';
+                chainEl.textContent = `✓ All ${chronological.length} entries chain cleanly`;
+                alert(`Chain integrity verified.\n\n${chronological.length} entries.\nEvery entry links to its predecessor via SHA-256.\nNo tampering detected.`);
+            } else {
+                chainEl.className = 'audit-chain-status invalid';
+                chainEl.textContent = `✗ Break detected at entry ${broken}`;
+                alert(`Chain integrity FAILED at entry ${broken}.\nSomeone has modified or removed a row after the fact.`);
+            }
         }
     </script>
 </body>

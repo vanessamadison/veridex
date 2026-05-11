@@ -28,9 +28,25 @@ import yaml
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
 # JWT Settings
-SECRET_KEY = os.environ.get("JWT_SECRET_KEY", Fernet.generate_key().decode())
+# Persist the secret across server restarts so tokens stay valid through rehearsal and demo
+def _load_or_create_secret():
+    env_secret = os.environ.get("JWT_SECRET_KEY")
+    if env_secret:
+        return env_secret
+    secret_path = os.path.join("data", ".jwt_secret")
+    if os.path.exists(secret_path):
+        with open(secret_path, "r") as f:
+            return f.read().strip()
+    os.makedirs("data", exist_ok=True)
+    new_secret = Fernet.generate_key().decode()
+    with open(secret_path, "w") as f:
+        f.write(new_secret)
+    os.chmod(secret_path, 0o600)
+    return new_secret
+
+SECRET_KEY = _load_or_create_secret()
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 480  # 8 hours: covers a full demo + rehearsal day
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 # Security Settings
@@ -361,7 +377,7 @@ def check_permission(token_data: TokenData, permission: str) -> bool:
 class UserStore:
     """File-based user store with security metadata"""
 
-    def __init__(self, store_path: str = "config/users.yaml"):
+    def __init__(self, store_path: str = "data/users.yaml"):
         self.store_path = store_path
         self._ensure_store()
 

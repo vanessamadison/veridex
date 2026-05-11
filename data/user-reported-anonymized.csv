@@ -1,0 +1,181 @@
+NetworkMessageId,Subject,Sender,RecipientCount,DeliveryAction,ThreatTypes,Marked by,ConfidenceScore
+msg-01000,Your monthly newsletter,sender0@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.804
+msg-01001,Re: Onboarding checklist update,sender1@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.851
+msg-01002,URGENT: Verify your account or risk suspension,sender2@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.798
+msg-01003,Sprint 47 retro action items,sender3@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.891
+msg-01004,Lunch tomorrow?,sender4@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.832
+msg-01005,Your package is held at customs,sender5@suspicious-domain.tk,1,Quarantined,Phish,,
+msg-01006,Your package is held at customs,sender6@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.813
+msg-01007,"Your invoice is overdue, action required",sender7@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.769
+msg-01008,Your package is held at customs,sender8@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.796
+msg-01009,AWS billing alert: Unusual charges detected,sender9@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.955
+msg-01010,Re: Tuesday standup notes,sender10@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.789
+msg-01011,Re: Onboarding checklist update,sender11@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.902
+msg-01012,Re: Tuesday standup notes,sender12@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.815
+msg-01013,Sprint 47 retro action items,sender13@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01014,Sprint 47 retro action items,sender14@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01015,Re: Onboarding checklist update,sender15@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.969
+msg-01016,Sprint 47 retro action items,sender16@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01017,Re: Tuesday standup notes,sender17@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01018,AWS billing alert: Unusual charges detected,sender18@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.853
+msg-01019,Lunch tomorrow?,sender19@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.868
+msg-01020,Lunch tomorrow?,sender20@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01021,Re: Onboarding checklist update,sender21@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.842
+msg-01022,Q3 marketing review notes,sender22@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.914
+msg-01023,Recipe you wanted,sender23@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.82
+msg-01024,AWS billing alert: Unusual charges detected,sender24@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.933
+msg-01025,Your monthly newsletter,sender25@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.896
+msg-01026,URGENT: Verify your account or risk suspension,sender26@suspicious-domain.tk,5,Quarantined,Phish,,
+msg-01027,Your package is held at customs,sender27@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.807
+msg-01028,"Your invoice is overdue, action required",sender28@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.926
+msg-01029,Lunch tomorrow?,sender29@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01030,Lunch tomorrow?,sender30@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01031,Sprint 47 retro action items,sender31@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.931
+msg-01032,Out of office: returning Monday,sender32@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01033,Re: Onboarding checklist update,sender33@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.804
+msg-01034,DocuSign envelope: Wire instructions,sender34@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.803
+msg-01035,DocuSign envelope: Wire instructions,sender35@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.967
+msg-01036,Sprint 47 retro action items,sender36@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.911
+msg-01037,"IT Helpdesk: Mailbox full, click to clean",sender37@suspicious-domain.tk,2,Quarantined,Phish,Veridex,0.938
+msg-01038,Re: Onboarding checklist update,sender38@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.835
+msg-01039,Q3 marketing review notes,sender39@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01040,"Your invoice is overdue, action required",sender40@suspicious-domain.tk,2,Quarantined,Phish,,
+msg-01041,Microsoft 365 password expiration notice,sender41@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.794
+msg-01042,Re: Onboarding checklist update,sender42@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01043,Re: Onboarding checklist update,sender43@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01044,Q3 marketing review notes,sender44@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.972
+msg-01045,Re: Tuesday standup notes,sender45@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.801
+msg-01046,Out of office: returning Monday,sender46@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.986
+msg-01047,"IT Helpdesk: Mailbox full, click to clean",sender47@suspicious-domain.tk,3,Quarantined,Phish,,
+msg-01048,Re: Tuesday standup notes,sender48@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01049,URGENT: Verify your account or risk suspension,sender49@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.927
+msg-01050,URGENT: Verify your account or risk suspension,sender50@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.864
+msg-01051,Q3 marketing review notes,sender51@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.769
+msg-01052,DocuSign envelope: Wire instructions,sender52@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.779
+msg-01053,Q3 marketing review notes,sender53@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.77
+msg-01054,Recipe you wanted,sender54@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.799
+msg-01055,Out of office: returning Monday,sender55@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.911
+msg-01056,"Your invoice is overdue, action required",sender56@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.86
+msg-01057,Re: Onboarding checklist update,sender57@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01058,Your package is held at customs,sender58@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.961
+msg-01059,Your monthly newsletter,sender59@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.986
+msg-01060,Your monthly newsletter,sender60@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.975
+msg-01061,"Your invoice is overdue, action required",sender61@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.787
+msg-01062,Your package is held at customs,sender62@suspicious-domain.tk,2,Quarantined,Phish,Veridex,0.915
+msg-01063,Your monthly newsletter,sender63@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.772
+msg-01064,Q3 marketing review notes,sender64@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.935
+msg-01065,Re: Tuesday standup notes,sender65@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.919
+msg-01066,Lunch tomorrow?,sender66@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.759
+msg-01067,Out of office: returning Monday,sender67@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.76
+msg-01068,Q3 marketing review notes,sender68@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01069,"Your invoice is overdue, action required",sender69@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.937
+msg-01070,Lunch tomorrow?,sender70@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.958
+msg-01071,Out of office: returning Monday,sender71@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01072,HR: Confidential salary review document,sender72@suspicious-domain.tk,2,Quarantined,Phish,,
+msg-01073,"Your invoice is overdue, action required",sender73@suspicious-domain.tk,4,Quarantined,Phish,,
+msg-01074,Sprint 47 retro action items,sender74@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01075,Your monthly newsletter,sender75@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.804
+msg-01076,Your monthly newsletter,sender76@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.982
+msg-01077,HR: Confidential salary review document,sender77@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.829
+msg-01078,AWS billing alert: Unusual charges detected,sender78@suspicious-domain.tk,2,Quarantined,Phish,,
+msg-01079,Q3 marketing review notes,sender79@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01080,Recipe you wanted,sender80@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.895
+msg-01081,Sprint 47 retro action items,sender81@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.761
+msg-01082,Sprint 47 retro action items,sender82@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.854
+msg-01083,Recipe you wanted,sender83@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01084,Your monthly newsletter,sender84@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.828
+msg-01085,Sprint 47 retro action items,sender85@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.91
+msg-01086,Lunch tomorrow?,sender86@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01087,Q3 marketing review notes,sender87@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.819
+msg-01088,Recipe you wanted,sender88@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.856
+msg-01089,Lunch tomorrow?,sender89@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.818
+msg-01090,Re: Onboarding checklist update,sender90@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.911
+msg-01091,URGENT: Verify your account or risk suspension,sender91@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.809
+msg-01092,Re: Onboarding checklist update,sender92@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01093,Sprint 47 retro action items,sender93@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.869
+msg-01094,URGENT: Verify your account or risk suspension,sender94@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.937
+msg-01095,"IT Helpdesk: Mailbox full, click to clean",sender95@suspicious-domain.tk,1,Quarantined,Phish,,
+msg-01096,Re: Onboarding checklist update,sender96@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01097,Your package is held at customs,sender97@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.897
+msg-01098,Re: Tuesday standup notes,sender98@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.928
+msg-01099,Sprint 47 retro action items,sender99@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.934
+msg-01100,Your monthly newsletter,sender100@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.769
+msg-01101,Your package is held at customs,sender101@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.769
+msg-01102,Microsoft 365 password expiration notice,sender102@suspicious-domain.tk,2,Quarantined,Phish,Veridex,0.765
+msg-01103,Out of office: returning Monday,sender103@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.8
+msg-01104,Q3 marketing review notes,sender104@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01105,Recipe you wanted,sender105@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.931
+msg-01106,Out of office: returning Monday,sender106@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01107,Sprint 47 retro action items,sender107@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.803
+msg-01108,Recipe you wanted,sender108@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.924
+msg-01109,Q3 marketing review notes,sender109@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01110,Re: Onboarding checklist update,sender110@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.783
+msg-01111,Out of office: returning Monday,sender111@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.801
+msg-01112,HR: Confidential salary review document,sender112@suspicious-domain.tk,3,Quarantined,Phish,,
+msg-01113,Your monthly newsletter,sender113@legit-corp.com,1,Delivered,NoThreatsFound,,
+msg-01114,Q3 marketing review notes,sender114@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01115,URGENT: Verify your account or risk suspension,sender115@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.978
+msg-01116,Microsoft 365 password expiration notice,sender116@suspicious-domain.tk,2,Quarantined,Phish,Veridex,0.78
+msg-01117,Sprint 47 retro action items,sender117@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.918
+msg-01118,Re: Onboarding checklist update,sender118@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.982
+msg-01119,AWS billing alert: Unusual charges detected,sender119@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.913
+msg-01120,Sprint 47 retro action items,sender120@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.892
+msg-01121,Your monthly newsletter,sender121@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.943
+msg-01122,Q3 marketing review notes,sender122@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.878
+msg-01123,Recipe you wanted,sender123@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.954
+msg-01124,Recipe you wanted,sender124@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.92
+msg-01125,Your monthly newsletter,sender125@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01126,Re: Tuesday standup notes,sender126@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.855
+msg-01127,Sprint 47 retro action items,sender127@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.817
+msg-01128,Out of office: returning Monday,sender128@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01129,Microsoft 365 password expiration notice,sender129@suspicious-domain.tk,4,Quarantined,Phish,,
+msg-01130,Your package is held at customs,sender130@suspicious-domain.tk,3,Quarantined,Phish,,
+msg-01131,Your monthly newsletter,sender131@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01132,"Your invoice is overdue, action required",sender132@suspicious-domain.tk,2,Quarantined,Phish,,
+msg-01133,Sprint 47 retro action items,sender133@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.905
+msg-01134,Re: Onboarding checklist update,sender134@legit-corp.com,3,Delivered,NoThreatsFound,,
+msg-01135,AWS billing alert: Unusual charges detected,sender135@suspicious-domain.tk,5,Quarantined,Phish,,
+msg-01136,Recipe you wanted,sender136@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.989
+msg-01137,Re: Tuesday standup notes,sender137@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.824
+msg-01138,Your package is held at customs,sender138@suspicious-domain.tk,1,Quarantined,Phish,,
+msg-01139,Lunch tomorrow?,sender139@legit-corp.com,2,Delivered,NoThreatsFound,,
+msg-01140,AWS billing alert: Unusual charges detected,sender140@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.95
+msg-01141,AWS billing alert: Unusual charges detected,sender141@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.92
+msg-01142,URGENT: Verify your account or risk suspension,sender142@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.82
+msg-01143,Re: Tuesday standup notes,sender143@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.959
+msg-01144,Re: Tuesday standup notes,sender144@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.794
+msg-01145,"IT Helpdesk: Mailbox full, click to clean",sender145@suspicious-domain.tk,1,Quarantined,Phish,,
+msg-01146,Re: Onboarding checklist update,sender146@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.901
+msg-01147,AWS billing alert: Unusual charges detected,sender147@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.989
+msg-01148,DocuSign envelope: Wire instructions,sender148@suspicious-domain.tk,5,Quarantined,Phish,,
+msg-01149,Your monthly newsletter,sender149@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01150,Q3 marketing review notes,sender150@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.98
+msg-01151,DocuSign envelope: Wire instructions,sender151@suspicious-domain.tk,3,Quarantined,Phish,,
+msg-01152,Lunch tomorrow?,sender152@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.768
+msg-01153,"IT Helpdesk: Mailbox full, click to clean",sender153@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.758
+msg-01154,"IT Helpdesk: Mailbox full, click to clean",sender154@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.915
+msg-01155,Sprint 47 retro action items,sender155@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01156,Microsoft 365 password expiration notice,sender156@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.948
+msg-01157,AWS billing alert: Unusual charges detected,sender157@suspicious-domain.tk,5,Quarantined,Phish,Veridex,0.93
+msg-01158,Re: Onboarding checklist update,sender158@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.915
+msg-01159,Re: Tuesday standup notes,sender159@legit-corp.com,4,Delivered,NoThreatsFound,,
+msg-01160,HR: Confidential salary review document,sender160@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.895
+msg-01161,URGENT: Verify your account or risk suspension,sender161@suspicious-domain.tk,3,Quarantined,Phish,Veridex,0.888
+msg-01162,Re: Tuesday standup notes,sender162@legit-corp.com,3,Delivered,NoThreatsFound,Veridex,0.794
+msg-01163,Re: Tuesday standup notes,sender163@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.863
+msg-01164,Re: Onboarding checklist update,sender164@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.829
+msg-01165,Out of office: returning Monday,sender165@legit-corp.com,5,Delivered,NoThreatsFound,Veridex,0.759
+msg-01166,"Your invoice is overdue, action required",sender166@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.958
+msg-01167,Re: Tuesday standup notes,sender167@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.763
+msg-01168,Re: Tuesday standup notes,sender168@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.932
+msg-01169,AWS billing alert: Unusual charges detected,sender169@suspicious-domain.tk,4,Quarantined,Phish,Veridex,0.961
+msg-01170,Sprint 47 retro action items,sender170@legit-corp.com,2,Delivered,NoThreatsFound,Veridex,0.825
+msg-01171,DocuSign envelope: Wire instructions,sender171@suspicious-domain.tk,1,Quarantined,Phish,Veridex,0.861
+msg-01172,"IT Helpdesk: Mailbox full, click to clean",sender172@suspicious-domain.tk,3,Quarantined,Phish,,
+msg-01173,Re: Tuesday standup notes,sender173@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.808
+msg-01174,Lunch tomorrow?,sender174@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.816
+msg-01175,Your monthly newsletter,sender175@legit-corp.com,1,Delivered,NoThreatsFound,Veridex,0.818
+msg-01176,"IT Helpdesk: Mailbox full, click to clean",sender176@suspicious-domain.tk,2,Quarantined,Phish,Veridex,0.857
+msg-01177,Out of office: returning Monday,sender177@legit-corp.com,4,Delivered,NoThreatsFound,Veridex,0.974
+msg-01178,Sprint 47 retro action items,sender178@legit-corp.com,5,Delivered,NoThreatsFound,,
+msg-01179,Out of office: returning Monday,sender179@legit-corp.com,1,Delivered,NoThreatsFound,,
