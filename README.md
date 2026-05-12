@@ -166,15 +166,57 @@ ollama pull mistral
 
 ### Initial Setup
 
-```bash
-# Create admin user (run once before first use)
-python3 scripts/setup_admin.py
+Veridex supports two roles out of the box: **admin** and **analyst**. Run the setup script once per user. The first run typically creates the admin. Subsequent runs create one or more analysts.
 
-# The script will:
-# - Generate a secure password (recommended), OR
-# - Let you set your own password (must meet security requirements)
-# - Save credentials securely
+```bash
+# Run the user setup script for each user you need
+python3 scripts/setup_admin.py
 ```
+
+The script walks you through:
+
+1. **Choose a role**
+   - `admin`: full permissions. Can manage users, view the security audit log, view the queue, triage, override verdicts, and export data.
+   - `analyst`: least-privilege operator. Can view the queue, triage, override verdicts, and export data. **Cannot** create users or read the security audit log (the system still logs every action an analyst takes).
+2. **Choose a username and email** (defaults are `admin` / `analyst`).
+3. **Choose a password**
+   - Option 1: auto-generate a secure password. Shown once on screen, save it immediately.
+   - Option 2: set your own. Must meet length and complexity requirements (12+ characters, mixed case, number, special char).
+
+The script writes the user to `data/users.yaml` and logs a `USER_CREATED` event to the immutable audit log at `results/auth_audit.json`.
+
+**Typical setup for a demo or a small team:**
+
+```bash
+# 1. Create the admin
+python3 scripts/setup_admin.py
+# Choose role: 1 (admin), username: admin
+
+# 2. Create one or more analysts
+python3 scripts/setup_admin.py
+# Choose role: 2 (analyst), username: john
+
+python3 scripts/setup_admin.py
+# Choose role: 2 (analyst), username: priya
+```
+
+#### Role permissions reference
+
+| Permission              | admin | analyst |
+|-------------------------|:-----:|:-------:|
+| `can_view_queue`        |  ✓    |   ✓     |
+| `can_triage`            |  ✓    |   ✓     |
+| `can_override_verdicts` |  ✓    |   ✓     |
+| `can_generate_data`     |  ✓    |   ✓     |
+| `can_export_data`       |  ✓    |   ✓     |
+| `can_manage_users`      |  ✓    |         |
+| `can_view_audit`        |  ✓    |         |
+
+Permissions are enforced server-side. When an analyst attempts an admin-only action, the request is rejected and a `PERMISSION_DENIED` row is appended to the audit log. There is no client-side bypass.
+
+#### A third role (auditor)
+
+A read-only `auditor` role also exists in `src/auth/security.py` for compliance scenarios. It can view the queue and the audit log and export data, but cannot triage or override. The setup script does not expose it as an interactive option because most deployments do not need a separate auditor account, but it can be added by editing `data/users.yaml` directly and setting `role: auditor`.
 
 ### Running VERIDEX
 
